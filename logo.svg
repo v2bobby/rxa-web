@@ -1,0 +1,19 @@
+<svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Futuristic Rx Shield + Scan -->
+  <g>
+    <!-- Outer shield / tech frame -->
+    <path d="M12 6 L28 6 Q32 6 32 10 L32 22 Q32 30 20 34 Q8 30 8 22 L8 10 Q8 6 12 6 Z" fill="#0B0C14" stroke="#22D3EE" stroke-width="1.5"/>
+    <!-- Inner Rx symbol stylized -->
+    <text x="20" y="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#22D3EE" text-anchor="middle" dominant-baseline="middle">Rx</text>
+    <!-- Subtle scan / verification line -->
+    <line x1="10" y1="28" x2="30" y2="28" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.6"/>
+    <circle cx="20" cy="28" r="1.5" fill="#22D3EE"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="44" y="28" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif" font-size="26" font-weight="700" letter-spacing="-1.2" fill="#F8FAFC">Rx</text>
+  <text x="78" y="28" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif" font-size="26" font-weight="500" letter-spacing="-0.8" fill="#F8FAFC">Assist</text>
+  
+  <!-- Subtle accent underline for premium feel -->
+  <line x1="44" y1="34" x2="138" y2="34" stroke="#22D3EE" stroke-width="1.5" stroke-opacity="0.3"/>
+</svg>
