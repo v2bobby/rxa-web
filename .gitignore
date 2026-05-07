@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build / Output
+dist/
+build/
+.vercel/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Misc
+*.bak
+*.tmp
+preview_page*.png
+generate_blueprint.py
