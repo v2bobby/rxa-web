@@ -267,7 +267,7 @@ select.input-premium {
       rgba(11, 15, 26, 0.65) 35%, 
       rgba(11, 15, 26, 0.82) 100%
     ),
-    url('/assets/bg/hero-biotech.jpg');
+    url('hero-biotech.jpg');
   background-size: cover;
   background-position: center 30%;
   background-attachment: fixed;
@@ -278,7 +278,7 @@ select.input-premium {
 .biotech-glass {
   background-image: 
     linear-gradient(rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.96)),
-    url('/assets/bg/lattice-teal.jpg');
+    url('lattice-teal.jpg');
   background-size: cover;
   background-position: center;
   border: 1px solid var(--border-subtle);
