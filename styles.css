@@ -76,14 +76,14 @@ h1, h2, h3, .font-display {
 }
 
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: 'Satoshi', sans-serif;
+  text-align: center;
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teal-deep);
 }
-
 /* ============== Verification Strip (signature element) ============== */
 
 .verify-strip {
