@@ -29,8 +29,9 @@
   --shadow-raised: 0 4px 8px rgba(15, 26, 23, 0.05), 0 16px 40px -12px rgba(15, 26, 23, 0.12);
 
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Satoshi', 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
 }
 
 * {
@@ -63,7 +64,10 @@ body {
   letter-spacing: 0;
 }
 
-h1, h2, h3, .font-display {
+h1,
+h2,
+h3,
+.font-display {
   font-family: var(--font-display);
 }
 
@@ -84,6 +88,7 @@ h1, h2, h3, .font-display {
   text-transform: uppercase;
   color: var(--teal-deep);
 }
+
 /* ============== Verification Strip (signature element) ============== */
 
 .verify-strip {
@@ -126,8 +131,13 @@ h1, h2, h3, .font-display {
 }
 
 @keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -276,8 +286,15 @@ select.input-clean {
 }
 
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.97) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* ============== Scroll reveal ============== */
@@ -406,10 +423,21 @@ select.input-clean {
 }
 
 @keyframes scan {
-  0% { top: 18%; }
-  45% { top: 82%; }
-  55% { top: 82%; }
-  100% { top: 18%; }
+  0% {
+    top: 18%;
+  }
+
+  45% {
+    top: 82%;
+  }
+
+  55% {
+    top: 82%;
+  }
+
+  100% {
+    top: 18%;
+  }
 }
 
 /* ============== Responsive ============== */
@@ -418,7 +446,9 @@ select.input-clean {
   .section-title {
     font-size: 2rem;
   }
-  .specimen, .capability-card {
+
+  .specimen,
+  .capability-card {
     padding: 1.25rem;
   }
 }
