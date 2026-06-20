@@ -344,7 +344,29 @@ select.input-clean {
   background: var(--line);
 }
 
-/* ============== Demo phone (light variant) ============== */
+/* ============== Photo treatment (warmed/graded to match palette) ============== */
+
+.photo-graded {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-graded img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.18) saturate(1.05) hue-rotate(120deg) brightness(1.02) contrast(0.98);
+}
+
+.photo-graded::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(13, 122, 110, 0.16) 0%, rgba(250, 250, 247, 0.08) 60%, rgba(15, 26, 23, 0.22) 100%);
+  pointer-events: none;
+}
+
 
 .phone-mockup {
   background: var(--paper-raised);

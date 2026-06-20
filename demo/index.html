@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launch Demo — RxAssist</title>
+  <meta name="description" content="Try the RxAssist medication verification demo — scan a sample, see the Trust Score, read guidance in a local language, then join the early-access waitlist for the Nigeria pilot.">
+  <meta name="theme-color" content="#FAFAF7">
+  <link rel="canonical" href="https://rxassist.pro/demo/">
+  <link rel="icon" href="data:,">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FAFAF7] text-[#0F1A17] overflow-x-hidden">
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="sticky top-0 z-50 bg-[#FAFAF7]/95 backdrop-blur-md border-b border-[#DDE5E2]">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-x-3">
+        <img src="../assets/logo.svg" alt="RxAssist" class="h-8 w-auto">
+      </a>
+      <a href="/" class="text-sm font-medium text-[#5A6B65] hover:text-[#0F1A17] flex items-center gap-x-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" /></svg>
+        Back to overview
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==================== DEMO HEADER ==================== -->
+  <section class="max-w-5xl mx-auto px-6 pt-14 pb-8 text-center">
+    <div class="eyebrow mb-3">Interactive Preview</div>
+    <h1 class="font-display text-3xl md:text-[2.75rem] font-semibold leading-tight">Scan a sample. See it verified.</h1>
+    <p class="mt-4 text-lg text-[#3D4D48] max-w-xl mx-auto">This is a guided preview of the core verification flow using a sample medication. No camera access or real data is used — it's a illustrative walkthrough of the production experience.</p>
+  </section>
+
+  <!-- ==================== DEMO WIDGET ==================== -->
+  <section class="max-w-2xl mx-auto px-6 pb-20">
+    <div class="specimen rounded-2xl overflow-hidden">
+      <div class="bg-[#0F1A17] px-6 py-4 flex items-center justify-between">
+        <span class="font-mono text-[11px] tracking-widest text-[#9FB5AF] uppercase">RxAssist Scanner — Demo Mode</span>
+        <span id="demo-status-tag" class="trust-tag px-2.5 py-1 rounded">Ready</span>
+      </div>
+
+      <!-- Step 1: Choose sample -->
+      <div id="step-select" class="p-8">
+        <div class="specimen-label mb-4">Step 1 — Choose a sample to scan</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button class="sample-btn input-clean rounded-xl p-4 text-left hover:border-[#0D7A6E] transition-colors" data-sample="amox">
+            <div class="font-display font-semibold">Amoxicillin 500mg</div>
+            <div class="text-xs text-[#5A6B65] mt-1">Antibiotic capsule</div>
+          </button>
+          <button class="sample-btn input-clean rounded-xl p-4 text-left hover:border-[#0D7A6E] transition-colors" data-sample="paracetamol">
+            <div class="font-display font-semibold">Paracetamol 500mg</div>
+            <div class="text-xs text-[#5A6B65] mt-1">Pain reliever, tablet</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Scanning -->
+      <div id="step-scanning" class="hidden p-8 text-center">
+        <div class="specimen-label mb-4">Step 2 — Analyzing packaging</div>
+        <div class="relative h-40 flex items-center justify-center bg-[#F2F6F4] rounded-xl border border-[#DDE5E2] overflow-hidden">
+          <svg width="92" height="42" viewBox="0 0 92 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="84" height="26" rx="13" fill="#E7F5F2"/>
+            <rect x="4" y="8" width="42" height="26" rx="13" fill="#BFE3DC"/>
+            <text x="46" y="26" font-family="monospace" font-size="11" font-weight="700" fill="#0D7A6E" text-anchor="middle">Rx</text>
+          </svg>
+          <div class="scan-line" style="top: 30%;"></div>
+        </div>
+        <div id="scan-progress-text" class="mt-4 text-sm text-[#5A6B65] font-mono">Checking hologram pattern…</div>
+      </div>
+
+      <!-- Step 3: Result -->
+      <div id="step-result" class="hidden p-8">
+        <div class="flex items-center justify-between pb-4 border-b border-[#DDE5E2]">
+          <div>
+            <div class="specimen-label">Sample</div>
+            <div id="result-name" class="font-display text-lg font-medium mt-0.5">—</div>
+          </div>
+          <div class="text-right">
+            <div class="specimen-label">Trust Score</div>
+            <div class="readout readout-accent text-2xl font-semibold mt-0.5">98.4</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 py-4 border-b border-[#DDE5E2] text-sm">
+          <div>
+            <div class="specimen-label mb-1">Hologram</div>
+            <div class="text-[#1F9D6B] font-medium flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7"/></svg>
+              Matched
+            </div>
+          </div>
+          <div>
+            <div class="specimen-label mb-1">Batch Code</div>
+            <div class="text-[#1F9D6B] font-medium flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7"/></svg>
+              Verified
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 pb-2">
+          <div class="specimen-label mb-2">Guidance (Yoruba)</div>
+          <p id="result-guidance-local" class="text-sm text-[#3D4D48] leading-relaxed">—</p>
+          <p id="result-guidance-en" class="text-xs text-[#5A6B65] mt-1 italic">—</p>
+        </div>
+        <button id="scan-again-btn" class="mt-4 text-sm font-semibold text-[#0D7A6E] hover:underline">← Scan another sample</button>
+      </div>
+    </div>
+
+    <p class="text-xs text-[#5A6B65] text-center mt-4">Demo uses pre-recorded sample data. The production app performs this analysis on-device and against a live manufacturer database.</p>
+  </section>
+
+  <!-- ==================== WAITLIST ==================== -->
+  <section id="waitlist" class="max-w-2xl mx-auto px-6 pb-24">
+    <div class="specimen rounded-2xl p-10 text-center bg-[#0F1A17] border-[#0F1A17]">
+      <div class="eyebrow text-[#5EEAD4] mb-3">Early Access</div>
+      <h2 class="font-display text-2xl md:text-3xl font-semibold text-[#F8FAFC]">Join the Nigeria pilot waitlist.</h2>
+      <p class="mt-3 text-[#9FB5AF] max-w-md mx-auto">Be notified the moment pilot access opens. No spam, no obligation — pilot spots are limited.</p>
+
+      <form id="waitlist-form" class="mt-8 max-w-md mx-auto text-left">
+        <div class="grid grid-cols-1 gap-y-3">
+          <input type="text" id="name" placeholder="Full name"
+                 class="input-clean w-full px-5 py-3.5 rounded-lg placeholder:text-[#5A6B65]">
+
+          <input type="email" id="email" placeholder="Email address" required
+                 class="input-clean w-full px-5 py-3.5 rounded-lg placeholder:text-[#5A6B65]">
+
+          <select id="role" required class="input-clean w-full px-5 py-3.5 rounded-lg">
+            <option value="" disabled selected>I am a...</option>
+            <option value="Investor">Investor / Funder</option>
+            <option value="Patient">Patient / Caregiver</option>
+            <option value="Pharmacist">Licensed Pharmacist</option>
+            <option value="Healthcare Professional">Healthcare Professional</option>
+            <option value="Partner">Potential Partner / NGO / Ministry</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <button type="submit"
+                class="mt-5 w-full py-4 text-base font-semibold rounded-lg flex items-center justify-center gap-x-2 disabled:opacity-70 bg-[#5EEAD4] text-[#0F1A17] hover:bg-white transition-colors">
+          <span id="btn-text">Join the Waitlist</span>
+          <span id="btn-spinner" class="hidden">
+            <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <p class="text-center text-xs text-[#5A6B65] mt-4">No signups are processed yet — this is a preview of the production flow.</p>
+      </form>
+
+      <div id="success-state" class="hidden success-state max-w-md mx-auto text-center pt-2">
+        <div class="mx-auto w-16 h-16 rounded-full bg-[#16241F] flex items-center justify-center mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9 text-[#5EEAD4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7" />
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-semibold text-[#F8FAFC]">You're on the list.</h3>
+        <p class="text-[#9FB5AF] mt-2">Thank you. We'll notify you the moment pilot access opens in Nigeria.</p>
+        <button onclick="resetForm()" class="mt-8 text-sm font-medium text-[#5EEAD4] hover:underline">Submit another response</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-[#DDE5E2] bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-center text-[#5A6B65]">
+      © 2026 RxAssist. Private &amp; Confidential. · <a href="/" class="footer-link">Back to overview</a>
+    </div>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>
