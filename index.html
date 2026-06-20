@@ -121,26 +121,15 @@
   </nav>
 
   <!-- ==================== HERO ==================== -->
-  <section class="hero-photo pt-16 pb-20 md:pt-20 md:pb-28 border-b border-[#DDE5E2]">
-    <div class="max-w-7xl mx-auto px-6 relative">
-      <div class="grid lg:grid-cols-12 gap-x-8 items-start">
+  <section class="hero-photo hero-full border-b border-[#DDE5E2] flex items-center">
+    <div class="max-w-7xl mx-auto px-6 relative w-full py-20 md:py-0">
+      <div class="grid lg:grid-cols-12 gap-x-8 items-center">
 
         <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-x-2 px-3 py-1 rounded-md bg-white/90 border border-[#BFE3DC] mb-7">
-            <span class="eyebrow"> Pilot 2026</span>
-          </div>
-
           <h1
             class="font-display text-[2.85rem] md:text-[4rem] lg:text-[4.5rem] leading-[1.02] font-semibold tracking-tight mb-7 text-[#F8FAFC]">
             Medication safety<br>infrastructure for a<br><span class="text-[#5EEAD4]">$65B market.</span>
           </h1>
-
-          <p class="max-w-[48ch] text-xl text-[#E5ECEA] leading-snug mb-9">
-            PharmAssist is AI-powered middleware that verifies medication authenticity, delivers clinical guidance in
-            local languages, and drives adherence — built offline-first for 40 million underserved smartphone users
-            across Sub-Saharan Africa.
-          </p>
-
           <div class="flex flex-col sm:flex-row gap-4">
             <a href="/demo/"
               class="btn-primary inline-flex items-center justify-center px-8 py-4 rounded-lg text-base font-semibold">
@@ -156,7 +145,7 @@
             </a>
           </div>
 
-          <div class="grid grid-cols-3 gap-6 mt-14 max-w-lg">
+          <div class="grid grid-cols-3 gap-8 mt-14 max-w-lg">
             <div>
               <div class="readout text-3xl font-semibold text-[#F8FAFC]">70%</div>
               <div class="text-xs text-[#C5D6D2] mt-1 leading-tight">meds bought without<br>consultation</div>
@@ -226,6 +215,14 @@
         </div>
       </div>
     </div>
+
+    <!-- Scroll cue -->
+    <a href="#opportunity" class="hero-scroll-cue" aria-label="Scroll to learn more">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
   </section>
 
   <!-- ==================== OPPORTUNITY (THE PROBLEM, MARKET-FRAMED) ==================== -->
@@ -243,7 +240,7 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-6 py-16 md:py-20">
-      <div class="grid md:grid-cols-3 gap-5">
+      <div class="grid md:grid-cols-3 gap-7">
         <div class="specimen rounded-2xl p-8">
           <div class="specimen-label mb-4">Consultation Deficit</div>
           <div class="readout text-5xl font-semibold">70<span class="text-2xl align-super">%</span></div>
@@ -274,7 +271,7 @@
         </div>
       </div>
 
-      <div class="mt-10 specimen rounded-2xl p-8 md:p-10 bg-[#0F1A17] border-[#0F1A17]">
+      <div class="mt-14 specimen rounded-2xl p-8 md:p-10 bg-[#0F1A17] border-[#0F1A17]">
         <div class="grid md:grid-cols-3 gap-8 items-center">
           <div class="md:col-span-2">
             <div class="eyebrow text-[#5EEAD4] mb-2">Why Now</div>
@@ -311,9 +308,9 @@
         </div>
 
         <div class="lg:col-span-7 mt-12 lg:mt-0">
-          <div class="grid sm:grid-cols-2 gap-5">
+          <div class="grid sm:grid-cols-2 gap-7">
 
-            <div class="capability-card rounded-2xl p-7">
+            <div class="capability-card rounded-2xl p-8">
               <div class="capability-icon w-11 h-11 flex items-center justify-center rounded-xl mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
@@ -323,12 +320,12 @@
                 </svg>
               </div>
               <h3 class="font-display font-semibold text-xl tracking-tight">Counterfeit Shield</h3>
-              <p class="mt-3 text-[#3D4D48] text-[15px]">Computer-vision scanning analyzes holograms, serial numbers,
+              <p class="mt-4 text-[#3D4D48] text-[15px]">Computer-vision scanning analyzes holograms, serial numbers,
                 and packaging security features against a proprietary manufacturer-verified database. Trust Score
                 returned in seconds.</p>
             </div>
 
-            <div class="capability-card rounded-2xl p-7">
+            <div class="capability-card rounded-2xl p-8">
               <div class="capability-icon w-11 h-11 flex items-center justify-center rounded-xl mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
@@ -339,11 +336,11 @@
                 </svg>
               </div>
               <h3 class="font-display font-semibold text-xl tracking-tight">Local-Language NLP</h3>
-              <p class="mt-3 text-[#3D4D48] text-[15px]">Dosage instructions and side-effect warnings delivered in
+              <p class="mt-4 text-[#3D4D48] text-[15px]">Dosage instructions and side-effect warnings delivered in
                 Yoruba, Hausa, Igbo, and Pidgin — clinical guidance that's actually understood, not just translated.</p>
             </div>
 
-            <div class="capability-card rounded-2xl p-7">
+            <div class="capability-card rounded-2xl p-8">
               <div class="capability-icon w-11 h-11 flex items-center justify-center rounded-xl mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
@@ -352,12 +349,12 @@
                 </svg>
               </div>
               <h3 class="font-display font-semibold text-xl tracking-tight">Offline-First Architecture</h3>
-              <p class="mt-3 text-[#3D4D48] text-[15px]">"Sync-and-Save" keeps interaction databases, adherence
+              <p class="mt-4 text-[#3D4D48] text-[15px]">"Sync-and-Save" keeps interaction databases, adherence
                 schedules, and core guidance fully functional without cellular connectivity — built for where it will
                 actually be used.</p>
             </div>
 
-            <div class="capability-card rounded-2xl p-7">
+            <div class="capability-card rounded-2xl p-8">
               <div class="capability-icon w-11 h-11 flex items-center justify-center rounded-xl mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
@@ -366,7 +363,7 @@
                 </svg>
               </div>
               <h3 class="font-display font-semibold text-xl tracking-tight">Adherence Guardian</h3>
-              <p class="mt-3 text-[#3D4D48] text-[15px]">Real-time drug-drug and drug-food interaction alerts, plus
+              <p class="mt-4 text-[#3D4D48] text-[15px]">Real-time drug-drug and drug-food interaction alerts, plus
                 smart nudges to complete antibiotic courses — protecting individual patients and slowing antimicrobial
                 resistance.</p>
             </div>
@@ -387,7 +384,7 @@
     </div>
 
     <!-- Revenue Streams -->
-    <div class="grid md:grid-cols-3 gap-5 mt-12">
+    <div class="grid md:grid-cols-3 gap-7 mt-14">
       <div class="specimen rounded-2xl p-8 flex flex-col">
         <div class="specimen-label mb-4">Stream 01 · B2B SaaS</div>
         <h3 class="font-display text-xl font-semibold">Pharmaceutical Partnerships</h3>
@@ -419,7 +416,7 @@
     </div>
 
     <!-- Value Prop / Flywheel -->
-    <div class="mt-10 grid lg:grid-cols-2 gap-5">
+    <div class="mt-14 grid lg:grid-cols-2 gap-7">
       <div class="specimen rounded-2xl p-8 md:p-10">
         <div class="eyebrow mb-4">Value Proposition</div>
         <ul class="space-y-4">
@@ -451,9 +448,9 @@
     </div>
 
     <!-- Tech Stack -->
-    <div class="mt-10 specimen rounded-2xl p-8 md:p-10">
+    <div class="mt-14 specimen rounded-2xl p-8 md:p-10">
       <div class="eyebrow mb-6">Technology Stack</div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <div class="specimen-label mb-2">Detection Layer</div>
           <p class="text-sm text-[#3D4D48]">Computer-vision models trained on manufacturer packaging, holograms, and
@@ -481,28 +478,28 @@
   <!-- ==================== IMPACT ==================== -->
   <section class="bg-white border-y border-[#DDE5E2] py-20 md:py-24">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="max-w-2xl mb-12">
+      <div class="max-w-2xl mb-14">
         <div class="eyebrow mb-3">Measurable Outcomes</div>
         <h2 class="section-title">Built for reportable impact, not vanity metrics.</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="specimen rounded-2xl p-7 text-center">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+        <div class="specimen rounded-2xl p-8 text-center">
           <div class="specimen-label mb-3">Adherence</div>
           <div class="readout text-4xl font-semibold">50<span class="text-[#0D7A6E]">→</span>75</div>
           <div class="text-sm mt-2 text-[#3D4D48]">Regional avg → Target rate</div>
         </div>
-        <div class="specimen rounded-2xl p-7 text-center">
+        <div class="specimen rounded-2xl p-8 text-center">
           <div class="specimen-label mb-3">Error Reduction</div>
           <div class="readout text-4xl font-semibold">40<span class="text-xl align-super">%</span></div>
           <div class="text-sm mt-2 text-[#3D4D48]">Drug-interaction errors avoided</div>
         </div>
-        <div class="specimen rounded-2xl p-7 text-center">
+        <div class="specimen rounded-2xl p-8 text-center">
           <div class="specimen-label mb-3">Scale</div>
           <div class="readout text-4xl font-semibold">40M</div>
           <div class="text-sm mt-2 text-[#3D4D48]">Smartphone users, initial target</div>
         </div>
-        <div class="specimen rounded-2xl p-7 text-center">
+        <div class="specimen rounded-2xl p-8 text-center">
           <div class="specimen-label mb-3">AMR Combat</div>
           <div class="readout text-4xl font-semibold">100<span class="text-xl align-super">%</span></div>
           <div class="text-sm mt-2 text-[#3D4D48]">Course-completion education coverage</div>
@@ -513,7 +510,7 @@
 
   <!-- ==================== FOR PARTNERS / FOR PATIENTS ==================== -->
   <section class="max-w-7xl mx-auto px-6 py-20 md:py-24">
-    <div class="grid lg:grid-cols-2 gap-6">
+    <div class="grid lg:grid-cols-2 gap-8">
 
       <div class="specimen rounded-2xl p-8 md:p-10">
         <div class="eyebrow mb-3">For Partners</div>
@@ -549,7 +546,7 @@
   <!-- ==================== ROADMAP ==================== -->
   <section id="roadmap" class="bg-[#0F1A17] py-20 md:py-24">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14">
         <div>
           <div class="eyebrow text-[#5EEAD4] mb-3">Execution</div>
           <h2 class="section-title text-[#F8FAFC]">Roadmap to 2030</h2>
@@ -558,7 +555,7 @@
           pharmaceutical infrastructure across the continent.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-5">
+      <div class="grid md:grid-cols-3 gap-7">
         <div class="border border-[#2A3833] rounded-2xl p-8 bg-[#111C18]">
           <div class="font-mono text-xs text-[#5EEAD4] tracking-widest mb-4">PHASE 01 · 2026–2027</div>
           <h3 class="font-display font-semibold text-2xl text-[#F8FAFC]">Nigeria Pilot</h3>
@@ -590,14 +587,14 @@
 
   <!-- ==================== GLOBAL ALIGNMENT ==================== -->
   <section class="max-w-7xl mx-auto px-6 py-20 md:py-24">
-    <div class="max-w-2xl mb-12">
+    <div class="max-w-2xl mb-14">
       <div class="eyebrow mb-3">Global Alignment</div>
       <h2 class="section-title">Built for grant and impact-capital eligibility.</h2>
       <p class="mt-5 text-lg text-[#3D4D48]">PharmAssist is strategically positioned to attract impact-focused capital
         from the world's leading global-health and innovation funders.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-5">
+    <div class="grid md:grid-cols-2 gap-7">
       <div class="specimen rounded-2xl p-8">
         <div class="specimen-label mb-4">UN Sustainable Development Goals</div>
         <div class="flex gap-3 flex-wrap">
@@ -618,12 +615,12 @@
   <!-- ==================== FOUNDERS ==================== -->
   <section class="bg-white border-y border-[#DDE5E2] py-20 md:py-24">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
+      <div class="text-center mb-12">
         <div class="eyebrow mb-3">Leadership</div>
         <h2 class="section-title">Built by people who care deeply about the outcome.</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
 
         <!-- Co-Founder: Nathaniel Friday -->
         <div class="specimen rounded-2xl p-8 md:p-10">

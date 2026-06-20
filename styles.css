@@ -29,9 +29,8 @@
   --shadow-raised: 0 4px 8px rgba(15, 26, 23, 0.05), 0 16px 40px -12px rgba(15, 26, 23, 0.12);
 
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Satoshi', 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-
+  --font-body: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 }
 
 * {
@@ -80,8 +79,7 @@ h3,
 }
 
 .eyebrow {
-  font-family: 'Satoshi', sans-serif;
-  text-align: center;
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -361,7 +359,65 @@ select.input-clean {
   background: var(--line);
 }
 
-/* ============== Photo section backgrounds (full-bleed, scrimmed) ============== */
+/* ============== Full-viewport hero ============== */
+
+.hero-full {
+  min-height: calc(100vh - 80px);
+  /* subtract sticky nav height */
+  position: relative;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F8FAFC;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: bob 2.2s ease-in-out infinite;
+  transition: background 0.2s ease;
+}
+
+.hero-scroll-cue:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+@keyframes bob {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue {
+    animation: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-full {
+    min-height: auto;
+  }
+
+  .hero-scroll-cue {
+    display: none;
+  }
+}
+
+
 
 .hero-photo {
   background-image:
