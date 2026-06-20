@@ -344,6 +344,24 @@ select.input-clean {
   background: var(--line);
 }
 
+/* ============== Photo section backgrounds (full-bleed, scrimmed) ============== */
+
+.hero-photo {
+  background-image:
+    linear-gradient(125deg, rgba(15, 26, 23, 0.88) 0%, rgba(15, 26, 23, 0.74) 45%, rgba(13, 122, 110, 0.55) 100%),
+    url('https://images.unsplash.com/photo-1693681866234-9a356241cc24?fm=jpg&q=80&w=2400&fit=crop');
+  background-size: cover;
+  background-position: center 35%;
+}
+
+.opportunity-photo {
+  background-image:
+    linear-gradient(180deg, rgba(15, 26, 23, 0.82) 0%, rgba(15, 26, 23, 0.7) 100%),
+    url('https://images.unsplash.com/photo-1737113565802-0a68bc04fc37?fm=jpg&q=80&w=2400&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
 /* ============== Photo treatment (warmed/graded to match palette) ============== */
 
 .photo-graded {
