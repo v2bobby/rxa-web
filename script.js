@@ -1,5 +1,5 @@
 // ============================================
-// RxAssist — Investor Site Interactive Behaviors
+// PharmAssist — Investor Site Interactive Behaviors
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -104,5 +104,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  console.log('%c[RxAssist] Investor site initialized.', 'color:#6B7B76; font-size:9px');
+  console.log('%c[PharmAssist] Investor site initialized.', 'color:#6B7B76; font-size:9px');
 });

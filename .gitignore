@@ -28,4 +28,3 @@ npm-debug.log*
 *.bak
 *.tmp
 preview_page*.png
-generate_blueprint.py
