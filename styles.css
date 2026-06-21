@@ -1,5 +1,5 @@
 /* ============================================
-   PharmAssist — Investor-Grade Light Theme
+   RxLoop — Investor-Grade Light Theme
    "Specimen Label" design system
    ============================================ */
 
@@ -29,7 +29,7 @@
   --shadow-raised: 0 4px 8px rgba(15, 26, 23, 0.05), 0 16px 40px -12px rgba(15, 26, 23, 0.12);
 
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 }
 
@@ -63,19 +63,23 @@ body {
   letter-spacing: 0;
 }
 
-h1,
-h2,
-h3,
-.font-display {
+h1, h2, h3, .font-display {
   font-family: var(--font-display);
 }
 
 .section-title {
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: clamp(2.25rem, 4.6vw, 3.4rem);
   line-height: 1.08;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--ink);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .eyebrow {
@@ -129,13 +133,8 @@ h3,
 }
 
 @keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -284,15 +283,8 @@ select.input-clean {
 }
 
 @keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.97) translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* ============== Scroll reveal ============== */
@@ -362,8 +354,7 @@ select.input-clean {
 /* ============== Full-viewport hero ============== */
 
 .hero-full {
-  min-height: calc(100vh - 80px);
-  /* subtract sticky nav height */
+  min-height: calc(100vh - 80px); /* subtract sticky nav height */
   position: relative;
 }
 
@@ -390,15 +381,8 @@ select.input-clean {
 }
 
 @keyframes bob {
-
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(6px);
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -411,7 +395,6 @@ select.input-clean {
   .hero-full {
     min-height: auto;
   }
-
   .hero-scroll-cue {
     display: none;
   }
@@ -479,21 +462,10 @@ select.input-clean {
 }
 
 @keyframes scan {
-  0% {
-    top: 18%;
-  }
-
-  45% {
-    top: 82%;
-  }
-
-  55% {
-    top: 82%;
-  }
-
-  100% {
-    top: 18%;
-  }
+  0% { top: 18%; }
+  45% { top: 82%; }
+  55% { top: 82%; }
+  100% { top: 18%; }
 }
 
 /* ============== Responsive ============== */
@@ -502,14 +474,13 @@ select.input-clean {
   .section-title {
     font-size: 2rem;
   }
-
-  .specimen,
-  .capability-card {
+  .specimen, .capability-card {
     padding: 1.25rem;
   }
 }
 
 /* ============== Accessibility ============== */
+
 :focus-visible {
   outline: 2px solid var(--teal-deep);
   outline-offset: 3px;

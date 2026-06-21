@@ -1,6 +1,6 @@
-# PharmAssist — Investor-Grade Site
+# RxLoop — Investor-Grade Site
 
-**A premium, investor-first website** for PharmAssist — AI-powered pharmaceutical middleware closing the medication safety gap across Sub-Saharan Africa.
+**A premium, investor-first website** for RxLoop — AI-powered pharmaceutical middleware closing the medication safety gap across Sub-Saharan Africa.
 
 ## Live Pages
 - `/` — Homepage: opportunity, solution, business model, roadmap, leadership
@@ -30,7 +30,7 @@ rxa-web/
 │   └── index.html                      # Web version of the blueprint
 ├── assets/
 │   └── logo.svg                        # Light-mode logo
-├── PharmAssist_Strategic_Blueprint_2026.pdf
+├── RxLoop_Strategic_Blueprint_2026.pdf
 ├── robots.txt
 ├── sitemap.xml
 ├── vercel.json
@@ -53,7 +53,7 @@ vercel
 `vercel.json` is configured for clean URLs and directory-based routing (`/demo/`, `/blueprint/`) rather than SPA-style rewrites.
 
 ## Content Source of Truth
-All statistics and business-model language are sourced directly from `PharmAssist_Strategic_Blueprint_2026.pdf` (May 2026). If the blueprint is updated, the homepage Business Model/Opportunity sections and the `/blueprint/` page should be updated to match.
+All statistics and business-model language are sourced directly from `RxLoop_Strategic_Blueprint_2026.pdf` (May 2026). If the blueprint is updated, the homepage Business Model/Opportunity sections and the `/blueprint/` page should be updated to match.
 
 ## Notes on the Waitlist
 The waitlist form on `/demo/` is a **front-end preview only** — no submissions are processed or stored. The success state demonstrates the intended UX. To go live, wire `demo.js`'s form handler to a real backend (e.g. a serverless function + email service, or a form provider like Formspree).
@@ -64,4 +64,4 @@ Email: (to be added)
 LinkedIn: (to be added)
 
 ---
-© 2026 PharmAssist. Private & Confidential.
+© 2026 RxLoop.

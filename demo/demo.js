@@ -1,5 +1,5 @@
 // ============================================
-// PharmAssist Demo Page — Scan Simulation + Waitlist
+// RxLoop Demo Page — Scan Simulation + Waitlist
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
