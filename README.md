@@ -59,9 +59,9 @@ All statistics and business-model language are sourced directly from `RxLoop_Str
 The waitlist form on `/demo/` is a **front-end preview only** — no submissions are processed or stored. The success state demonstrates the intended UX. To go live, wire `demo.js`'s form handler to a real backend (e.g. a serverless function + email service, or a form provider like Formspree).
 
 ## Contact
-Co-Founders: Nathaniel Friday, Nwosu Uzoma
-Email: (to be added)
-LinkedIn: (to be added)
+Founder: Nwosu Uzoma
+Email: uzomanwosu@rxloop.org
+LinkedIn: https://www.linkedin.com/in/uzoma-nwosu/
 
 ---
 © 2026 RxLoop.
