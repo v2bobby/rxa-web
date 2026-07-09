@@ -3,6 +3,7 @@
   "framework": null,
   "buildCommand": null,
   "devCommand": null,
+  "installCommand": "echo 'No dependencies to install'",
   "outputDirectory": ".",
   "trailingSlash": true,
   "cleanUrls": true,
