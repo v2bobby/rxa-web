@@ -39,7 +39,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -48,8 +47,6 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 /* ============== Typography ============== */
@@ -83,20 +80,6 @@ h1, h2, h3, .font-display {
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Prevent long words/numbers from breaking layout on narrow screens */
-h1, h2, h3, h4, h5, h6, p, li, a, .readout {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
-}
-
-.readout {
-  word-break: break-all;
 }
 
 .eyebrow {
@@ -116,9 +99,6 @@ h1, h2, h3, h4, h5, h6, p, li, a, .readout {
   overflow: hidden;
   white-space: nowrap;
   border-bottom: 1px solid var(--line-strong);
-  width: 100%;
-  max-width: 100vw;
-  position: relative;
 }
 
 .verify-strip__track {
@@ -153,8 +133,8 @@ h1, h2, h3, h4, h5, h6, p, li, a, .readout {
 }
 
 @keyframes ticker {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -492,18 +472,24 @@ select.input-clean {
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    font-size: 2rem;
   }
   .specimen, .capability-card {
     padding: 1.25rem;
   }
 }
 
-@media (max-width: 640px) {
-  .verify-strip__item {
-    padding: 0 1.25rem;
-    font-size: 0.625rem;
-  }
+/* ============== App (product) tabs ============== */
+
+.app-tab {
+  color: var(--ink-mute);
+  background: transparent;
+}
+
+.app-tab--active {
+  color: var(--ink);
+  background: var(--paper-raised);
+  box-shadow: var(--shadow-soft);
 }
 
 /* ============== Accessibility ============== */

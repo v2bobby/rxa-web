@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RxLoop — Medication Information &amp; Safety</title>
+  <meta name="description" content="Look up general medication information in your language, set adherence reminders, and report suspected counterfeit medication — works offline.">
+  <meta name="theme-color" content="#0F1A17">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="canonical" href="https://rxloop.org/app/">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FAFAF7] text-[#0F1A17] overflow-x-hidden">
+
+  <!-- ==================== APP NAV ==================== -->
+  <nav class="sticky top-0 z-50 bg-[#FAFAF7]/95 backdrop-blur-md border-b border-[#DDE5E2]">
+    <div class="max-w-3xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-x-2">
+        <img src="../assets/logo.svg" alt="RxLoop" class="h-6 w-auto">
+      </a>
+      <div class="flex items-center gap-x-3">
+        <label for="lang-select" class="sr-only">Language</label>
+        <select id="lang-select" class="input-clean text-sm rounded-lg px-3 py-1.5">
+          <option value="en">English</option>
+          <option value="yo">Yorùbá</option>
+          <option value="ha">Hausa</option>
+          <option value="ig">Igbo</option>
+          <option value="pcm">Pidgin</option>
+        </select>
+        <button id="install-btn" class="hidden btn-secondary text-xs px-3 py-1.5 rounded-lg font-medium">
+          Install
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Offline indicator -->
+  <div id="offline-banner" class="hidden bg-[#FBF1DF] border-b border-[#E8C77A] text-center text-xs py-2 px-4 text-[#8A5A0A] font-medium">
+    You're offline — showing saved information.
+  </div>
+
+  <!-- ==================== TAB NAV ==================== -->
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <div class="flex gap-1 p-1 bg-[#F2F6F4] rounded-xl" role="tablist">
+      <button class="app-tab flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors" data-tab="lookup" role="tab" aria-selected="true">
+        Medication Info
+      </button>
+      <button class="app-tab flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors" data-tab="report" role="tab" aria-selected="false">
+        Report Counterfeit
+      </button>
+      <button class="app-tab flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors" data-tab="reminders" role="tab" aria-selected="false">
+        Reminders
+      </button>
+    </div>
+  </div>
+
+  <main class="max-w-3xl mx-auto px-5 py-8 pb-24">
+
+    <!-- ==================== TAB: MEDICATION LOOKUP ==================== -->
+    <section id="tab-lookup" class="app-panel">
+      <div class="mb-5">
+        <input type="search" id="med-search" placeholder="Search a medication (e.g. Paracetamol)"
+               class="input-clean w-full px-5 py-3.5 rounded-xl placeholder:text-[#5A6B65]" autocomplete="off">
+      </div>
+
+      <div id="med-list" class="space-y-3"></div>
+
+      <div id="med-detail" class="hidden"></div>
+
+      <p id="general-notice" class="mt-8 text-xs text-[#5A6B65] leading-relaxed border-t border-[#DDE5E2] pt-5"></p>
+    </section>
+
+    <!-- ==================== TAB: COUNTERFEIT REPORT ==================== -->
+    <section id="tab-report" class="app-panel hidden">
+      <div class="specimen rounded-2xl p-6 mb-5">
+        <div class="specimen-label mb-2">Community Reporting</div>
+        <p class="text-sm text-[#3D4D48] leading-relaxed">
+          Suspect a medication is counterfeit or substandard? Report it here. Reports are saved on this device
+          and help build the case for verified detection as RxLoop grows — this is not yet a live, synced
+          verification database.
+        </p>
+      </div>
+
+      <form id="report-form" class="space-y-4">
+        <div>
+          <label for="report-med-name" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Medication name</label>
+          <input type="text" id="report-med-name" required class="input-clean w-full px-4 py-3 rounded-lg" placeholder="e.g. Amoxicillin 500mg">
+        </div>
+        <div>
+          <label for="report-batch" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Batch / lot code (if visible)</label>
+          <input type="text" id="report-batch" class="input-clean w-full px-4 py-3 rounded-lg" placeholder="e.g. LOT-2026-04A">
+        </div>
+        <div>
+          <label for="report-location" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Where was it purchased?</label>
+          <input type="text" id="report-location" class="input-clean w-full px-4 py-3 rounded-lg" placeholder="Pharmacy / market name and area">
+        </div>
+        <div>
+          <label for="report-photo" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Photo of packaging (optional)</label>
+          <input type="file" id="report-photo" accept="image/*" capture="environment" class="input-clean w-full px-4 py-3 rounded-lg text-sm">
+        </div>
+        <div>
+          <label for="report-notes" class="text-xs font-medium text-[#5A6B65] block mb-1.5">What looked wrong?</label>
+          <textarea id="report-notes" rows="3" class="input-clean w-full px-4 py-3 rounded-lg" placeholder="e.g. Unusual smell, packaging looked different from usual"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full py-3.5 rounded-lg text-sm font-semibold">
+          Save Report
+        </button>
+      </form>
+
+      <div class="mt-8">
+        <div class="specimen-label mb-3">Your Reports (on this device)</div>
+        <div id="reports-list" class="space-y-3"></div>
+        <p id="reports-empty" class="text-sm text-[#5A6B65]">No reports saved yet.</p>
+      </div>
+    </section>
+
+    <!-- ==================== TAB: REMINDERS ==================== -->
+    <section id="tab-reminders" class="app-panel hidden">
+      <div class="specimen rounded-2xl p-6 mb-5">
+        <div class="specimen-label mb-2">Adherence Reminders</div>
+        <p class="text-sm text-[#3D4D48] leading-relaxed">
+          Set a daily reminder to take a course as prescribed. Reminders work while RxLoop is installed and your
+          device allows notifications — this device-local version does not yet sync across devices.
+        </p>
+      </div>
+
+      <form id="reminder-form" class="space-y-4">
+        <div>
+          <label for="reminder-med" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Medication</label>
+          <input type="text" id="reminder-med" required class="input-clean w-full px-4 py-3 rounded-lg" placeholder="e.g. Amoxicillin — morning dose">
+        </div>
+        <div>
+          <label for="reminder-time" class="text-xs font-medium text-[#5A6B65] block mb-1.5">Time</label>
+          <input type="time" id="reminder-time" required class="input-clean w-full px-4 py-3 rounded-lg">
+        </div>
+        <button type="submit" class="btn-primary w-full py-3.5 rounded-lg text-sm font-semibold">
+          Add Reminder
+        </button>
+      </form>
+
+      <div class="mt-8">
+        <div class="specimen-label mb-3">Your Reminders</div>
+        <div id="reminders-list" class="space-y-3"></div>
+        <p id="reminders-empty" class="text-sm text-[#5A6B65]">No reminders set yet.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

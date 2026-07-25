@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#0F1A17"/>
+  <g transform="translate(256,256) scale(0.72)">
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#5EEAD4" stroke-width="18"/>
+    <path d="M15 -175 A 162 162 0 1 0 -148 -75" fill="none" stroke="#5EEAD4" stroke-width="18" stroke-linecap="round"/>
+    <path d="M-108 -105 L -148 -75 L -108 -35" fill="none" stroke="#5EEAD4" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="0" y="14" font-family="'JetBrains Mono', monospace" font-size="88" font-weight="700" fill="#5EEAD4" text-anchor="middle" dominant-baseline="middle">Rx</text>
+  </g>
+</svg>

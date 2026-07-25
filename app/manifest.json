@@ -1,0 +1,31 @@
+{
+  "name": "RxLoop",
+  "short_name": "RxLoop",
+  "description": "Medication information, local-language guidance, and counterfeit reporting for Sub-Saharan Africa.",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "background_color": "#FAFAF7",
+  "theme_color": "#0F1A17",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/app/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
