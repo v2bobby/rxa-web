@@ -1,30 +1,13 @@
-# Dependencies
-node_modules/
-
-# Build / Output
-dist/
-build/
-.vercel/
-
-# IDE / Editor
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
+# OS / editor
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
 
-# Logs
+# WSL NTFS alternate-data-stream artifacts — these were committed by mistake
+*:Zone.Identifier
+
+# Node / Vercel
+node_modules/
+.vercel
 *.log
-npm-debug.log*
-
-# Environment
-.env
-.env.local
-
-# Misc
-*.bak
-*.tmp
-preview_page*.png

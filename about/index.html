@@ -1,90 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — RxLoop</title>
-  <meta name="description" content="RxLoop's mission, story, and the team building medication-safety infrastructure for Sub-Saharan Africa.">
-  <meta name="theme-color" content="#FAFAF7">
+  <meta name="description"
+    content="Why RxLoop exists, who is building it, and the principles that constrain what it ships.">
   <link rel="canonical" href="https://rxloop.org/about/">
-  <link rel="icon" href="data:,">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../styles.css">
-
+  <meta property="og:title" content="About — RxLoop">
+  <meta property="og:description"
+    content="Why RxLoop exists, who is building it, and the principles that constrain what it ships.">
+  <meta name="theme-color" content="#F6F6F3">
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="bg-[#FAFAF7] text-[#0F1A17] overflow-x-hidden">
 
-  <nav class="sticky top-0 z-50 bg-[#FAFAF7]/95 backdrop-blur-md border-b border-[#DDE5E2]">
-    <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-x-3">
-        <img src="../assets/logo.svg" alt="RxLoop" class="h-8 w-auto">
-      </a>
-      <a href="/" class="text-sm font-medium text-[#5A6B65] hover:text-[#0F1A17]">Overview</a>
+<body>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="/"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/product/">Product</a>
+      <a href="/blueprint/">Blueprint</a>
+      <a href="/about/" aria-current="page">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="btn" href="/app/">Open the app <span class="arw" aria-hidden="true">&rarr;</span></a>
+  </header>
+
+  <section class="phead">
+    <div class="wrap">
+      <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">About</span></div>
+      <h1>Start where<br>the harm <span class="em">lands</span></h1>
+      <p class="lede">Most solutions to falsified medicine are built for the institutions that move it. RxLoop starts
+        from the person who swallows it.</p>
     </div>
-  </nav>
+  </section>
 
-  <article class="max-w-3xl mx-auto px-6 py-16">
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-l">
+          <div class="sticky rv">
+            <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">The premise</span></div>
+            <h2 class="sec-h">One<br>missing<br><span class="thin">fragment</span></h2>
 
-    <header class="mb-14 text-center">
-      <div class="eyebrow mb-4">About RxLoop</div>
-      <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Closing the gap between prescription and safe treatment.</h1>
-    </header>
-
-    <section class="mb-12">
-      <div class="eyebrow mb-3">Why RxLoop Exists</div>
-      <p class="text-[#3D4D48] leading-relaxed mb-4">In Sub-Saharan Africa, the pharmacist-to-patient ratio in rural areas can exceed 1:10,000, and an estimated 16.7% of the regional drug supply is counterfeit or substandard. Most people never get professional guidance on the medication they take — they get it from an informal vendor, in a language that may not be their own, with no way to verify what's actually in the package.</p>
-      <p class="text-[#3D4D48] leading-relaxed">RxLoop exists to close that gap: a digital pharmacist in every pocket, built for the connectivity and language realities of the communities it serves, not adapted from a Western template.</p>
-    </section>
-
-    <section class="mb-12">
-      <div class="eyebrow mb-3">What We're Building</div>
-      <p class="text-[#3D4D48] leading-relaxed mb-4">RxLoop is medication-safety infrastructure, built in stages. Today, that means a real, working tool: medication reference information in five languages, offline-first so it works without reliable connectivity, and a community counterfeit-reporting feature that starts building toward verified detection.</p>
-      <p class="text-[#3D4D48] leading-relaxed">The longer-term vision — computer-vision counterfeit detection against a manufacturer-verified database — depends on real partnerships with manufacturers and regulators, which we're building toward deliberately rather than claiming before they exist. See our <a href="/product/" class="text-[#0D7A6E] hover:underline">product page</a> for what's live today versus what's ahead.</p>
-    </section>
-
-    <section class="mb-12">
-      <div class="eyebrow mb-3">Founder</div>
-      <div class="specimen rounded-2xl p-8 text-center max-w-lg mx-auto">
-        <div class="w-20 h-20 mx-auto rounded-2xl bg-[#E7F5F2] flex items-center justify-center border border-[#BFE3DC] mb-5">
-          <div class="text-center">
-            <div class="readout text-3xl font-semibold text-[#0D7A6E]">NU</div>
           </div>
         </div>
-        <h3 class="font-display text-2xl font-semibold tracking-tight">Nwosu Uzoma</h3>
-        <p class="text-[#0D7A6E] text-sm font-medium mt-0.5">Founder</p>
-        <p class="text-[#3D4D48] mt-4 text-[15px] leading-relaxed text-left">
-          Nwosu founded RxLoop with a focus on building infrastructure that works for the realities of the communities it serves — from connectivity constraints to the languages patients actually speak at the point of care. RxLoop is based in Owerri, Imo State, Nigeria.
-        </p>
-        <div class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-          <a href="mailto:uzomanwosu@rxloop.org" class="text-[#3D4D48] hover:text-[#0D7A6E] transition-colors">uzomanwosu@rxloop.org</a>
-          <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" class="text-[#3D4D48] hover:text-[#0D7A6E] transition-colors">LinkedIn</a>
+        <div class="split-r">
+          <p class="lede">Serialisation, track-and-trace and authentication technology all exist and all work. They stop
+            at the pharmacy counter. Beyond it sits the one participant who touches every pack, carries all the risk,
+            and has no instrument at all: the patient.</p>
+          <p class="lede" style="margin-top:20px">RxLoop is the layer that gives that person something useful
+            immediately — guidance they can read, a way to raise a hand — and, in doing so, creates the return channel
+            the rest of the chain has never had.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <div class="eyebrow mb-3">Where We're Based</div>
-      <p class="text-[#3D4D48] leading-relaxed">RxLoop is headquartered in Owerri, Imo State, Nigeria, with the first pilot planned for Nigeria before expanding across West Africa.</p>
-    </section>
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-l">
+          <div class="sticky rv">
+            <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Principles</span></div>
+            <h2 class="sec-h">Rules we<br>build <span class="thin">against</span></h2>
 
-  </article>
-
-  <footer class="border-t border-[#DDE5E2] bg-white">
-    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-center text-[#5A6B65]">
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
-        <a href="/about/" class="footer-link">About</a>
-        <a href="/product/" class="footer-link">Product</a>
-        <a href="/contact/" class="footer-link">Contact</a>
-        <a href="/privacy/" class="footer-link">Privacy Policy</a>
-        <a href="/terms/" class="footer-link">Terms of Use</a>
+          </div>
+        </div>
+        <div class="split-r">
+          <div class="prose">
+            <h3>Never simulate a capability</h3>
+            <p>If a feature does not work, it does not appear in the product, in a demo, or on this site as though it
+              does. A mocked verification screen would demo beautifully and get someone killed.</p>
+            <h3>No dose figures without a clinician</h3>
+            <p>The reference content carries general safety and adherence guidance only. Numbers that depend on a
+              specific body do not belong in a general-purpose app.</p>
+            <h3>Offline is the default, not a feature</h3>
+            <p>Anything that only works on a good connection has excluded most of the people it claims to serve.</p>
+            <h3>Free stays free for patients</h3>
+            <p>Revenue comes from pharmacies, manufacturers and regulators who get operational value from the return
+              path. It never comes from selling an individual's health data.</p>
+            <h3>Review before reach</h3>
+            <p>Every reference entry needs a licensed pharmacist's sign-off, and every translation a native-speaking
+              health communicator's, before any push for wide adoption.</p>
+          </div>
+        </div>
       </div>
-      © 2026 RxLoop. · <a href="/" class="footer-link">Back to overview</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-l">
+          <div class="sticky rv">
+            <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Who</span></div>
+            <h2 class="sec-h">The<br><span class="thin">founder</span></h2>
+
+          </div>
+        </div>
+        <div class="split-r">
+          <div class="founder">
+            <div class="initials" aria-hidden="true">NU</div>
+            <div style="min-width:0">
+              <h3 style="margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.02em">Nwosu Uzoma</h3>
+              <div class="mono" style="color:var(--ink-45);margin-bottom:14px">Founder</div>
+              <p class="lede" style="font-size:16.5px">Building RxLoop from Nigeria, for the pharmacies, patients and
+                regulators who live with this problem daily rather than read about it in a market report.</p>
+              <div class="f-links">
+                <a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a>
+                <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="endcta">
+    <div class="wrap">
+      <h2>See what it<br>actually does.</h2>
+      <div class="row">
+        <a class="btn" href="/app/">Open the app <span class="arw" aria-hidden="true">&rarr;</span></a>
+        <a class="btn ghost" href="/contact/">Talk to the founder</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-row">
+      <span>&copy; 2026 RxLoop. Guidance only &mdash; not a substitute for a pharmacist or physician.</span>
+      <nav aria-label="Footer">
+        <a href="/app/">App</a><a href="/product/">Product</a><a href="/blueprint/">Blueprint</a>
+        <a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a
+          href="/terms/">Terms</a>
+      </nav>
     </div>
   </footer>
 
+  <script src="/script.js"></script>
 </body>
+
 </html>

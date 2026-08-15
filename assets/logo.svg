@@ -1,17 +1,5 @@
-<svg width="186" height="44" viewBox="0 0 186 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Icon: loop ring with Rx mark, representing the verification + adherence cycle -->
-  <g>
-    <circle cx="20" cy="20" r="14" fill="#FFFFFF" stroke="#0D7A6E" stroke-width="1.5"/>
-    <!-- Loop arrow: open ring (~290°) with a clean chevron arrowhead at the gap -->
-    <path d="M19 7.6 A 12.5 12.5 0 1 0 7.6 17.5" fill="none" stroke="#0D7A6E" stroke-width="1.6" stroke-linecap="round"/>
-    <path d="M12.3 15.0 L8.6 17.5 L12.0 19.7" fill="none" stroke="#0D7A6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Rx mark, centered -->
-    <text x="20" y="23" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#0D7A6E" text-anchor="middle" dominant-baseline="middle">Rx</text>
-  </g>
-
-  <!-- Wordmark -->
-  <text x="42" y="26" font-family="'Fraunces', Georgia, serif" font-size="23" font-weight="600" fill="#0F1A17">Rx</text>
-  <text x="80" y="26" font-family="'Fraunces', Georgia, serif" font-size="23" font-weight="500" letter-spacing="-0.4" fill="#0F1A17">Loop</text>
-
-  <line x1="42" y1="32" x2="170" y2="32" stroke="#0D7A6E" stroke-width="1" stroke-opacity="0.35"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RxLoop">
+  <rect width="64" height="64" rx="14" fill="#F6F6F3"/>
+  <path d="M20 20h16a12 12 0 0 1 0 24H24" fill="none" stroke="#0A0E14" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="22" cy="44" r="5" fill="#0047FF"/>
 </svg>

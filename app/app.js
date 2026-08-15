@@ -1,402 +1,477 @@
-// ============================================
-// RxLoop App — Core Logic
-// Real, functional MVP: medication reference, counterfeit
-// reporting (device-local), and adherence reminders.
-// ============================================
+/* ══════════════════════════════════════════════════════════
+   RxLoop — app logic
+   Everything here is device-local by design. There is no
+   backend yet, and the UI never pretends otherwise.
 
+   UPGRADE PATH: to move reports off-device, replace ONLY
+   saveReports() / getReports() below with calls to Supabase
+   or Firebase. Nothing else in this file needs to change.
+   ══════════════════════════════════════════════════════════ */
 (function () {
-  'use strict';
+"use strict";
 
-  const STORAGE_KEYS = {
-    lang: 'rxloop_lang',
-    reports: 'rxloop_reports',
-    reminders: 'rxloop_reminders'
+var KEY_REPORTS  = 'rxloop.reports.v1';
+var KEY_COURSES  = 'rxloop.courses.v1';
+var KEY_LANG     = 'rxloop.lang.v1';
+
+/* ── storage ────────────────────────────────────────────── */
+function read(key, fallback) {
+  try {
+    var raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) { return fallback; }
+}
+function write(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); return true; }
+  catch (e) { toast('This phone is out of storage space — the report was not saved'); return false; }
+}
+function getReports()      { return read(KEY_REPORTS, []); }
+function saveReports(list) { return write(KEY_REPORTS, list); }
+function getCourses()      { return read(KEY_COURSES, []); }
+function saveCourses(list) { return write(KEY_COURSES, list); }
+
+/* ── toast ──────────────────────────────────────────────── */
+var toastEl = document.getElementById('toast'), toastT;
+function toast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 3400);
+}
+
+/* ── language ───────────────────────────────────────────── */
+var lang = read(KEY_LANG, 'en');
+if (!RX.UI[lang]) lang = 'en';
+var langSel = document.getElementById('langSel');
+
+RX.LANGS.forEach(function (L) {
+  var o = document.createElement('option');
+  o.value = L.id;
+  o.textContent = L.label;
+  if (L.id === lang) o.selected = true;
+  langSel.appendChild(o);
+});
+langSel.addEventListener('change', function () {
+  lang = langSel.value;
+  write(KEY_LANG, lang);
+  applyLang();
+  renderList();
+  if (current) renderDetail(current);
+});
+
+function ui() { return RX.UI[lang] || RX.UI.en; }
+
+function applyLang() {
+  var u = ui();
+  document.getElementById('search').placeholder = u.search;
+  document.getElementById('search').setAttribute('aria-label', u.search);
+  document.querySelectorAll('[data-ui]').forEach(function (el) {
+    var k = el.dataset.ui;
+    if (u[k]) el.textContent = u[k];
+  });
+}
+
+/* ── tabs ───────────────────────────────────────────────── */
+document.querySelectorAll('.tabbar button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.tabbar button').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+    document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('on'); });
+    document.getElementById('v-' + b.dataset.v).classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ══════════════════════════════════════════════════════════
+   MEDICINES
+   ══════════════════════════════════════════════════════════ */
+var listPane   = document.getElementById('listPane'),
+    detailPane = document.getElementById('detailPane'),
+    detailBody = document.getElementById('detailBody'),
+    applist    = document.getElementById('applist'),
+    search     = document.getElementById('search'),
+    current    = null;
+
+function matches(m, q) {
+  if (!q) return true;
+  q = q.toLowerCase();
+  if (m.name.toLowerCase().indexOf(q) > -1) return true;
+  if (m.gen.toLowerCase().indexOf(q) > -1) return true;
+  return (m.tags || []).some(function (t) { return t.indexOf(q) > -1; });
+}
+
+function renderList() {
+  var q = search.value.trim();
+  var hits = RX.MEDS.filter(function (m) { return matches(m, q); });
+  applist.innerHTML = '';
+  if (!hits.length) {
+    var e = document.createElement('div');
+    e.className = 'ledger-empty';
+    e.textContent = 'No medicine here matches that yet. The reference set is small and growing — ask your pharmacist in the meantime.';
+    applist.appendChild(e);
+    return;
+  }
+  hits.forEach(function (m) {
+    var b = document.createElement('button');
+    b.className = 'medbtn';
+    b.type = 'button';
+    var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = m.name;
+    var sub = document.createElement('span'); sub.className = 'sub'; sub.textContent = m.gen;
+    b.appendChild(nm); b.appendChild(sub);
+    b.addEventListener('click', function () { openDetail(m); });
+    applist.appendChild(b);
+  });
+}
+search.addEventListener('input', renderList);
+
+function field(k, v) {
+  var d = document.createElement('div'); d.className = 'fld';
+  var kk = document.createElement('div'); kk.className = 'k mono'; kk.textContent = k;
+  var vv = document.createElement('div'); vv.className = 'v'; vv.textContent = v;
+  d.appendChild(kk); d.appendChild(vv);
+  return d;
+}
+
+function renderDetail(m) {
+  var t = m[lang] || m.en, u = ui();
+  detailBody.innerHTML = '';
+  var h = document.createElement('h3');
+  h.style.cssText = "font-family:var(--display);font-weight:800;font-stretch:108%;text-transform:uppercase;font-size:30px;line-height:.92;letter-spacing:-.035em;margin:0 0 6px";
+  h.textContent = m.name;
+  var g = document.createElement('div'); g.className = 'gen'; g.textContent = m.gen;
+  detailBody.appendChild(h);
+  detailBody.appendChild(g);
+  detailBody.appendChild(field(u.f1, t.f1));
+  detailBody.appendChild(field(u.f2, t.f2));
+  detailBody.appendChild(field(u.f3, t.f3));
+
+  var foot = document.createElement('div'); foot.className = 'medfoot';
+  var off = document.createElement('span'); off.className = 'offline-tag mono';
+  off.textContent = '\u25C6 ' + u.offline;
+  var note = document.createElement('span'); note.className = 'pill-note';
+  var dot = document.createElement('span'); dot.className = 'd';
+  note.appendChild(dot);
+  note.appendChild(document.createTextNode(lang === 'en' ? u.nodose : u.draft));
+  foot.appendChild(off); foot.appendChild(note);
+  detailBody.appendChild(foot);
+}
+
+function openDetail(m) {
+  current = m;
+  renderDetail(m);
+  listPane.classList.add('hidden');
+  detailPane.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.getElementById('backBtn').addEventListener('click', function () {
+  current = null;
+  detailPane.classList.add('hidden');
+  listPane.classList.remove('hidden');
+});
+
+/* ══════════════════════════════════════════════════════════
+   REPORTS
+   ══════════════════════════════════════════════════════════ */
+var form       = document.getElementById('reportForm'),
+    ledgerBody = document.getElementById('ledgerBody'),
+    checks     = document.getElementById('flagChecks'),
+    stateSel   = document.getElementById('a-state');
+
+RX.STATES.forEach(function (s) {
+  var o = document.createElement('option'); o.textContent = s; stateSel.appendChild(o);
+});
+RX.FLAGS.forEach(function (f) {
+  var l = document.createElement('label'); l.className = 'check';
+  var inp = document.createElement('input'); inp.type = 'checkbox'; inp.value = f;
+  var bx = document.createElement('span'); bx.className = 'bx';
+  l.appendChild(inp); l.appendChild(bx);
+  l.appendChild(document.createTextNode(f));
+  checks.appendChild(l);
+});
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var flags = [].slice.call(form.querySelectorAll('input[type=checkbox]:checked')).map(function (c) { return c.value; });
+  var photo = document.getElementById('a-photo').files[0];
+
+  var rec = {
+    ref: 'RX-' + Math.random().toString(36).slice(2, 7).toUpperCase(),
+    med: form.med.value.trim() || 'Unnamed medicine',
+    batch: form.batch.value.trim(),
+    where: form.where.value.trim(),
+    state: form.state.value,
+    flags: flags,
+    photoName: photo ? photo.name : '',
+    at: new Date().toISOString()
   };
 
-  let currentLang = localStorage.getItem(STORAGE_KEYS.lang) || 'en';
-  let selectedMedId = null;
+  var list = getReports();
+  list.unshift(rec);
+  if (saveReports(list)) {
+    renderLedger();
+    form.reset();
+    form.querySelectorAll('input[type=checkbox]').forEach(function (c) { c.checked = false; });
+    toast('Report ' + rec.ref + ' saved on this phone');
+  }
+});
 
-  // ==================== INIT ====================
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('lang-select').value = currentLang;
-    renderMedList();
-    renderGeneralNotice();
-    renderReports();
-    renderReminders();
-    bindTabs();
-    bindLanguageSwitch();
-    bindSearch();
-    bindReportForm();
-    bindReminderForm();
-    bindInstallPrompt();
-    bindOfflineDetection();
-    registerServiceWorker();
-    scheduleAllReminders();
+function renderLedger() {
+  var list = getReports();
+  ledgerBody.innerHTML = '';
+  if (!list.length) {
+    var e = document.createElement('div');
+    e.className = 'ledger-empty';
+    e.textContent = 'Nothing reported yet. If a pack ever looks wrong, log it here — the reference code is yours to quote.';
+    ledgerBody.appendChild(e);
+    return;
+  }
+  list.forEach(function (r) {
+    var row = document.createElement('div'); row.className = 'rec';
+    var ref = document.createElement('span'); ref.className = 'ref mono'; ref.textContent = r.ref;
+    var meta = document.createElement('div'); meta.className = 'meta';
+    var b = document.createElement('b'); b.textContent = r.med;
+    var small = document.createElement('small');
+    var bits = [];
+    if (r.batch) bits.push('Batch ' + r.batch);
+    if (r.where) bits.push(r.where);
+    bits.push(r.state);
+    bits.push(new Date(r.at).toLocaleDateString());
+    if (r.flags && r.flags.length) bits.push(r.flags.length + ' flag' + (r.flags.length > 1 ? 's' : ''));
+    small.textContent = bits.join(' \u00B7 ');
+    meta.appendChild(b); meta.appendChild(small);
+    var st = document.createElement('span'); st.className = 'st'; st.textContent = 'Unverified';
+    row.appendChild(ref); row.appendChild(meta); row.appendChild(st);
+    ledgerBody.appendChild(row);
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click', function () {
+  var list = getReports();
+  if (!list.length) { toast('No reports to export yet'); return; }
+  var blob = new Blob([JSON.stringify(list, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'rxloop-reports.json';
+  a.click();
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  toast('Exported ' + list.length + ' report' + (list.length > 1 ? 's' : ''));
+});
+
+document.getElementById('clearBtn').addEventListener('click', function () {
+  if (!getReports().length) { toast('Nothing to clear'); return; }
+  if (confirm('Delete every report saved on this phone? This cannot be undone.')) {
+    saveReports([]);
+    renderLedger();
+    toast('All reports deleted');
+  }
+});
+
+/* ══════════════════════════════════════════════════════════
+   REMINDERS
+   Local only. setTimeout survives while the page lives; on
+   reopen, courses are rescheduled from stored times.
+   ══════════════════════════════════════════════════════════ */
+var SLOTS = ['06:00', '08:00', '12:00', '14:00', '18:00', '20:00', '22:00'];
+var chosen = ['08:00', '14:00', '20:00'];
+var timeSet    = document.getElementById('timeSet'),
+    timeline   = document.getElementById('timeline'),
+    summary    = document.getElementById('doseSummary'),
+    courseBody = document.getElementById('courseBody'),
+    courseCount= document.getElementById('courseCount');
+
+SLOTS.forEach(function (s) {
+  var b = document.createElement('button');
+  b.className = 'tbtn';
+  b.type = 'button';
+  b.textContent = s;
+  b.setAttribute('aria-pressed', String(chosen.indexOf(s) > -1));
+  b.addEventListener('click', function () {
+    var i = chosen.indexOf(s);
+    if (i > -1) chosen.splice(i, 1); else chosen.push(s);
+    b.setAttribute('aria-pressed', String(chosen.indexOf(s) > -1));
+    renderTimeline();
+  });
+  timeSet.appendChild(b);
+});
+
+function renderTimeline() {
+  timeline.innerHTML = '';
+  var hours = document.createElement('div');
+  hours.className = 'tl-hours';
+  for (var h = 0; h < 24; h += 3) {
+    var s = document.createElement('span');
+    s.textContent = (h < 10 ? '0' : '') + h + ':00';
+    hours.appendChild(s);
+  }
+  timeline.appendChild(hours);
+
+  chosen.slice().sort().forEach(function (tm) {
+    var p = tm.split(':'), mins = (+p[0]) * 60 + (+p[1]);
+    var d = document.createElement('div');
+    d.className = 'dose';
+    d.style.left = (mins / 1440 * 100) + '%';
+    d.setAttribute('data-t', tm);
+    timeline.appendChild(d);
   });
 
-  // ==================== TABS ====================
-  function bindTabs() {
-    const tabs = document.querySelectorAll('.app-tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-          t.setAttribute('aria-selected', 'false');
-          t.classList.remove('app-tab--active');
-        });
-        tab.setAttribute('aria-selected', 'true');
-        tab.classList.add('app-tab--active');
+  var now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes();
+  var nl = document.createElement('div');
+  nl.className = 'now-line';
+  nl.style.left = (nowMin / 1440 * 100) + '%';
+  timeline.appendChild(nl);
 
-        document.querySelectorAll('.app-panel').forEach(p => p.classList.add('hidden'));
-        document.getElementById('tab-' + tab.dataset.tab).classList.remove('hidden');
-      });
+  var sorted = chosen.slice().sort();
+  var next = sorted.filter(function (tm) {
+    var p = tm.split(':');
+    return (+p[0]) * 60 + (+p[1]) > nowMin;
+  })[0];
+  summary.textContent = chosen.length
+    ? chosen.length + ' doses/day \u00B7 next ' + (next || (sorted[0] + ' tomorrow'))
+    : 'No doses set';
+}
+renderTimeline();
+
+document.getElementById('courseForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var med = document.getElementById('c-med').value.trim();
+  var days = Math.max(1, Math.min(90, +document.getElementById('c-days').value || 5));
+  if (!med) return;
+  if (!chosen.length) { toast('Pick at least one dose time'); return; }
+
+  var list = getCourses();
+  list.unshift({
+    id: 'c' + Date.now(),
+    med: med,
+    days: days,
+    times: chosen.slice().sort(),
+    start: new Date().toISOString()
+  });
+  if (saveCourses(list)) {
+    renderCourses();
+    scheduleAll();
+    document.getElementById('c-med').value = '';
+    toast('Reminders set for ' + med);
+  }
+});
+
+function renderCourses() {
+  var list = getCourses();
+  courseCount.textContent = String(list.length);
+  courseBody.innerHTML = '';
+  if (!list.length) {
+    var e = document.createElement('div');
+    e.className = 'ledger-empty';
+    e.textContent = 'No courses yet. Add one and the dose times will show on the bar above.';
+    courseBody.appendChild(e);
+    return;
+  }
+  list.forEach(function (c) {
+    var elapsed = Math.floor((Date.now() - new Date(c.start).getTime()) / 86400000);
+    var left = Math.max(0, c.days - elapsed);
+    var row = document.createElement('div'); row.className = 'rec';
+    var ref = document.createElement('span'); ref.className = 'ref mono'; ref.textContent = left + 'd';
+    var meta = document.createElement('div'); meta.className = 'meta';
+    var b = document.createElement('b'); b.textContent = c.med;
+    var small = document.createElement('small');
+    small.textContent = c.times.join(' \u00B7 ') + (left ? ' \u00B7 ' + left + ' days left' : ' \u00B7 course complete');
+    meta.appendChild(b); meta.appendChild(small);
+    var del = document.createElement('button');
+    del.className = 'link-btn';
+    del.type = 'button';
+    del.textContent = 'Remove';
+    del.addEventListener('click', function () {
+      saveCourses(getCourses().filter(function (x) { return x.id !== c.id; }));
+      renderCourses();
+      scheduleAll();
     });
-    // Activate first tab visually on load
-    tabs[0].classList.add('app-tab--active');
-  }
+    row.appendChild(ref); row.appendChild(meta); row.appendChild(del);
+    courseBody.appendChild(row);
+  });
+}
 
-  // ==================== LANGUAGE ====================
-  function bindLanguageSwitch() {
-    document.getElementById('lang-select').addEventListener('change', (e) => {
-      currentLang = e.target.value;
-      localStorage.setItem(STORAGE_KEYS.lang, currentLang);
-      renderMedList();
-      renderGeneralNotice();
-      if (selectedMedId) renderMedDetail(selectedMedId);
+var timers = [];
+function scheduleAll() {
+  timers.forEach(clearTimeout);
+  timers = [];
+  getCourses().forEach(function (c) {
+    var elapsed = Math.floor((Date.now() - new Date(c.start).getTime()) / 86400000);
+    if (elapsed >= c.days) return;
+    c.times.forEach(function (tm) {
+      var p = tm.split(':');
+      var when = new Date();
+      when.setHours(+p[0], +p[1], 0, 0);
+      if (when.getTime() <= Date.now()) return;      // today's slot already passed
+      var delay = when.getTime() - Date.now();
+      if (delay > 2147483647) return;                // beyond setTimeout's range
+      timers.push(setTimeout(function () { fire(c.med); }, delay));
     });
+  });
+}
+
+function fire(med) {
+  var line = 'Time for ' + med + '. Take it with water.';
+  if ('Notification' in window && Notification.permission === 'granted') {
+    try { new Notification('RxLoop', { body: line, icon: '/app/icons/icon-192.png', tag: 'rxloop-dose' }); return; }
+    catch (e) { /* fall through to toast */ }
   }
+  toast(line);
+}
 
-  function renderGeneralNotice() {
-    document.getElementById('general-notice').textContent = RXLOOP_GENERAL_NOTICES[currentLang] || RXLOOP_GENERAL_NOTICES.en;
-  }
+document.getElementById('permBtn').addEventListener('click', function () {
+  if (!('Notification' in window)) { toast('This browser has no notifications — RxLoop will show an in-app alert instead'); return; }
+  if (Notification.permission === 'granted') { fire(document.getElementById('c-med').value.trim() || 'your medicine'); return; }
+  if (Notification.permission === 'denied') { toast('Notifications are blocked in your browser settings — RxLoop will show an in-app alert instead'); return; }
+  Notification.requestPermission().then(function (p) {
+    toast(p === 'granted' ? 'Reminders will now show as notifications' : 'RxLoop will show an in-app alert instead');
+  });
+});
 
-  // ==================== MEDICATION LOOKUP ====================
-  function renderMedList(filter) {
-    const list = document.getElementById('med-list');
-    const detail = document.getElementById('med-detail');
-    detail.classList.add('hidden');
-    list.classList.remove('hidden');
+/* ══════════════════════════════════════════════════════════
+   NETWORK STATUS · INSTALL · SERVICE WORKER
+   ══════════════════════════════════════════════════════════ */
+var netEl = document.getElementById('net'), netTxt = document.getElementById('netTxt');
+function netState() {
+  var on = navigator.onLine;
+  netEl.classList.toggle('off', !on);
+  netTxt.textContent = on ? 'Online' : 'Offline \u2014 still working';
+}
+addEventListener('online', netState);
+addEventListener('offline', netState);
+netState();
 
-    const q = (filter || '').trim().toLowerCase();
-    const items = RXLOOP_MEDICATIONS.filter(m =>
-      !q || m.name.toLowerCase().includes(q) || m.category.toLowerCase().includes(q)
-    );
+var deferred = null;
+var installBar = document.getElementById('installBar');
+addEventListener('beforeinstallprompt', function (e) {
+  e.preventDefault();
+  deferred = e;
+  installBar.classList.remove('hidden');
+});
+document.getElementById('installBtn').addEventListener('click', function () {
+  if (!deferred) return;
+  deferred.prompt();
+  deferred.userChoice.then(function () {
+    deferred = null;
+    installBar.classList.add('hidden');
+  });
+});
+addEventListener('appinstalled', function () {
+  installBar.classList.add('hidden');
+  toast('RxLoop installed — it now opens without a browser');
+});
 
-    if (items.length === 0) {
-      list.innerHTML = '<p class="text-sm text-[#5A6B65] py-8 text-center">No medications match your search.</p>';
-      return;
-    }
-
-    list.innerHTML = items.map(m => `
-      <button class="med-item specimen rounded-xl p-5 w-full text-left flex items-center justify-between" data-id="${m.id}">
-        <div>
-          <div class="font-display font-semibold text-lg">${escapeHtml(m.name)}</div>
-          <div class="specimen-label mt-1">${escapeHtml(m.category)}</div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#5A6B65] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-      </button>
-    `).join('');
-
-    document.querySelectorAll('.med-item').forEach(btn => {
-      btn.addEventListener('click', () => renderMedDetail(btn.dataset.id));
+if ('serviceWorker' in navigator) {
+  addEventListener('load', function () {
+    navigator.serviceWorker.register('/app/service-worker.js').catch(function () {
+      /* registration needs https or localhost; silence is correct here */
     });
-  }
+  });
+}
 
-  function renderMedDetail(id) {
-    selectedMedId = id;
-    const med = RXLOOP_MEDICATIONS.find(m => m.id === id);
-    if (!med) return;
+/* ── boot ───────────────────────────────────────────────── */
+applyLang();
+renderList();
+renderLedger();
+renderCourses();
+scheduleAll();
 
-    const content = med[currentLang] || med.en;
-    const list = document.getElementById('med-list');
-    const detail = document.getElementById('med-detail');
-    list.classList.add('hidden');
-    detail.classList.remove('hidden');
-
-    detail.innerHTML = `
-      <button id="back-to-list" class="text-sm font-semibold text-[#0D7A6E] hover:underline mb-5 flex items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
-        Back to list
-      </button>
-
-      <div class="specimen rounded-2xl overflow-hidden">
-        <div class="bg-[#0F1A17] px-6 py-4">
-          <div class="specimen-label text-[#9FB5AF]">${escapeHtml(med.category)}</div>
-          <div class="font-display text-xl font-semibold text-white mt-0.5">${escapeHtml(med.name)}</div>
-        </div>
-        <div class="p-6 space-y-5">
-          <div>
-            <div class="specimen-label mb-1.5">What it's for</div>
-            <p class="text-sm text-[#3D4D48] leading-relaxed">${escapeHtml(content.purpose)}</p>
-          </div>
-          <div class="hairline"></div>
-          <div>
-            <div class="specimen-label mb-2">Precautions</div>
-            <ul class="space-y-2">
-              ${content.precautions.map(p => `
-                <li class="flex gap-2 text-sm text-[#3D4D48] leading-relaxed">
-                  <span class="text-[#0D7A6E] flex-shrink-0">•</span><span>${escapeHtml(p)}</span>
-                </li>
-              `).join('')}
-            </ul>
-          </div>
-          <div class="hairline"></div>
-          <div>
-            <div class="specimen-label mb-1.5">Adherence</div>
-            <p class="text-sm text-[#3D4D48] leading-relaxed">${escapeHtml(content.adherence)}</p>
-          </div>
-          <div class="hairline"></div>
-          <div class="bg-[#FBF1DF] border border-[#E8C77A] rounded-xl p-4">
-            <div class="text-xs font-semibold text-[#8A5A0A] tracking-wide uppercase mb-1">Seek help if</div>
-            <p class="text-sm text-[#6B4A0A] leading-relaxed">${escapeHtml(content.seekHelp)}</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.getElementById('back-to-list').addEventListener('click', () => {
-      selectedMedId = null;
-      renderMedList(document.getElementById('med-search').value);
-    });
-  }
-
-  function bindSearch() {
-    document.getElementById('med-search').addEventListener('input', (e) => {
-      renderMedList(e.target.value);
-    });
-  }
-
-  // ==================== COUNTERFEIT REPORTING ====================
-  function getReports() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEYS.reports)) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveReports(reports) {
-    localStorage.setItem(STORAGE_KEYS.reports, JSON.stringify(reports));
-  }
-
-  function bindReportForm() {
-    const form = document.getElementById('report-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const photoInput = document.getElementById('report-photo');
-      let photoDataUrl = null;
-      if (photoInput.files && photoInput.files[0]) {
-        photoDataUrl = await fileToDataUrl(photoInput.files[0]);
-      }
-
-      const report = {
-        id: 'r_' + Date.now(),
-        medName: document.getElementById('report-med-name').value,
-        batch: document.getElementById('report-batch').value,
-        location: document.getElementById('report-location').value,
-        notes: document.getElementById('report-notes').value,
-        photo: photoDataUrl,
-        createdAt: new Date().toISOString(),
-        synced: false
-      };
-
-      const reports = getReports();
-      reports.unshift(report);
-      saveReports(reports);
-
-      form.reset();
-      renderReports();
-    });
-  }
-
-  function fileToDataUrl(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function renderReports() {
-    const reports = getReports();
-    const list = document.getElementById('reports-list');
-    const empty = document.getElementById('reports-empty');
-
-    if (reports.length === 0) {
-      list.innerHTML = '';
-      empty.classList.remove('hidden');
-      return;
-    }
-    empty.classList.add('hidden');
-
-    list.innerHTML = reports.map(r => `
-      <div class="specimen rounded-xl p-5">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="font-display font-semibold">${escapeHtml(r.medName)}</div>
-            <div class="text-xs text-[#5A6B65] mt-1">${new Date(r.createdAt).toLocaleDateString()} · ${r.location ? escapeHtml(r.location) : 'Location not given'}</div>
-          </div>
-          <button class="delete-report text-xs text-[#5A6B65] hover:text-red-600" data-id="${r.id}" aria-label="Delete report">✕</button>
-        </div>
-        ${r.batch ? `<div class="text-xs text-[#5A6B65] mt-2 font-mono">Batch: ${escapeHtml(r.batch)}</div>` : ''}
-        ${r.notes ? `<p class="text-sm text-[#3D4D48] mt-2">${escapeHtml(r.notes)}</p>` : ''}
-        ${r.photo ? `<img src="${r.photo}" alt="Reported packaging" class="mt-3 rounded-lg max-h-40 object-cover">` : ''}
-        <div class="trust-tag inline-flex px-2 py-0.5 rounded mt-3 !bg-[#F2F6F4] !border-[#DDE5E2] !text-[#5A6B65]">Saved on this device</div>
-      </div>
-    `).join('');
-
-    document.querySelectorAll('.delete-report').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const reports = getReports().filter(r => r.id !== btn.dataset.id);
-        saveReports(reports);
-        renderReports();
-      });
-    });
-  }
-
-  // ==================== REMINDERS ====================
-  function getReminders() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEYS.reminders)) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveReminders(reminders) {
-    localStorage.setItem(STORAGE_KEYS.reminders, JSON.stringify(reminders));
-  }
-
-  function bindReminderForm() {
-    const form = document.getElementById('reminder-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if ('Notification' in window && Notification.permission === 'default') {
-        await Notification.requestPermission();
-      }
-
-      const reminder = {
-        id: 'rem_' + Date.now(),
-        medName: document.getElementById('reminder-med').value,
-        time: document.getElementById('reminder-time').value
-      };
-
-      const reminders = getReminders();
-      reminders.push(reminder);
-      saveReminders(reminders);
-
-      form.reset();
-      renderReminders();
-      scheduleReminder(reminder);
-    });
-  }
-
-  function renderReminders() {
-    const reminders = getReminders();
-    const list = document.getElementById('reminders-list');
-    const empty = document.getElementById('reminders-empty');
-
-    if (reminders.length === 0) {
-      list.innerHTML = '';
-      empty.classList.remove('hidden');
-      return;
-    }
-    empty.classList.add('hidden');
-
-    list.innerHTML = reminders.map(r => `
-      <div class="specimen rounded-xl p-4 flex items-center justify-between">
-        <div>
-          <div class="font-display font-semibold">${escapeHtml(r.medName)}</div>
-          <div class="readout text-sm text-[#0D7A6E] mt-0.5">${escapeHtml(r.time)}</div>
-        </div>
-        <button class="delete-reminder text-xs text-[#5A6B65] hover:text-red-600" data-id="${r.id}" aria-label="Delete reminder">✕</button>
-      </div>
-    `).join('');
-
-    document.querySelectorAll('.delete-reminder').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const reminders = getReminders().filter(r => r.id !== btn.dataset.id);
-        saveReminders(reminders);
-        renderReminders();
-      });
-    });
-  }
-
-  // Schedules a reminder while the app/tab remains open. Browser notification
-  // scheduling has no true background-alarm API without a push server, so this
-  // covers the "app open or installed and running" case honestly — see README
-  // for the production upgrade path (push server + service worker sync).
-  function scheduleReminder(reminder) {
-    if (!('Notification' in window) || Notification.permission !== 'granted') return;
-
-    const [h, m] = reminder.time.split(':').map(Number);
-    const now = new Date();
-    const target = new Date();
-    target.setHours(h, m, 0, 0);
-    if (target <= now) target.setDate(target.getDate() + 1);
-
-    const msUntil = target - now;
-    setTimeout(() => {
-      new Notification('RxLoop reminder', { body: reminder.medName, icon: 'icons/icon-192.png' });
-      scheduleReminder(reminder); // reschedule for the next day
-    }, msUntil);
-  }
-
-  function scheduleAllReminders() {
-    if (!('Notification' in window) || Notification.permission !== 'granted') return;
-    getReminders().forEach(scheduleReminder);
-  }
-
-  // ==================== INSTALL PROMPT ====================
-  function bindInstallPrompt() {
-    let deferredPrompt = null;
-    const installBtn = document.getElementById('install-btn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.classList.remove('hidden');
-    });
-
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      installBtn.classList.add('hidden');
-    });
-
-    window.addEventListener('appinstalled', () => {
-      installBtn.classList.add('hidden');
-    });
-  }
-
-  // ==================== OFFLINE DETECTION ====================
-  function bindOfflineDetection() {
-    const banner = document.getElementById('offline-banner');
-    function update() {
-      banner.classList.toggle('hidden', navigator.onLine);
-    }
-    window.addEventListener('online', update);
-    window.addEventListener('offline', update);
-    update();
-  }
-
-  // ==================== SERVICE WORKER ====================
-  function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').catch(err => {
-        console.warn('RxLoop: service worker registration failed', err);
-      });
-    }
-  }
-
-  // ==================== UTIL ====================
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str || '';
-    return div.innerHTML;
-  }
 })();

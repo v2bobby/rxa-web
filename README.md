@@ -1,104 +1,122 @@
-# RxLoop — Site + Product
+# RxLoop — site + product
 
-**RxLoop** is AI-powered pharmaceutical middleware closing the medication safety gap across Sub-Saharan Africa. This repo contains the marketing site and a real, functional early-stage web app.
+**RxLoop** is offline-first pharmaceutical middleware for Sub-Saharan Africa. This repo holds the marketing site and a real, functional early-stage web app. No build step, no framework, no dependencies: plain HTML, CSS and JavaScript.
 
-## Live Pages
-- `/` — Homepage: opportunity, solution, business model, roadmap, leadership
-- `/app/` — **The real product.** A Progressive Web App: medication reference info in 5 languages, offline support, counterfeit reporting, and adherence reminders. See "What's real vs. roadmap" below.
-- `/blueprint/` — Web rendering of the Strategic Blueprint
+## Pages
 
-`/demo/` has been removed and now 301-redirects to `/app/` (see `vercel.json`). It previously contained a simulated, pre-recorded "scan" mockup — that has been replaced with the real app.
+| Path | What it is |
+|---|---|
+| `/` | Homepage. 3D capsule-field hero, then the full argument in split-page sections, with the reference lookup, report form, reminder builder and loop diagram all live on the page. |
+| `/app/` | **The product.** Installable PWA: reference guidance in 5 languages, offline, counterfeit reporting, adherence reminders. |
+| `/product/` | What the app does today and, precisely, what it does not. |
+| `/blueprint/` | Web rendering of the strategic blueprint. |
+| `/about/` | Premise, principles, founder. |
+| `/contact/` | Routes by who you are; composes a mail draft locally. |
+| `/privacy/`, `/terms/` | Short and specific. |
 
-## What's real vs. roadmap
+`/demo/` is gone and 301-redirects to `/app/` (see `vercel.json`).
 
-**Real and functional today:**
-- Medication reference lookup (general safety/adherence info, not clinical dosing) in English, Yoruba, Hausa, Igbo, and Nigerian Pidgin
-- Offline support via a real service worker — the app shell and data are cached and usable without connectivity
-- Installable as a PWA (Add to Home Screen / install prompt)
-- Counterfeit reporting — users can log a suspected counterfeit (photo, batch code, location); **stored locally on-device** (localStorage), not yet synced to a shared backend
-- Adherence reminders — local notifications while the app is open/installed; not yet backed by a push server
+## Design system — "Signal"
 
-**Still roadmap, not yet built:**
-- Computer-vision counterfeit detection against a manufacturer-verified database (the original "Trust Score" concept) — this requires real manufacturer/regulatory partnerships and should not be simulated or implied as live until it exists
-- Cross-device sync for counterfeit reports (needs a real backend — see Upgrade Path below)
-- True background push notifications for reminders (needs a push server)
-- Clinical review of the medication content and translations by qualified pharmacists/native-speaking health communicators — **do this before wide public release**, see Content Review below
+A light, clinical-instrument aesthetic where **bold type does the work** and colour is reserved for meaning.
 
-## Design System — "Specimen Label"
-A light, investor-grade aesthetic built around clinical precision rather than startup gloss:
+- **Palette** — paper white `#F6F6F3`, lift white `#FFFFFF`, ink `#0A0E14`, **electric blue `#0047FF`**, blue wash `#E7ECFF`. Two state-only colours: `#0E7A55` verified, `#B4341F` suspect.
+- **The blue rule** — blue is never decorative. It marks verification state and nothing else. Every place it appears in the UI, it is saying "this is the checked thing."
+- **Type** — Archivo (display, 800–900 weight at 110–118% width, tight negative tracking), Inter Tight (body), JetBrains Mono (labels and data readouts).
+- **Layout** — every content section is a true split: sticky left column carrying the title and framing, hairline rule, scrolling right column. Stacks on mobile.
+- **Signature** — the hero capsule field. Exactly one instance in ten is blue, and a verification sweep travels up through it. The statistic *is* the image.
 
-- **Palette**: warm paper white (`#FAFAF7`), deep teal (`#0D7A6E`), emerald (`#1F9D6B`), near-black ink (`#0F1A17`)
-- **Type**: Fraunces (display serif) + Inter (body) + JetBrains Mono (data/stat readouts)
-- **Cards**: "specimen" modules with hairline rule, mono labels, instrument-readout numerals
+All tokens live in `styles.css` under `:root`. `/app/` uses the same stylesheet.
 
-All tokens are defined in `styles.css` under `:root`. The `/app/` product reuses this same stylesheet for visual continuity.
+## Structure
 
-## File Structure
 ```
 rxa-web/
-├── index.html                          # Homepage
-├── styles.css                          # Shared design system + Tailwind overrides
-├── script.js                           # Homepage interactivity
+├── index.html                  # Homepage
+├── styles.css                  # Design system — shared by site and app
+├── script.js                   # Homepage: 3D hero, demos, diagram, filters
 ├── app/
-│   ├── index.html                      # The real product (PWA shell)
-│   ├── app.js                          # Core app logic
-│   ├── data.js                         # Medication reference content (5 languages)
-│   ├── manifest.json                   # PWA manifest
-│   ├── service-worker.js               # Offline caching
-│   └── icons/                          # PWA icons (192, 512, maskable)
-├── blueprint/
-│   └── index.html                      # Web version of the blueprint
-├── assets/
-│   └── logo.svg
-├── RxLoop_Strategic_Blueprint_2026.pdf
-├── robots.txt
-├── sitemap.xml
-├── vercel.json                         # Includes /demo/ → /app/ redirect
+│   ├── index.html              # PWA shell
+│   ├── app.js                  # App logic (storage, search, reminders, install, SW)
+│   ├── data.js                 # Medication reference, 5 languages — single source of truth
+│   ├── manifest.json
+│   ├── service-worker.js       # Offline caching
+│   └── icons/                  # 192, 512, maskable-512
+├── about|product|contact|privacy|terms|blueprint/index.html
+├── assets/logo.svg
+├── robots.txt, sitemap.xml, vercel.json, package.json
 └── README.md
 ```
 
-No build step. Pure HTML/CSS/JS, Tailwind via CDN.
+`app/data.js` is loaded by **both** the homepage and the app, so the reference content exists in exactly one place. Edit it there and both update.
 
-## Local Development
+## What's real vs. roadmap
+
+**Live today**
+
+- Medication reference in English, Nigerian Pidgin, Yorùbá, Hausa and Igbo — general safety and adherence guidance, **no numeric dosing**
+- Full offline operation via a real service worker
+- Installable as a PWA (Android prompt; iOS via Safari's Add to Home Screen, which doesn't fire `beforeinstallprompt` — the install bar staying hidden there is correct, not a bug)
+- Counterfeit reporting — batch code, location, red flags, optional photo; **stored on-device** in `localStorage`, with export and clear
+- Adherence reminders — local notifications while the app is installed or open
+
+**Roadmap, not built**
+
+- Computer-vision pack verification against manufacturer-verified data (the original Trust Score concept). Requires real manufacturer and regulatory partnerships. **Do not simulate this.**
+- Cross-device sync for reports (needs a moderated backend — see below)
+- Background push reminders (needs a push server)
+- Clinical review of `app/data.js` and native-speaker review of every translation
+
+## Content review — do this before wide release
+
+`app/data.js` is a first-pass draft. The app flags this to users on every entry, but the flag is not a substitute for the work:
+
+1. A **licensed pharmacist** reviews every English entry.
+2. A **native-speaking health communicator** reviews each of `pcm`, `yo`, `ha`, `ig`.
+3. Keep the no-dosing rule intact. It is stated at the top of `data.js` for a reason.
+
+## Upgrade path: cross-device sync
+
+Reports are device-local today. To aggregate them:
+
+1. Stand up a lightweight backend — Supabase or Firebase both work from static JS with no build step.
+2. Replace **only** `saveReports()` / `getReports()` in `app/app.js`. Nothing else needs to change; the rest of the file already treats them as the storage boundary.
+3. Add moderation and rate limiting **before** anything aggregated goes public. An unmoderated report map is a defamation tool.
+4. Rewrite `/privacy/` and add an explicit consent step before the first upload.
+
+## Local development
+
 ```bash
-python3 -m http.server 8000
-# then open http://localhost:8000 and http://localhost:8000/app/
+npm run dev          # python3 -m http.server 8000
+# → http://localhost:8000  and  http://localhost:8000/app/
 ```
-Note: service workers require HTTPS or `localhost` to register — `localhost` is fine for local testing.
 
-## Deploy to Vercel
+Service workers need HTTPS or `localhost` — `localhost` is fine.
+
+## Deploy
+
 ```bash
 npm i -g vercel
 vercel
 ```
-`vercel.json` handles clean URLs, the `/demo/` → `/app/` redirect, and cache headers. No environment variables or build step required for what's in this repo today.
+
+`vercel.json` handles clean URLs, the `/demo/` → `/app/` redirect, cache headers and basic security headers. No environment variables, no build step.
 
 ### Pre-deployment checklist
-- [ ] Confirm `rxloop.org` DNS points at Vercel and the domain is verified in the Vercel project
-- [ ] Run Lighthouse against the deployed `/app/` URL — confirm PWA installability passes (manifest, service worker, icons all resolve)
-- [ ] Test offline mode manually: load `/app/`, then disable network, reload — medication lookup should still work
-- [ ] Test install prompt on an actual Android device (Chrome) and iOS (Safari "Add to Home Screen", which doesn't fire `beforeinstallprompt` — the install button will stay hidden there by design, which is expected browser behavior, not a bug)
-- [ ] Verify all 5 languages render correctly, including diacritics (Yoruba) — check on at least one Android device, since font fallback for diacritics can vary
 
-## Content Review (do before wide release)
-The medication content in `app/data.js` is a first-pass draft:
-- General safety/adherence information only — deliberately excludes numeric dosing, which varies by patient and should never come from an unreviewed source
-- Translations (Yoruba, Hausa, Igbo, Pidgin) are a good-faith first draft, not verified by native-speaking healthcare communicators
-- **Before treating this as production-ready clinical content, have a licensed pharmacist and native-speaking reviewers for each language check every entry in `app/data.js`.**
-
-## Upgrade Path: Cross-Device Sync
-The counterfeit-reporting and reminders features currently store data with `localStorage`, which is real and functional but device-local only. To make reports genuinely shared/aggregated across users (a real step toward the original "community verification" concept):
-1. Set up a lightweight backend — Supabase or Firebase both have generous free tiers and integrate with static JS without a build step (just a `<script>` tag and an API key)
-2. Replace the `saveReports()` / `getReports()` functions in `app/app.js` with calls to that backend instead of `localStorage`
-3. Add basic moderation/rate-limiting before making aggregated reports public, to prevent spam or bad-faith submissions
-
-## Content Source of Truth
-Statistics and business-model language on the homepage are sourced from `RxLoop_Strategic_Blueprint_2026.pdf` (May 2026). Note: the PDF's internal pages still reference the site's prior name — regenerate via `generate_blueprint.py` (not included in this repo) if that needs to match.
+- [ ] **Replace the homepage and blueprint statistics.** The figures currently on `/` and `/blueprint/` are cited from public WHO and peer-reviewed sources but are marked "verify" in the source line — swap in the numbers from `RxLoop_Strategic_Blueprint_2026.pdf` and confirm each citation.
+- [ ] Confirm `rxloop.org` DNS points at Vercel and the domain is verified in the project
+- [ ] Lighthouse on the deployed `/app/` — confirm PWA installability (manifest, SW, icons all resolve)
+- [ ] Test offline: load `/app/`, kill the network, reload — reference lookup should still work
+- [ ] Test install on a real Android device (Chrome) and on iOS Safari
+- [ ] Check Yorùbá diacritics render on at least one Android device — font fallback varies
+- [ ] Delete the stray `*:Zone.Identifier` files from the repo (`git rm --cached '*:Zone.Identifier'`); `.gitignore` now blocks new ones
+- [ ] Regenerate `RxLoop_Strategic_Blueprint_2026.pdf` if its internal pages still carry the old product name
 
 ## Contact
-Founder: Nwosu Uzoma
-Email: uzomanwosu@rxloop.org
-LinkedIn: https://www.linkedin.com/in/uzoma-nwosu/
+
+Founder: Nwosu Uzoma · <uzomanwosu@rxloop.org> · [LinkedIn](https://www.linkedin.com/in/uzoma-nwosu/)
 
 ---
+
 © 2026 RxLoop.
