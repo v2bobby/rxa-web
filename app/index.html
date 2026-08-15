@@ -6,47 +6,67 @@
 <title>RxLoop — the app</title>
 <meta name="description" content="Medication guidance in five Nigerian languages, counterfeit reporting and adherence reminders. Works offline.">
 <meta name="theme-color" content="#F6F6F3">
-<link rel="manifest" href="/app/manifest.json">
-<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/app/icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="RxLoop">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 <body class="app">
 
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── first run: choose a language before anything else ── -->
+<div class="gate hidden" id="gate">
+  <h1>Which language<br>do you <span class="em">read</span>?</h1>
+  <p>You can change this at any time from the top of the app.</p>
+  <div class="opts" id="gateOpts"></div>
+</div>
+
 <div class="app-shell">
 
-  <div class="app-top">
-    <a class="brand" href="/"><span class="dot" aria-hidden="true"></span>RxLoop</a>
-    <div style="display:flex;align-items:center;gap:14px">
+  <header class="app-top" id="appTop">
+    <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+    <div class="app-head-r">
       <span class="net" id="net"><span class="d" aria-hidden="true"></span><span id="netTxt">Online</span></span>
-      <select class="inp" id="langSel" aria-label="Language" style="width:auto;padding:8px 10px;font-size:13px"></select>
+      <select class="langpick" id="langSel" aria-label="Language"></select>
     </div>
+  </header>
+
+  <div class="offbar" id="offbar" role="status">
+    <span class="d" aria-hidden="true"></span>
+    <span id="offTxt">No connection. Everything here still works.</span>
   </div>
 
+  <main id="main">
+
   <div class="install-bar hidden" id="installBar">
-    <p><strong>Install RxLoop</strong> on this phone so it opens without a browser and keeps working with no network.</p>
+    <p id="installTxt"><strong>Install RxLoop</strong> on this phone so it opens without a browser and keeps working with no network.</p>
     <button class="btn sm" id="installBtn" type="button">Install</button>
   </div>
 
   <!-- ── MEDICINES ─────────────────────────────────────── -->
-  <section class="view on" id="v-learn" role="tabpanel" aria-labelledby="t-learn">
+  <section class="view on" id="v-medicines" role="tabpanel" aria-labelledby="t-medicines" tabindex="-1">
     <h2>Know what<br>you're <span class="em">taking</span></h2>
     <p class="sub" id="learnSub">General safety and adherence guidance. No dose figures — those belong to a pharmacist who knows you.</p>
 
     <div id="listPane">
       <div class="search">
+        <svg class="mag" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         <input class="inp" id="search" type="search" autocomplete="off" placeholder="Search a medicine" aria-label="Search a medicine">
       </div>
+      <div class="quickchips" id="quickchips" role="group" aria-label="Filter by condition"></div>
       <div class="applist" id="applist"></div>
     </div>
 
     <div class="detail hidden" id="detailPane" aria-live="polite">
-      <button class="back" id="backBtn" type="button">&larr; All medicines</button>
+      <button class="back" id="backBtn" type="button"><span aria-hidden="true">&larr;</span> <span id="backTxt">All medicines</span></button>
       <div id="detailBody"></div>
     </div>
 
@@ -54,7 +74,7 @@
   </section>
 
   <!-- ── REPORT ────────────────────────────────────────── -->
-  <section class="view" id="v-report" role="tabpanel" aria-labelledby="t-report">
+  <section class="view" id="v-report" role="tabpanel" aria-labelledby="t-report" tabindex="-1">
     <h2>Flag a<br>suspect <span class="em">pack</span></h2>
     <p class="sub">Fifteen seconds, no account. Saved on this phone. Quote the reference code to your pharmacist or to NAFDAC.</p>
 
@@ -75,9 +95,15 @@
         <label class="fl mono" for="a-state">State</label>
         <select class="inp" id="a-state" name="state"></select>
       </div>
-      <div style="margin-bottom:16px">
-        <label class="fl mono" for="a-photo">Photo of the pack</label>
-        <input class="inp" id="a-photo" name="photo" type="file" accept="image/*" capture="environment">
+      <div style="margin-bottom:18px">
+        <span class="fl mono">Photo of the pack</span>
+        <label class="photo-drop" for="a-photo">
+          <span class="ph" id="photoPrev" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          </span>
+          <span class="tx" id="photoTxt">Take a photo of the carton and blister. Stored on this phone only.</span>
+          <input id="a-photo" name="photo" type="file" accept="image/*" capture="environment">
+        </label>
       </div>
       <div style="margin-bottom:20px">
         <span class="fl mono">What looks wrong</span>
@@ -101,49 +127,70 @@
   </section>
 
   <!-- ── REMINDERS ─────────────────────────────────────── -->
-  <section class="view" id="v-remind" role="tabpanel" aria-labelledby="t-remind">
+  <section class="view" id="v-reminders" role="tabpanel" aria-labelledby="t-reminders" tabindex="-1">
     <h2>Finish the<br>whole <span class="em">course</span></h2>
-    <p class="sub">Reminders fire on this phone while RxLoop is installed and open in the background.</p>
+    <p class="sub">Reminders fire on this phone while RxLoop is installed or open. Mark each dose as you take it.</p>
 
-    <form id="courseForm" style="margin-bottom:8px">
-      <div style="margin-bottom:16px">
-        <label class="fl mono" for="c-med">Medicine</label>
-        <input class="inp" id="c-med" placeholder="e.g. Amoxicillin 500mg" required>
-      </div>
-      <div style="margin-bottom:16px">
-        <label class="fl mono" for="c-days">Days in the course</label>
-        <input class="inp" id="c-days" type="number" min="1" max="90" value="5">
-      </div>
-      <div style="margin-bottom:18px">
-        <span class="fl mono">Dose times</span>
-        <div class="time-set" id="timeSet"></div>
-      </div>
-      <div class="timeline" id="timeline" aria-label="Dose schedule across 24 hours"></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-        <button class="btn" type="submit">Add course</button>
-        <button class="btn ghost sm" id="permBtn" type="button">Enable notifications</button>
-        <span class="mono" id="doseSummary" style="color:var(--ink-45)"></span>
-      </div>
-    </form>
+    <div id="nextWrap"></div>
 
-    <div class="ledger">
+    <div class="ledger" style="margin-bottom:26px">
       <div class="ledger-h"><span class="mono">Active courses</span><span class="mono" id="courseCount" style="color:var(--ink-45)">0</span></div>
       <div id="courseBody"></div>
     </div>
 
-    <p class="disclaim">These are local reminders, not push notifications — they need the app to be running or installed. Background push needs a server and is on the roadmap.</p>
+    <details id="addCourse">
+      <summary class="btn ghost" style="display:inline-flex">Add a course</summary>
+      <form id="courseForm" style="margin-top:22px">
+        <div style="margin-bottom:16px">
+          <label class="fl mono" for="c-med">Medicine</label>
+          <input class="inp" id="c-med" placeholder="e.g. Amoxicillin 500mg" required>
+        </div>
+        <div style="margin-bottom:16px">
+          <label class="fl mono" for="c-days">Days in the course</label>
+          <input class="inp" id="c-days" type="number" min="1" max="90" value="5" style="max-width:160px">
+        </div>
+        <div style="margin-bottom:18px">
+          <span class="fl mono">Dose times</span>
+          <div class="time-set" id="timeSet"></div>
+        </div>
+        <div class="timeline" id="timeline" aria-label="Dose schedule across 24 hours"></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button class="btn" type="submit">Add course</button>
+          <span class="mono" id="doseSummary" style="color:var(--ink-45)"></span>
+        </div>
+      </form>
+    </details>
+
+    <div style="margin-top:22px">
+      <button class="btn ghost sm" id="permBtn" type="button">Enable notifications</button>
+    </div>
+
+    <p class="disclaim">These are local reminders, not push notifications — they need the app to be open or installed. Background push needs a server and is on the roadmap.</p>
   </section>
 
+  </main>
+
   <nav class="tabbar" role="tablist" aria-label="Sections">
-    <button role="tab" id="t-learn"  aria-selected="true"  aria-controls="v-learn"  data-v="learn"><span class="gl" aria-hidden="true">&#9678;</span><span data-ui="learn">Medicines</span></button>
-    <button role="tab" id="t-report" aria-selected="false" aria-controls="v-report" data-v="report"><span class="gl" aria-hidden="true">&#9873;</span><span data-ui="report">Report</span></button>
-    <button role="tab" id="t-remind" aria-selected="false" aria-controls="v-remind" data-v="remind"><span class="gl" aria-hidden="true">&#9200;</span><span data-ui="remind">Reminders</span></button>
+    <button role="tab" id="t-medicines" aria-selected="true" aria-controls="v-medicines" data-v="medicines">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></svg>
+      <span data-ui="learn">Medicines</span>
+    </button>
+    <button role="tab" id="t-report" aria-selected="false" aria-controls="v-report" data-v="report" tabindex="-1">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h11l-1.6 3.5L16 11H5"/></svg>
+      <span data-ui="report">Report</span>
+      <span class="badge hidden" id="repBadge">0</span>
+    </button>
+    <button role="tab" id="t-reminders" aria-selected="false" aria-controls="v-reminders" data-v="reminders" tabindex="-1">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+      <span data-ui="remind">Reminders</span>
+      <span class="badge hidden" id="remBadge">0</span>
+    </button>
   </nav>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/app/data.js"></script>
-<script src="/app/app.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

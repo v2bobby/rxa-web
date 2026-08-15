@@ -194,7 +194,8 @@ function toast(msg) {
     langbar.appendChild(b);
   });
 
-  RX.MEDS.forEach(function (M) {
+  /* The homepage demos a slice; /app/ carries the full reference set. */
+  RX.MEDS.slice(0, 7).forEach(function (M) {
     var b = document.createElement('button');
     b.className = 'medbtn';
     b.type = 'button';

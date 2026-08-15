@@ -1,31 +1,39 @@
 /* ══════════════════════════════════════════════════════════
    RxLoop — service worker
    Precaches the shell so the app opens with no network.
+
+   All paths are RELATIVE to this file, so the site works
+   whether it is served from a domain root or a subfolder.
+
    Strategy:
      · app shell + data  → cache-first (must work at zero bars)
      · fonts / CDN       → stale-while-revalidate
      · everything else   → network, falling back to cache
    Bump CACHE when any precached file changes.
    ══════════════════════════════════════════════════════════ */
-const CACHE = 'rxloop-v3';
+const CACHE = 'rxloop-v6';
 
 const SHELL = [
-  '/app/',
-  '/app/index.html',
-  '/app/app.js',
-  '/app/data.js',
-  '/app/manifest.json',
-  '/app/icons/icon-192.png',
-  '/app/icons/icon-512.png',
-  '/styles.css',
-  '/assets/logo.svg'
+  './',
+  './index.html',
+  './app.js',
+  './data.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  '../styles.css',
+  '../assets/logo.svg'
 ];
+
+/* Resolve once against this worker's own URL so the fetch
+   handler can compare against real request URLs. */
+const SHELL_URLS = SHELL.map(p => new URL(p, self.location).href);
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE)
       // addAll rejects wholesale if one entry 404s, so add individually
-      .then(cache => Promise.all(SHELL.map(url => cache.add(url).catch(() => null))))
+      .then(cache => Promise.all(SHELL_URLS.map(url => cache.add(url).catch(() => null))))
       .then(() => self.skipWaiting())
   );
 });
@@ -43,8 +51,8 @@ self.addEventListener('fetch', event => {
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
-  const isShell = url.origin === location.origin && SHELL.some(p => url.pathname === p);
-  const isFont  = /fonts\.(googleapis|gstatic)\.com/.test(url.hostname);
+  const isShell = SHELL_URLS.indexOf(url.href) > -1;
+  const isFont = /fonts\.(googleapis|gstatic)\.com/.test(url.hostname);
 
   if (isShell) {
     event.respondWith(
@@ -80,6 +88,6 @@ self.addEventListener('fetch', event => {
         }
         return res;
       })
-      .catch(() => caches.match(req).then(hit => hit || caches.match('/app/index.html')))
+      .catch(() => caches.match(req).then(hit => hit || caches.match(new URL('./index.html', self.location).href)))
   );
 });

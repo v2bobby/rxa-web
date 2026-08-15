@@ -54,11 +54,13 @@ rxa-web/
 
 **Live today**
 
-- Medication reference in English, Nigerian Pidgin, Yorùbá, Hausa and Igbo — general safety and adherence guidance, **no numeric dosing**
+- Medication reference in English, Nigerian Pidgin, Yorùbá, Hausa and Igbo — **14 medicines**, 210 translated strings, general safety and adherence guidance, **no numeric dosing**
+- Filter chips by condition (fever, malaria, infection, diarrhoea, blood pressure, diabetes, anaemia/pregnancy, asthma, TB, HIV, strong painkillers)
 - Full offline operation via a real service worker
 - Installable as a PWA (Android prompt; iOS via Safari's Add to Home Screen, which doesn't fire `beforeinstallprompt` — the install bar staying hidden there is correct, not a bug)
 - Counterfeit reporting — batch code, location, red flags, optional photo; **stored on-device** in `localStorage`, with export and clear
-- Adherence reminders — local notifications while the app is installed or open
+- Adherence reminders — local notifications while the app is installed or open, with per-dose tick-off and course progress
+- App shell: hash routing (`#medicines`, `#report`, `#reminders`) so manifest shortcuts and the back button work; first-run language gate; condition filter chips; cross-links from a medicine to its reminder or report; photo thumbnails downscaled to 480px before storage; iOS Add-to-Home-Screen guidance
 
 **Roadmap, not built**
 
@@ -71,7 +73,7 @@ rxa-web/
 
 `app/data.js` is a first-pass draft. The app flags this to users on every entry, but the flag is not a substitute for the work:
 
-1. A **licensed pharmacist** reviews every English entry.
+1. A **licensed pharmacist** reviews every English entry. Priority order, by how badly a wrong entry would land: TB (RHZE), ART, Tramadol, Co-trimoxazole, Ferrous sulphate, Salbutamol — then the rest.
 2. A **native-speaking health communicator** reviews each of `pcm`, `yo`, `ha`, `ig`.
 3. Keep the no-dosing rule intact. It is stated at the top of `data.js` for a reason.
 
