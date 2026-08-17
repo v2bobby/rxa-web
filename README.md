@@ -20,9 +20,10 @@
 
 A light, clinical-instrument aesthetic where **bold type does the work** and colour is reserved for meaning.
 
-- **Palette** — paper white `#F6F6F3`, lift white `#FFFFFF`, ink `#0A0E14`, **electric blue `#0047FF`**, blue wash `#E7ECFF`. Two state-only colours: `#0E7A55` verified, `#B4341F` suspect.
+- **Palette** - warm paper `#F3F2ED`, lift `#FBFAF6`, sunk `#EBE9E2`, ink `#12161C`, **electric blue `#0047FF`**, blue wash `#E7ECFF`. Two state-only colours: `#0E7A55` verified, `#B4341F` suspect. No pure white anywhere. All text pairs pass WCAG AA (muted text is 4.57:1).
+- **Surfaces** - solid, separated by 1px rules. No backdrop blur, no drop shadows, no gradient scrims. Radii are 4px and 6px; the only circle in the system is a numeric count badge.
 - **The blue rule** — blue is never decorative. It marks verification state and nothing else. Every place it appears in the UI, it is saying "this is the checked thing."
-- **Type** — Archivo (display, 800–900 weight at 110–118% width, tight negative tracking), Inter Tight (body), JetBrains Mono (labels and data readouts).
+- **Type** - Archivo carries display and UI chrome; **Literata** carries anything a person has to read, because the medical instruction is the point and a reading face beats a UI face on a small screen; IBM Plex Mono for data readouts. `Noto Sans` is stacked as a fallback for Hausa hooked letters and Yoruba combining diacritics, which not every face covers. **Verify this on a real Android device before launch.**
 - **Layout** — every content section is a true split: sticky left column carrying the title and framing, hairline rule, scrolling right column. Stacks on mobile.
 - **Signature** — the hero capsule field. Exactly one instance in ten is blue, and a verification sweep travels up through it. The statistic *is* the image.
 

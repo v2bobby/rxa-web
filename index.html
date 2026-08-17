@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RxLoop — Medicine you can verify</title>
-<meta name="description" content="RxLoop is offline-first pharmaceutical middleware for Sub-Saharan Africa: medication guidance in five Nigerian languages, counterfeit reporting, and adherence reminders — in the patient's hand.">
+<title>RxLoop. Medicine you can verify</title>
+<meta name="description" content="RxLoop is offline-first pharmaceutical middleware for Sub-Saharan Africa: medication guidance in five Nigerian languages, counterfeit reporting, and adherence reminders, in the patient's hand.">
 <link rel="canonical" href="https://rxloop.org/">
-<meta property="og:title" content="RxLoop — Medicine you can verify">
+<meta property="og:title" content="RxLoop. Medicine you can verify">
 <meta property="og:description" content="Offline-first pharmaceutical middleware for Sub-Saharan Africa.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rxloop.org/">
@@ -14,7 +14,7 @@
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -30,13 +30,12 @@
     <a href="product/">Product</a>
     <a href="about/">About</a>
   </nav>
-  <a class="btn" href="app/">Open the app <span class="arw" aria-hidden="true">&rarr;</span></a>
+  <a class="btn" href="app/">Open the app</a>
 </header>
 
 <!-- ══ HERO ══════════════════════════════════════════════ -->
 <section class="hero" id="top">
-  <canvas id="field" role="img" aria-label="A field of capsules in which roughly one in ten is flagged blue as suspect"></canvas>
-  <div class="hero-grad" aria-hidden="true"></div>
+  <div class="hero-field"><canvas id="field" role="img" aria-label="A field of capsules in which roughly one in ten is flagged blue as suspect"></canvas></div>
   <div class="scroll-cue" aria-hidden="true"><span class="mono">Scroll</span><span class="ln"></span></div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
@@ -49,13 +48,13 @@
       <span class="line"><span class="em">not medicine</span></span>
     </h1>
     <div class="hero-foot">
-      <p class="hero-sub">Substandard and falsified medicines kill quietly, at scale. RxLoop puts guidance, reporting and adherence in the patient's hand — in five Nigerian languages, and it works with no signal.</p>
+      <p class="hero-sub">Substandard and falsified medicines kill quietly, at scale. RxLoop puts guidance, reporting and adherence in the patient's hand, in five Nigerian languages, with no connection required.</p>
       <div class="hero-key">
         <span><span class="key-swatch grey" aria-hidden="true"></span><span class="mono">Genuine</span></span>
         <span><span class="key-swatch" aria-hidden="true"></span><span class="mono">Suspect</span></span>
       </div>
       <div class="hero-cta">
-        <a class="btn" href="#reference">See the app working <span class="arw" aria-hidden="true">&rarr;</span></a>
+        <a class="btn" href="#reference">See the app working</a>
         <a class="btn ghost" href="blueprint/">Strategic blueprint</a>
       </div>
     </div>
@@ -68,18 +67,24 @@
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">The gap</span></div>
     <h2 class="sec-h">A supply<br>chain that<br><span class="thin">forgets</span><br>the patient</h2>
-    <p class="sec-note">Every actor in the chain — manufacturer, distributor, pharmacy, regulator — holds one fragment of the truth about a pack of medicine. None of them hold the patient's fragment. That is the gap RxLoop closes.</p>
+    <p class="sec-note">Every actor in the chain, manufacturer, distributor, pharmacy, regulator, holds one fragment of the truth about a pack of medicine. None of them hold the patient's fragment. That is the gap RxLoop closes.</p>
   </div></div>
   <div class="split-r">
-    <p class="lede rv">A falsified pack looks like medicine, costs like medicine, and is sold by someone who believes it is medicine. The failure is not one bad actor — it is that <strong>nobody downstream can check</strong>, and when something goes wrong there is no route for that signal to travel back up.</p>
-    <div class="stat-row rv d1">
-      <div class="stat"><div class="n">1 in <em>10</em></div><div class="lb">medical products in low- and middle-income countries are substandard or falsified.</div><div class="src mono">WHO, 2017 — verify before publishing</div></div>
-      <div class="stat"><div class="n"><em>42</em>%</div><div class="lb">of substandard and falsified reports to WHO's global surveillance system come from the African region.</div><div class="src mono">WHO surveillance — verify</div></div>
-      <div class="stat"><div class="n"><em>~$30</em>B</div><div class="lb">estimated annual spend on substandard and falsified medicines across LMICs.</div><div class="src mono">WHO estimate — verify</div></div>
-      <div class="stat"><div class="n">64&ndash;158<em>K</em></div><div class="lb">estimated deaths each year in Sub-Saharan Africa linked to poor-quality antimalarials.</div><div class="src mono">Modelling, 2015 — verify</div></div>
+    <p class="lede rv">A falsified pack looks like medicine, costs like medicine, and is sold by someone who believes it is medicine. The failure is not one bad actor, it is that <strong>nobody downstream can check</strong>, and when something goes wrong there is no route for that signal to travel back up.</p>
+    <div class="figure rv d1">
+      <div class="figure-lead">
+        <div class="fig-n">1 in <em>10</em></div>
+        <p class="fig-lb">medical products in low- and middle-income countries are substandard or falsified.</p>
+        <p class="fig-src mono">WHO 2017. Verify against the blueprint before publishing.</p>
+      </div>
+      <dl class="figure-rows">
+        <div><dt>42%</dt><dd>of substandard and falsified reports to WHO's global surveillance system come from the African region.</dd></div>
+        <div><dt>~$30B</dt><dd>estimated annual spend on substandard and falsified medicines across low- and middle-income countries.</dd></div>
+        <div><dt>64&ndash;158K</dt><dd>estimated deaths each year in Sub-Saharan Africa linked to poor-quality antimalarials.</dd></div>
+      </dl>
     </div>
-    <p class="callout rv d2">The patient is the only person who touches every pack — and the only one with no way to check it.</p>
-    <p class="lede rv d3">RxLoop is not a scanner company or a serialisation vendor. It is the <strong>middleware layer</strong> between people and the medicines they already have: reference guidance they can read in their own language, a way to flag a pack that looks wrong, and reminders that make a full course actually get finished. All of it offline-first, because the places where falsified medicine circulates are the same places where data does not.</p>
+    <p class="callout rv d2">The patient is the only person who touches every pack, and the only one with no way to check it.</p>
+    <p class="lede rv d3">RxLoop is a <strong>middleware layer between people and the medicines they already hold</strong>. It does three things: gives reference guidance a person can read in their own language, captures a report when a pack looks wrong, and keeps a full course on schedule until it is finished. All of it runs offline, because the places where falsified medicine circulates are the same places where data does not.</p>
   </div>
  </div></div>
 </section>
@@ -90,14 +95,23 @@
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
     <h2 class="sec-h">Read it<br>in your<br><span class="thin">own</span><br>language</h2>
-    <p class="sec-note">This is the real reference lookup from <code>/app/</code>, running here on the page. Pick a language, pick a medicine. General safety and adherence guidance only — never numeric dosing, which belongs to a clinician who knows the patient.</p>
-    <p class="sec-note" style="margin-top:14px"><span class="offline-tag"><span aria-hidden="true">&#9670;</span> Cached by service worker — works at zero bars</span></p>
+    <p class="sec-note">This is the real reference lookup from <code>/app/</code>, running here on the page. Pick a language, pick a medicine. General safety and adherence guidance only, never numeric dosing, which belongs to a clinician who knows the patient.</p>
+    <p class="sec-note" style="margin-top:14px"><span class="offline-tag"><span aria-hidden="true">&#9670;</span> Cached by service worker, works at zero bars</span></p>
   </div></div>
   <div class="split-r">
     <div class="langbar rv" role="group" aria-label="Choose a language" id="langbar"></div>
     <div class="demo rv d1">
-      <div class="medlist" id="medlist" role="group" aria-label="Choose a medicine"></div>
-      <div class="medcard" id="medcard" aria-live="polite"></div>
+      <div class="medlist" id="medlist" role="group" aria-label="Choose a medicine">
+        <div class="skel-row"><div class="skel skel-line skel-pulse"></div><div class="skel skel-line s2 skel-pulse"></div></div>
+        <div class="skel-row"><div class="skel skel-line skel-pulse"></div><div class="skel skel-line s2 skel-pulse"></div></div>
+        <div class="skel-row"><div class="skel skel-line skel-pulse"></div><div class="skel skel-line s2 skel-pulse"></div></div>
+        <div class="skel-row"><div class="skel skel-line skel-pulse"></div><div class="skel skel-line s2 skel-pulse"></div></div>
+      </div>
+      <div class="medcard" id="medcard" aria-live="polite">
+        <div class="skel skel-line skel-pulse" style="height:30px;width:58%;margin-bottom:22px"></div>
+        <div class="skel skel-line skel-pulse" style="width:100%"></div>
+        <div class="skel skel-line s2 skel-pulse" style="width:88%"></div>
+      </div>
     </div>
   </div>
  </div></div>
@@ -109,10 +123,10 @@
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
     <h2 class="sec-h">Flag a<br>pack that<br><span class="thin">looks</span><br>wrong</h2>
-    <p class="sec-note">A report takes fifteen seconds and no account. Today it is stored on the device that made it. The moment a moderated backend exists, the same form becomes a shared early-warning map — see <a href="#status">live &amp; roadmap</a>.</p>
+    <p class="sec-note">A report takes fifteen seconds and no account. Today it is stored on the device that made it. The moment a moderated backend exists, the same form becomes a shared early-warning map, see <a href="#status">live &amp; roadmap</a>.</p>
   </div></div>
   <div class="split-r">
-    <p class="lede rv">You do not need lab equipment to notice that a blister is loose, the print is soft, or the tablets taste of nothing. Those observations are data — they just have nowhere to go.</p>
+    <p class="lede rv">You do not need lab equipment to notice that a blister is loose, the print is soft, or the tablets taste of nothing. Those observations are data, they just have nowhere to go.</p>
     <form class="form rv d1" id="reportForm" style="margin-top:34px">
       <div>
         <label class="fl mono" for="r-med">Medicine name</label>
@@ -135,8 +149,8 @@
         <div class="checks" id="flagChecks"></div>
       </div>
       <div class="f-full" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px">
-        <button class="btn" type="submit">Log this report <span class="arw" aria-hidden="true">&rarr;</span></button>
-        <span class="pill-note"><span class="d" aria-hidden="true"></span>Stored on this device only — nothing is uploaded</span>
+        <button class="btn" type="submit">Log this report</button>
+        <span class="pill-note"><span class="d" aria-hidden="true"></span>Stored on this device only, nothing is uploaded</span>
       </div>
     </form>
     <div class="ledger rv d2">
@@ -153,10 +167,10 @@
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
     <h2 class="sec-h">Finish<br>the whole<br><span class="thin">course</span></h2>
-    <p class="sec-note">Half-finished antibiotic courses are a resistance engine. Reminders fire locally while the app is installed — no server, no account, no data cost. Build a schedule and watch it land on the day.</p>
+    <p class="sec-note">Half-finished antibiotic courses are a resistance engine. Reminders fire locally while the app is installed, no server, no account, no data cost. Build a schedule and watch it land on the day.</p>
   </div></div>
   <div class="split-r">
-    <p class="lede rv">Set the times a dose is actually convenient — after morning prayer, at lunch, before bed — not the times a leaflet assumes.</p>
+    <p class="lede rv">Set the times a dose is actually convenient, after morning prayer, at lunch, before bed, not the times a leaflet assumes.</p>
     <div class="rv d1" style="margin-top:30px">
       <label class="fl mono" for="rm-med">Medicine</label>
       <input class="inp" id="rm-med" value="Amoxicillin 500mg" style="max-width:420px">
@@ -166,7 +180,7 @@
       </div>
       <div class="timeline" id="timeline" aria-label="Dose schedule across 24 hours"></div>
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:18px">
-        <button class="btn" id="notifyBtn" type="button">Try a reminder now <span class="arw" aria-hidden="true">&rarr;</span></button>
+        <button class="btn" id="notifyBtn" type="button">Try a reminder now</button>
         <span class="mono" id="doseSummary" style="color:var(--ink-45)"></span>
       </div>
     </div>
@@ -246,15 +260,41 @@
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Business model</span></div>
     <h2 class="sec-h">Free for<br>the person<br><span class="thin">holding</span><br>the pack</h2>
-    <p class="sec-note">The patient side stays free permanently. Revenue comes from the actors who gain operational value from the return path — and none of it involves selling individual health data.</p>
+    <p class="sec-note">The patient side stays free permanently. Revenue comes from the actors who gain operational value from the return path, and none of it involves selling individual health data.</p>
   </div></div>
   <div class="split-r">
-    <div class="streams rv">
-      <div class="stream"><div class="mono who">Patients</div><h4>The app</h4><p>Reference guidance, offline access, reporting and reminders in five languages.</p><div class="price">Free — permanently</div></div>
-      <div class="stream"><div class="mono who">Pharmacies</div><h4>Counter tools</h4><p>Batch-level alerts on packs their own customers have flagged, plus stock and dispensing records.</p><div class="price">Subscription per outlet</div></div>
-      <div class="stream"><div class="mono who">Manufacturers</div><h4>Verification API</h4><p>A route to confirm a pack against their own serialisation data, and to see where imitations surface first.</p><div class="price">Usage-based licence</div></div>
-      <div class="stream"><div class="mono who">Regulators</div><h4>Signal feed</h4><p>Aggregated, anonymised clusters of suspect reports — weeks before they would surface through formal channels.</p><div class="price">Public-interest tier</div></div>
-    </div>
+    <table class="value-table rv">
+      <caption class="mono">Who pays, what they get, and what it costs</caption>
+      <thead>
+        <tr><th scope="col">Who</th><th scope="col">What they get</th><th scope="col">Basis</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr class="anchor">
+          <th scope="row">Patients</th>
+          <td>Reference guidance, offline access, reporting and reminders in five languages.</td>
+          <td class="mono">Free, permanently</td>
+          <td><span class="st-live">Live</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Pharmacies</th>
+          <td>Batch alerts on packs their own customers flagged, plus stock and dispensing records.</td>
+          <td class="mono">Per outlet, monthly</td>
+          <td><span class="st-soon">Pilot stage</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Manufacturers</th>
+          <td>Confirm a pack against their own serialisation data. See where imitations surface first.</td>
+          <td class="mono">Usage-based licence</td>
+          <td><span class="st-soon">Needs partner</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Regulators</th>
+          <td>Anonymised clusters of suspect reports, ahead of formal reporting channels.</td>
+          <td class="mono">Public-interest tier</td>
+          <td><span class="st-soon">Needs backend</span></td>
+        </tr>
+      </tbody>
+    </table>
     <p class="lede rv d1" style="margin-top:38px">The sequencing matters: the patient app has to be genuinely useful with no partners at all, or there is nothing to bring a manufacturer to the table with. That is why the offline reference layer shipped first and the computer-vision verification has not shipped at all.</p>
   </div>
  </div></div>
@@ -290,7 +330,7 @@
   <div class="wrap">
     <h2>Open it. It<br>works with<br><span style="color:var(--blue)">no signal.</span></h2>
     <div class="row">
-      <a class="btn" href="app/">Open the app <span class="arw" aria-hidden="true">&rarr;</span></a>
+      <a class="btn" href="app/">Open the app</a>
       <a class="btn ghost" href="contact/">Talk to the founder</a>
       <span class="mono" style="color:var(--ink-45)">Installable &middot; 5 languages &middot; No account</span>
     </div>
@@ -299,7 +339,7 @@
 
 <footer>
   <div class="wrap foot-row">
-    <span>&copy; 2026 RxLoop. Guidance only — not a substitute for a pharmacist or physician.</span>
+    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
     <nav aria-label="Footer">
       <a href="app/">App</a><a href="product/">Product</a><a href="blueprint/">Blueprint</a>
       <a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms</a>

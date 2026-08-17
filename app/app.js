@@ -240,7 +240,7 @@ function renderDetail(m) {
 
   var foot = document.createElement('div'); foot.className = 'medfoot';
   var off = document.createElement('span'); off.className = 'offline-tag mono';
-  off.textContent = '\u25C6 ' + u.offline;
+  off.textContent = u.offline;
   var note = document.createElement('span'); note.className = 'pill-note';
   var dot = document.createElement('span'); dot.className = 'd';
   note.appendChild(dot);

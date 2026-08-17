@@ -11,7 +11,7 @@
      · everything else   → network, falling back to cache
    Bump CACHE when any precached file changes.
    ══════════════════════════════════════════════════════════ */
-const CACHE = 'rxloop-v6';
+const CACHE = 'rxloop-v7';
 
 const SHELL = [
   './',

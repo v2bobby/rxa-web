@@ -109,10 +109,11 @@ function toast(msg) {
   var pointer = { x: 0, y: 0 }, target = { x: 0, y: 0 }, drag = null, manual = 0;
 
   function resize() {
-    var w = canvas.clientWidth || window.innerWidth, h = canvas.clientHeight || window.innerHeight;
+    var box = canvas.parentNode.getBoundingClientRect();
+    var w = box.width || window.innerWidth, h = box.height || (window.innerHeight * 0.52);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    camera.position.z = w < 700 ? 20 : (w < 1100 ? 18.5 : 17);
+    camera.position.z = w < 700 ? 17 : (w < 1100 ? 15.5 : 14.5);
     camera.updateProjectionMatrix();
   }
   addEventListener('resize', resize);
@@ -194,6 +195,7 @@ function toast(msg) {
     langbar.appendChild(b);
   });
 
+  medlist.innerHTML = '';   /* clear the skeleton rows */
   /* The homepage demos a slice; /app/ carries the full reference set. */
   RX.MEDS.slice(0, 7).forEach(function (M) {
     var b = document.createElement('button');
@@ -233,7 +235,7 @@ function toast(msg) {
 
     var foot = document.createElement('div'); foot.className = 'medfoot';
     var off = document.createElement('span'); off.className = 'offline-tag mono';
-    off.textContent = '\u25C6 ' + u.offline;
+    off.textContent = u.offline;
     var note = document.createElement('span'); note.className = 'pill-note';
     var dot = document.createElement('span'); dot.className = 'd';
     note.appendChild(dot);
@@ -469,7 +471,7 @@ function toast(msg) {
     d.className = 'item ' + it.s;
     var tag = document.createElement('div');
     tag.className = 'tag';
-    tag.textContent = it.s === 'live' ? '\u25CF Live today' : '\u25CB Roadmap';
+    tag.textContent = it.s === 'live' ? 'Live today' : 'Roadmap';
     var body = document.createElement('div');
     var h = document.createElement('h4'); h.textContent = it.t;
     var p = document.createElement('p'); p.textContent = it.d;
