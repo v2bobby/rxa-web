@@ -1,0 +1,1447 @@
+From 8900302c17e01097b2322a50fa9af4f909c0ab39 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 12 Oct 2026 19:21:52 +0100
+Subject: [PATCH 1/2] Simplify design, add detailed footer and co-founder
+
+Calmer sentence-case type and neutral palette across all pages, a
+full contact footer on every page, and Okpaudo Somtochukwu added as
+co-founder. Service worker cache bumped so installed apps refresh.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012EmEUhvXeDjkKF5n2YSrjK
+---
+ about/index.html      | 106 ++++++++++++++++++++------
+ app/service-worker.js |   2 +-
+ blueprint/index.html  |  83 ++++++++++++++++----
+ contact/index.html    |  79 +++++++++++++++----
+ index.html            | 132 +++++++++++++++++++++++---------
+ privacy/index.html    |  73 +++++++++++++++---
+ product/index.html    |  81 ++++++++++++++++----
+ styles.css            | 171 ++++++++++++++++++++++++------------------
+ terms/index.html      |  73 +++++++++++++++---
+ 9 files changed, 601 insertions(+), 199 deletions(-)
+
+diff --git a/about/index.html b/about/index.html
+index 127bcfe..0944ddf 100644
+--- a/about/index.html
++++ b/about/index.html
+@@ -31,7 +31,7 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">About</span></div>
+-    <h1>Start where<br>the harm <span class="em">lands</span></h1>
++    <h1>Start where the harm <span class="em">lands</span></h1>
+     <p class="lede">Most solutions to falsified medicine are built for the institutions that move it. RxLoop starts from the person who swallows it.</p>
+   </div>
+ </section>
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">The premise</span></div>
+-    <h2 class="sec-h">One<br>missing<br><span class="thin">fragment</span></h2>
++    <h2 class="sec-h">One missing <span class="thin">fragment</span></h2>
+     
+   </div></div>
+   <div class="split-r"><p class="lede">Serialisation, track-and-trace and authentication technology all exist and all work. They stop at the pharmacy counter. Beyond it sits the one participant who touches every pack, carries all the risk, and has no instrument at all: the patient.</p>
+@@ -52,7 +52,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Principles</span></div>
+-    <h2 class="sec-h">Rules we<br>build <span class="thin">against</span></h2>
++    <h2 class="sec-h">Rules we build <span class="thin">against</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -70,46 +70,108 @@
+  </div></div>
+ </section>
+ 
+-<section>
++<section id="founders">
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+-    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Who</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">founder</span></h2>
++    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Founders</span></div>
++    <h2 class="sec-h">The people building it</h2>
+     
+   </div></div>
+-  <div class="split-r"><div class="founder">
+-        <div class="initials" aria-hidden="true">NU</div>
++  <div class="split-r"><div class="founders">
++      <div class="founder">
+         <div style="min-width:0">
+-          <h3 style="margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.02em">Nwosu Uzoma</h3>
+-          <div class="mono" style="color:var(--ink-45);margin-bottom:14px">Founder</div>
+-          <p class="lede" style="font-size:16.5px">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
++          <h3>Nwosu Uzoma</h3>
++          <div class="role">Founder</div>
++          <p class="lede">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
+           <div class="f-links">
+             <a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a>
+-            <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
++            <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a>
+           </div>
+         </div>
+-      </div></div>
++      </div>
++      <div class="founder">
++        <div style="min-width:0">
++          <h3>Okpaudo Somtochukwu</h3>
++          <div class="role">Co-founder</div>
++          <p class="lede">Co-founder of RxLoop, building it from Nigeria alongside Uzoma with the same aim: put a way to check medicine in the hands of the person taking it.</p>
++          <div class="f-links">
++            <a href="../contact/">Get in touch</a>
++          </div>
++        </div>
++      </div>
++    </div></div>
+  </div></div>
+ </section>
+ 
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>See what it<br>actually does.</h2>
++    <h2>See what it actually does.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/app/service-worker.js b/app/service-worker.js
+index 9e8f91f..8bfb20f 100644
+--- a/app/service-worker.js
++++ b/app/service-worker.js
+@@ -11,7 +11,7 @@
+      · everything else   → network, falling back to cache
+    Bump CACHE when any precached file changes.
+    ══════════════════════════════════════════════════════════ */
+-const CACHE = 'rxloop-v7';
++const CACHE = 'rxloop-v8';
+ 
+ const SHELL = [
+   './',
+diff --git a/blueprint/index.html b/blueprint/index.html
+index 05f2ddd..4406b08 100644
+--- a/blueprint/index.html
++++ b/blueprint/index.html
+@@ -31,7 +31,7 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Strategic blueprint &middot; 2026</span></div>
+-    <h1>The whole<br>argument,<br><span class="em">in order</span></h1>
++    <h1>The whole argument, <span class="em">in order</span></h1>
+     <p class="lede">A web rendering of the strategic blueprint. The PDF is the citable version; this page is the readable one.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn" href="../RxLoop_Strategic_Blueprint_2026.pdf">Download the PDF</a></div>
+   </div>
+ </section>
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">01</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">problem</span></h2>
++    <h2 class="sec-h">The <span class="thin">problem</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -58,7 +58,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">02</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">insight</span></h2>
++    <h2 class="sec-h">The <span class="thin">insight</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -72,7 +72,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">03</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">product</span></h2>
++    <h2 class="sec-h">The <span class="thin">product</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -92,7 +92,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">04</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">model</span></h2>
++    <h2 class="sec-h">The <span class="thin">model</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="streams">
+@@ -109,7 +109,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">05</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">sequence</span></h2>
++    <h2 class="sec-h">The <span class="thin">sequence</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -129,7 +129,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">06</span></div>
+-    <h2 class="sec-h">What has<br>to be<br><span class="thin">true</span></h2>
++    <h2 class="sec-h">What has to be <span class="thin">true</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -149,21 +149,72 @@
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>Then judge<br>it by the app.</h2>
++    <h2>Then judge it by the app.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/contact/index.html b/contact/index.html
+index 10e5d80..4a919ca 100644
+--- a/contact/index.html
++++ b/contact/index.html
+@@ -31,8 +31,8 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Contact</span></div>
+-    <h1>Say what<br>you <span class="em">need</span></h1>
+-    <p class="lede">One founder reads every message, so specificity gets a faster answer than pleasantries.</p>
++    <h1>Say what you <span class="em">need</span></h1>
++    <p class="lede">The founders read every message themselves, so specificity gets a faster answer than pleasantries.</p>
+   </div>
+ </section>
+ 
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Direct</span></div>
+-    <h2 class="sec-h">Email is<br><span class="thin">fastest</span></h2>
++    <h2 class="sec-h">Email is <span class="thin">fastest</span></h2>
+     <p class="sec-note">No form middleware, no ticket queue, mail lands directly.</p>
+   </div></div>
+   <div class="split-r"><div class="streams">
+@@ -56,7 +56,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Write</span></div>
+-    <h2 class="sec-h">Draft it<br><span class="thin">here</span></h2>
++    <h2 class="sec-h">Draft it <span class="thin">here</span></h2>
+     <p class="sec-note">This opens your own mail app with the message prefilled. Nothing is sent through this site, and nothing is stored on it.</p>
+   </div></div>
+   <div class="split-r"><form id="mailForm">
+@@ -85,28 +85,79 @@
+         location.href = 'mailto:uzomanwosu@rxloop.org?subject=' + encodeURIComponent('RxLoop, ' + t) + '&body=' + encodeURIComponent(b);
+       });
+       </script>
+-      <p class="sec-note" style="max-width:52ch">Founder: Nwosu Uzoma &middot; <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a></p></div>
++      <p class="sec-note" style="max-width:52ch">Founders: Nwosu Uzoma (<a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a>) and Okpaudo Somtochukwu.</p></div>
+  </div></div>
+ </section>
+ 
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>Or just try<br>the app first.</h2>
++    <h2>Or just try the app first.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/index.html b/index.html
+index 74145cb..de85afe 100644
+--- a/index.html
++++ b/index.html
+@@ -36,11 +36,10 @@
+ <!-- ══ HERO ══════════════════════════════════════════════ -->
+ <section class="hero" id="top">
+   <div class="hero-field"><canvas id="field" role="img" aria-label="A field of capsules in which roughly one in ten is flagged blue as suspect"></canvas></div>
+-  <div class="scroll-cue" aria-hidden="true"><span class="mono">Scroll</span><span class="ln"></span></div>
+   <div class="hero-inner">
+     <div class="hero-eyebrow">
+       <span class="bar" aria-hidden="true"></span>
+-      <span class="mono">RxLoop &middot; Pharmaceutical middleware &middot; Sub-Saharan Africa</span>
++      <span class="mono">Pharmaceutical middleware for Sub-Saharan Africa</span>
+     </div>
+     <h1 class="hero-h">
+       <span class="line"><span>One in ten</span></span>
+@@ -66,7 +65,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">The gap</span></div>
+-    <h2 class="sec-h">A supply<br>chain that<br><span class="thin">forgets</span><br>the patient</h2>
++    <h2 class="sec-h">A supply chain that <span class="thin">forgets</span> the patient</h2>
+     <p class="sec-note">Every actor in the chain, manufacturer, distributor, pharmacy, regulator, holds one fragment of the truth about a pack of medicine. None of them hold the patient's fragment. That is the gap RxLoop closes.</p>
+   </div></div>
+   <div class="split-r">
+@@ -94,7 +93,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
+-    <h2 class="sec-h">Read it<br>in your<br><span class="thin">own</span><br>language</h2>
++    <h2 class="sec-h">Read it in your <span class="thin">own</span> language</h2>
+     <p class="sec-note">This is the real reference lookup from <code>/app/</code>, running here on the page. Pick a language, pick a medicine. General safety and adherence guidance only, never numeric dosing, which belongs to a clinician who knows the patient.</p>
+     <p class="sec-note" style="margin-top:14px"><span class="offline-tag"><span aria-hidden="true">&#9670;</span> Cached by service worker, works at zero bars</span></p>
+   </div></div>
+@@ -122,7 +121,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
+-    <h2 class="sec-h">Flag a<br>pack that<br><span class="thin">looks</span><br>wrong</h2>
++    <h2 class="sec-h">Flag a pack that <span class="thin">looks</span> wrong</h2>
+     <p class="sec-note">A report takes fifteen seconds and no account. Today it is stored on the device that made it. The moment a moderated backend exists, the same form becomes a shared early-warning map, see <a href="#status">live &amp; roadmap</a>.</p>
+   </div></div>
+   <div class="split-r">
+@@ -166,7 +165,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Live product</span></div>
+-    <h2 class="sec-h">Finish<br>the whole<br><span class="thin">course</span></h2>
++    <h2 class="sec-h">Finish the whole <span class="thin">course</span></h2>
+     <p class="sec-note">Half-finished antibiotic courses are a resistance engine. Reminders fire locally while the app is installed, no server, no account, no data cost. Build a schedule and watch it land on the day.</p>
+   </div></div>
+   <div class="split-r">
+@@ -193,7 +192,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Architecture</span></div>
+-    <h2 class="sec-h">Why it's<br>called a<br><span class="thin">loop</span></h2>
++    <h2 class="sec-h">Why it's called a <span class="thin">loop</span></h2>
+     <p class="sec-note">Information already flows one way: factory to patient. RxLoop builds the return path. Tap any node to see what it sends and what it gets back.</p>
+   </div></div>
+   <div class="split-r">
+@@ -205,27 +204,27 @@
+         <path class="flow" d="M110 226 Q60 226 60 150 Q60 74 110 74"/>
+         <g class="node" data-k="mfr" tabindex="0" role="button" aria-label="Manufacturer">
+           <rect x="70" y="46" width="150" height="56" rx="3"/>
+-          <text x="86" y="70" class="role">01 &middot; UPSTREAM</text>
++          <text x="86" y="70" class="role">Upstream</text>
+           <text x="86" y="88">Manufacturer</text>
+         </g>
+         <g class="node" data-k="dist" tabindex="0" role="button" aria-label="Distributor">
+           <rect x="285" y="46" width="150" height="56" rx="3"/>
+-          <text x="301" y="70" class="role">02 &middot; UPSTREAM</text>
++          <text x="301" y="70" class="role">Upstream</text>
+           <text x="301" y="88">Distributor</text>
+         </g>
+         <g class="node" data-k="pharm" tabindex="0" role="button" aria-label="Pharmacy">
+           <rect x="500" y="46" width="150" height="56" rx="3"/>
+-          <text x="516" y="70" class="role">03 &middot; COUNTER</text>
++          <text x="516" y="70" class="role">Counter</text>
+           <text x="516" y="88">Pharmacy</text>
+         </g>
+         <g class="node on" data-k="pt" tabindex="0" role="button" aria-label="Patient">
+           <rect x="285" y="198" width="150" height="56" rx="3"/>
+-          <text x="301" y="222" class="role">04 &middot; RXLOOP APP</text>
++          <text x="301" y="222" class="role">RxLoop app</text>
+           <text x="301" y="240">Patient</text>
+         </g>
+         <g class="node" data-k="reg" tabindex="0" role="button" aria-label="Regulator">
+           <rect x="500" y="198" width="150" height="56" rx="3"/>
+-          <text x="516" y="222" class="role">05 &middot; SIGNAL</text>
++          <text x="516" y="222" class="role">Signal</text>
+           <text x="516" y="240">Regulator</text>
+         </g>
+       </svg>
+@@ -240,7 +239,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Honest ledger</span></div>
+-    <h2 class="sec-h">What's<br>real,<br><span class="thin">what's</span><br>next</h2>
++    <h2 class="sec-h">What's real, <span class="thin">what's</span> next</h2>
+     <p class="sec-note">Health software that overstates itself gets people hurt. Nothing below is described as working unless you can use it today.</p>
+   </div></div>
+   <div class="split-r">
+@@ -259,7 +258,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Business model</span></div>
+-    <h2 class="sec-h">Free for<br>the person<br><span class="thin">holding</span><br>the pack</h2>
++    <h2 class="sec-h">Free for the person <span class="thin">holding</span> the pack</h2>
+     <p class="sec-note">The patient side stays free permanently. Revenue comes from the actors who gain operational value from the return path, and none of it involves selling individual health data.</p>
+   </div></div>
+   <div class="split-r">
+@@ -304,20 +303,30 @@
+ <section id="team">
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+-    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Who's building it</span></div>
+-    <h2 class="sec-h">Built<br>from<br><span class="thin">inside</span><br>the market</h2>
++    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Founders</span></div>
++    <h2 class="sec-h">Built from <span class="thin">inside</span> the market</h2>
+   </div></div>
+   <div class="split-r">
+-    <div class="founder rv">
+-      <div class="initials" aria-hidden="true">NU</div>
+-      <div style="min-width:0">
+-        <h3 style="margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.02em">Nwosu Uzoma</h3>
+-        <div class="mono" style="color:var(--ink-45);margin-bottom:14px">Founder</div>
+-        <p class="lede" style="font-size:16.5px">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
+-        <div class="f-links">
+-          <a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a>
+-          <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+-          <a href="blueprint/">Strategic blueprint &#8599;</a>
++    <div class="founders">
++      <div class="founder">
++        <div style="min-width:0">
++          <h3>Nwosu Uzoma</h3>
++          <div class="role">Founder</div>
++          <p class="lede">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
++          <div class="f-links">
++            <a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a>
++            <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a>
++          </div>
++        </div>
++      </div>
++      <div class="founder">
++        <div style="min-width:0">
++          <h3>Okpaudo Somtochukwu</h3>
++          <div class="role">Co-founder</div>
++          <p class="lede">Co-founder of RxLoop, building it from Nigeria alongside Uzoma with the same aim: put a way to check medicine in the hands of the person taking it.</p>
++          <div class="f-links">
++            <a href="contact/">Get in touch</a>
++          </div>
+         </div>
+       </div>
+     </div>
+@@ -328,22 +337,73 @@
+ <!-- ══ END CTA ═══════════════════════════════════════════ -->
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>Open it. It<br>works with<br><span style="color:var(--blue)">no signal.</span></h2>
++    <h2>Open it. It works with no signal.</h2>
+     <div class="row">
+       <a class="btn" href="app/">Open the app</a>
+-      <a class="btn ghost" href="contact/">Talk to the founder</a>
+-      <span class="mono" style="color:var(--ink-45)">Installable &middot; 5 languages &middot; No account</span>
++      <a class="btn ghost" href="contact/">Talk to the founders</a>
++      <span class="mono" style="color:var(--ink-45)">Installable, five languages, no account needed</span>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="app/">App</a><a href="product/">Product</a><a href="blueprint/">Blueprint</a>
+-      <a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="./"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="app/">The app</a></li>
++          <li><a href="#reference">Medicine reference</a></li>
++          <li><a href="#report">Report a suspect pack</a></li>
++          <li><a href="#reminders">Dose reminders</a></li>
++          <li><a href="product/">How it works</a></li>
++          <li><a href="#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="about/">About RxLoop</a></li>
++          <li><a href="about/#founders">Founders</a></li>
++          <li><a href="blueprint/">Strategic blueprint</a></li>
++          <li><a href="RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="privacy/">Privacy</a>
++        <a href="terms/">Terms</a>
++        <a href="contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/privacy/index.html b/privacy/index.html
+index b2cfc60..7d9ec1b 100644
+--- a/privacy/index.html
++++ b/privacy/index.html
+@@ -31,7 +31,7 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Privacy</span></div>
+-    <h1>Nothing<br>leaves your<br><span class="em">phone</span></h1>
++    <h1>Nothing leaves your <span class="em">phone</span></h1>
+     <p class="lede">This is short because the app does very little with your data, there is no account, no server for your records, and no analytics on your health information.</p>
+   </div>
+ </section>
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Plain terms</span></div>
+-    <h2 class="sec-h">What we<br>hold, and<br><span class="thin">where</span></h2>
++    <h2 class="sec-h">What we hold, and <span class="thin">where</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -66,21 +66,72 @@
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>Read it, then<br>use it freely.</h2>
++    <h2>Read it, then use it freely.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/product/index.html b/product/index.html
+index 4fa87ac..5d4fe14 100644
+--- a/product/index.html
++++ b/product/index.html
+@@ -31,7 +31,7 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Product</span></div>
+-    <h1>Four things,<br>done <span class="em">honestly</span></h1>
++    <h1>Four things, done <span class="em">honestly</span></h1>
+     <p class="lede">RxLoop is a progressive web app. There is no download, no account and no data cost after the first load. Below is exactly what it does, and, just as precisely, what it does not do yet.</p>
+   </div>
+ </section>
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">01 &middot; Reference</span></div>
+-    <h2 class="sec-h">Guidance<br>in five<br><span class="thin">languages</span></h2>
++    <h2 class="sec-h">Guidance in five <span class="thin">languages</span></h2>
+     <p class="sec-note">English, Nigerian Pidgin, Yorùbá, Hausa and Igbo, the interface and the content both switch, not just the labels.</p>
+   </div></div>
+   <div class="split-r"><p class="lede">Each medicine answers three questions and stops: what it is for, how to take it, and when to stop and get help. There are deliberately no numeric doses anywhere in the app.</p>
+@@ -57,7 +57,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">02 &middot; Offline</span></div>
+-    <h2 class="sec-h">Built for<br>zero <span class="thin">bars</span></h2>
++    <h2 class="sec-h">Built for zero <span class="thin">bars</span></h2>
+     
+   </div></div>
+   <div class="split-r"><p class="lede">A service worker precaches the app shell, the stylesheet and the full reference set on first visit. After that, the app opens and works with the network completely off, which matters, because the areas where falsified medicine circulates most are the areas where data is least reliable.</p>
+@@ -69,7 +69,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">03 &middot; Reporting</span></div>
+-    <h2 class="sec-h">A route<br>for the<br><span class="thin">signal</span></h2>
++    <h2 class="sec-h">A route for the <span class="thin">signal</span></h2>
+     <p class="sec-note">Batch code, place of purchase, observed red flags, and optionally a photo.</p>
+   </div></div>
+   <div class="split-r"><p class="lede">Anyone can see that print is blurred, a seal is broken, or tablets smell of nothing. Those observations are real data that currently has nowhere to go.</p>
+@@ -81,7 +81,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">04 &middot; Adherence</span></div>
+-    <h2 class="sec-h">Finish<br>the whole<br><span class="thin">course</span></h2>
++    <h2 class="sec-h">Finish the whole <span class="thin">course</span></h2>
+     
+   </div></div>
+   <div class="split-r"><p class="lede">Set dose times that match a real day, add the length of the course, and the app reminds you locally. Nothing is sent anywhere; the reminders live on the phone.</p>
+@@ -93,7 +93,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Not yet</span></div>
+-    <h2 class="sec-h">What it<br><span class="thin">cannot</span><br>do</h2>
++    <h2 class="sec-h">What it <span class="thin">cannot</span> do</h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -110,21 +110,72 @@
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>It fits in<br>a browser tab.</h2>
++    <h2>It fits in a browser tab.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+diff --git a/styles.css b/styles.css
+index 1c18661..32fcab2 100644
+--- a/styles.css
++++ b/styles.css
+@@ -6,11 +6,10 @@
+    ══════════════════════════════════════════════════════════ */
+ 
+ :root{
+-  /* Warm paper, never pure white. The lift surface is a shade
+-     warmer than the ground so cards read as paper on paper. */
+-  --paper:#F3F2ED;
+-  --paper-lift:#FBFAF6;
+-  --paper-sunk:#EBE9E2;
++  /* Neutral off-white ground; white surfaces sit on it. */
++  --paper:#F6F6F4;
++  --paper-lift:#FFFFFF;
++  --paper-sunk:#ECECE9;
+   --ink:#12161C;
+   --ink-70:rgba(18,22,28,.72);
+   --ink-45:rgba(18,22,28,.66);  /* .52 failed AA at small sizes */
+@@ -50,7 +49,7 @@ button,input,select,textarea{font:inherit;color:inherit}
+ img{max-width:100%;display:block}
+ 
+ /* ── type ────────────────────────────────────────────── */
+-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
++.mono{font-family:var(--mono);font-size:12px;letter-spacing:0;font-weight:400}
+ .lede{font-size:clamp(17px,1.5vw,22px);line-height:1.45;letter-spacing:-.011em;color:var(--ink-70);max-width:56ch}
+ .lede strong{color:var(--ink);font-weight:600}
+ p{margin:0 0 1.1em}
+@@ -65,7 +64,7 @@ code{font-family:var(--mono);font-size:.86em;background:var(--blue-wash);padding
+   border-bottom:1px solid var(--rule-soft);transition:border-color .25s;
+ }
+ .nav.stuck{border-bottom-color:var(--rule)}
+-.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-stretch:112%;font-size:19px;letter-spacing:-.03em}
++.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:650;font-size:18px;letter-spacing:-.02em}
+ .brand .dot{width:8px;height:8px;background:var(--blue);flex:none}
+ .nav-links{display:flex;gap:26px;align-items:center}
+ .nav-links a{font-family:var(--ui);font-size:13px;color:var(--ink-70);transition:color .2s}
+@@ -86,44 +85,46 @@ code{font-family:var(--mono);font-size:.86em;background:var(--blue-wash);padding
+ /* ── split scaffold ──────────────────────────────────── */
+ .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+ .split{display:grid;grid-template-columns:minmax(280px,36%) 1fr;border-top:1px solid var(--rule)}
+-.split-l{padding:clamp(48px,7vw,110px) clamp(24px,3vw,56px) clamp(48px,7vw,110px) 0}
++.split-l{padding:clamp(44px,5.5vw,88px) clamp(24px,3vw,56px) clamp(44px,5.5vw,88px) 0}
+ .split-l .sticky{position:sticky;top:104px}
+-.split-r{padding:clamp(48px,7vw,110px) 0 clamp(56px,8vw,130px) clamp(28px,4vw,72px);border-left:1px solid var(--rule);min-width:0}
++.split-r{padding:clamp(44px,5.5vw,88px) 0 clamp(52px,6vw,100px) clamp(28px,4vw,72px);border-left:1px solid var(--rule);min-width:0}
+ @media(max-width:900px){
+   .split{grid-template-columns:1fr}
+   .split-l{padding:clamp(40px,9vw,72px) 0 22px}
+   .split-l .sticky{position:static}
+   .split-r{padding:0 0 clamp(56px,12vw,90px);border-left:0}
+ }
+-.sec-idx{display:flex;align-items:center;gap:10px;color:var(--blue);margin-bottom:18px}
+-.sec-idx .sq{width:7px;height:7px;background:var(--blue);flex:none}
+-h2.sec-h{font-family:var(--display);font-weight:800;font-stretch:110%;text-transform:uppercase;
+-  font-size:clamp(38px,4.6vw,78px);line-height:.86;letter-spacing:-.04em;margin:0 0 20px}
+-h2.sec-h .thin{font-weight:400;font-stretch:88%;color:var(--ink-45)}
++.sec-idx{display:flex;align-items:center;gap:10px;color:var(--ink-45);margin-bottom:14px}
++.sec-idx .mono{font-family:var(--ui);font-size:13px;font-weight:500}
++.sec-idx .sq{display:none}
++h2.sec-h{font-family:var(--display);font-weight:600;
++  font-size:clamp(28px,2.9vw,42px);line-height:1.12;letter-spacing:-.025em;margin:0 0 16px;max-width:14ch}
++section[id]{scroll-margin-top:76px}
++h2.sec-h .thin{font-weight:inherit;color:inherit}
+ .sec-note{font-size:14px;color:var(--ink-45);max-width:34ch;margin-top:20px;line-height:1.5}
+ .sec-note a{border-bottom:1px solid var(--ink-25)}
+ 
+ /* ── reveal ──────────────────────────────────────────── */
+-.rv{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
++.rv{opacity:1;transform:none}
+ .rv.in{opacity:1;transform:none}
+ .rv.d1{transition-delay:.07s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.21s}
+ 
+ /* ── home hero ───────────────────────────────────────── */
+-.hero{position:relative;height:100svh;min-height:640px;width:100%;overflow:hidden;isolation:isolate}
++.hero{position:relative;height:100svh;min-height:680px;width:100%;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding-top:76px}
+ #field{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+ #field:active{cursor:grabbing}
+ /* No scrim gradient. The hero is split structurally instead:
+    the field occupies the upper band, the type sits on solid paper
+    below a 1px rule, so nothing is fighting for legibility. */
+-.hero-field{position:absolute;inset:0 0 auto 0;height:52%;overflow:hidden;border-bottom:1px solid var(--rule)}
+-.hero-inner{position:relative;height:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut) clamp(28px,4vh,56px);
++.hero-field{position:relative;flex:1 1 auto;min-height:180px;overflow:hidden;border-bottom:1px solid var(--rule)}
++.hero-inner{position:relative;flex:none;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(28px,5vh,56px) var(--gut) clamp(28px,4vh,48px);
+   display:flex;flex-direction:column;justify-content:flex-end;pointer-events:none}
+ .hero-inner > *{position:relative;z-index:1}
+ .hero-eyebrow{display:flex;align-items:center;gap:12px;color:var(--ink-45);margin-bottom:clamp(16px,3vh,30px)}
+ .hero-eyebrow .bar{height:1px;width:clamp(28px,6vw,88px);background:var(--ink-25)}
+-h1.hero-h{font-family:var(--display);font-weight:900;font-stretch:118%;text-transform:uppercase;
+-  font-size:clamp(52px,12.2vw,208px);line-height:.82;letter-spacing:-.045em;margin:0;max-width:14ch}
+-h1.hero-h .em{color:var(--blue)}
++h1.hero-h{font-family:var(--display);font-weight:600;max-width:none!important;
++  font-size:clamp(40px,6vw,96px);line-height:1;letter-spacing:-.04em;margin:0;max-width:14ch}
++h1.hero-h .em{color:inherit}
+ h1.hero-h .line{display:block;overflow:hidden}
+ h1.hero-h .line span{display:block;transform:translateY(102%);animation:rise .95s cubic-bezier(.16,1,.3,1) forwards}
+ h1.hero-h .line:nth-child(2) span{animation-delay:.09s}
+@@ -138,31 +139,31 @@ h1.hero-h .line:nth-child(3) span{animation-delay:.18s}
+ .hero-key > span{display:flex;align-items:center;gap:8px}
+ .key-swatch{width:11px;height:22px;border-radius:6px;background:var(--blue);flex:none}
+ .key-swatch.grey{background:var(--ink-25)}
+-.scroll-cue{position:absolute;right:var(--gut);top:26%;transform:translateY(-50%) rotate(90deg);transform-origin:right center;
++.scroll-cue{display:none;position:absolute;right:var(--gut);top:26%;transform:translateY(-50%) rotate(90deg);transform-origin:right center;
+   color:var(--ink-25);pointer-events:none;display:flex;align-items:center;gap:10px}
+ .scroll-cue .ln{width:44px;height:1px;background:var(--ink-25)}
+-@media(max-width:760px){.scroll-cue{display:none}}
++
+ .no3d #field{display:none}
+ .no3d .hero-field{background:var(--paper-sunk)}
+ 
+ /* ── subpage hero ────────────────────────────────────── */
+-.phead{padding:clamp(120px,17vh,220px) 0 clamp(36px,6vw,72px)}
+-.phead h1{font-family:var(--display);font-weight:900;font-stretch:118%;text-transform:uppercase;
+-  font-size:clamp(46px,9.5vw,150px);line-height:.83;letter-spacing:-.045em;margin:16px 0 0;max-width:15ch}
+-.phead h1 .em{color:var(--blue)}
++.phead{padding:clamp(120px,16vh,180px) 0 clamp(36px,5vw,64px)}
++.phead h1{font-family:var(--display);font-weight:600;
++  font-size:clamp(38px,5.4vw,80px);line-height:1.04;letter-spacing:-.035em;margin:8px 0 0;max-width:16ch}
++.phead h1 .em{color:inherit}
+ .phead .lede{margin-top:28px}
+ 
+ /* ── stats ───────────────────────────────────────────── */
+ .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:34px}
+ .stat{background:var(--paper);padding:26px 24px 22px}
+-.stat .n{font-family:var(--display);font-weight:800;font-stretch:105%;font-size:clamp(40px,4.4vw,62px);line-height:1;letter-spacing:-.045em;margin-bottom:10px}
++.stat .n{font-family:var(--display);font-weight:600;font-size:clamp(40px,4.4vw,62px);line-height:1;letter-spacing:-.045em;margin-bottom:10px}
+ .stat .n em{font-style:normal;color:var(--blue)}
+ .stat .lb{font-size:13.5px;color:var(--ink-70);line-height:1.42}
+ .stat .src{margin-top:12px;color:var(--ink-25);font-size:10px}
+ /* Was a blue left stripe. The sentence is the emphasis now:
+    set in the display face at scale, no ornament. */
+-.callout{margin:40px 0;font-family:var(--display);font-weight:700;font-stretch:104%;
+-  font-size:clamp(21px,2.6vw,34px);line-height:1.14;letter-spacing:-.03em;max-width:22ch}
++.callout{margin:40px 0;font-family:var(--display);font-weight:500;
++  font-size:clamp(20px,2vw,27px);line-height:1.3;letter-spacing:-.02em;max-width:28ch}
+ 
+ /* ── language + medicine reference ───────────────────── */
+ .langbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+@@ -183,11 +184,11 @@ h1.hero-h .line:nth-child(3) span{animation-delay:.18s}
+ .medcard{background:var(--paper-lift);padding:clamp(22px,3vw,40px);min-height:400px;display:flex;flex-direction:column}
+ .medcard.swap{animation:swap .42s cubic-bezier(.16,1,.3,1)}
+ @keyframes swap{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+-.medcard h3{font-family:var(--display);font-weight:800;font-stretch:108%;text-transform:uppercase;
+-  font-size:clamp(26px,3vw,44px);line-height:.9;letter-spacing:-.035em;margin:0 0 6px}
++.medcard h3{font-family:var(--display);font-weight:600;
++  font-size:clamp(24px,2.4vw,34px);line-height:1.1;letter-spacing:-.025em;margin:0 0 6px}
+ .medcard .gen{color:var(--ink-45);font-size:13.5px;margin-bottom:26px}
+ .fld{padding:18px 0;border-top:1px solid var(--rule-soft)}
+-.fld .k{color:var(--blue);margin-bottom:8px}
++.fld .k{color:var(--ink-45);margin-bottom:6px;font-family:var(--ui);font-size:13px;font-weight:600}
+ .fld .v{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5;letter-spacing:-.008em}
+ .medfoot{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+ .pill-note{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-45);
+@@ -226,7 +227,7 @@ textarea.inp{resize:vertical;min-height:120px}
+ .rec .meta{font-size:14px;min-width:0}
+ .rec .meta b{font-weight:600}
+ .rec .meta small{display:block;color:var(--ink-45);font-size:12.5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis}
+-.rec .st{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flag);font-family:var(--mono);white-space:nowrap}
++.rec .st{font-size:11px;letter-spacing:.01em;color:var(--flag);font-family:var(--mono);white-space:nowrap}
+ .link-btn{background:none;border:0;cursor:pointer;color:var(--ink-45);font-size:12px;border-bottom:1px solid var(--ink-25);padding:0}
+ .link-btn:hover{color:var(--flag);border-color:var(--flag)}
+ 
+@@ -236,7 +237,7 @@ textarea.inp{resize:vertical;min-height:120px}
+ .tl-hours span{flex:1;font-family:var(--mono);font-size:9.5px;color:var(--ink-25);padding:7px 0 0 5px;border-left:1px solid var(--rule-soft)}
+ .tl-hours span:first-child{border-left:0}
+ .dose{position:absolute;top:14px;width:2px;height:42px;background:var(--blue)}
+-.dose::after{content:attr(data-t);position:absolute;top:-16px;left:-2px;font-family:var(--mono);font-size:9.5px;color:var(--blue);letter-spacing:.08em}
++.dose::after{content:attr(data-t);position:absolute;top:-16px;left:-2px;font-family:var(--mono);font-size:9.5px;color:var(--blue);letter-spacing:.01em}
+ .dose::before{content:"";position:absolute;top:-4px;left:-3px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+ .now-line{position:absolute;top:0;bottom:26px;width:1px;background:var(--flag);opacity:.55}
+ .now-line::after{content:"NOW";position:absolute;bottom:-1px;left:4px;font-family:var(--mono);font-size:9px;color:var(--flag);letter-spacing:.1em}
+@@ -252,13 +253,13 @@ textarea.inp{resize:vertical;min-height:120px}
+ .node{cursor:pointer}
+ .node rect{fill:var(--paper);stroke:var(--rule);stroke-width:1;transition:all .28s}
+ .node text{font-family:var(--body);font-size:13px;font-weight:600;fill:var(--ink);pointer-events:none}
+-.node .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;fill:var(--ink-45);font-weight:500}
++.node .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.01em;fill:var(--ink-45);font-weight:500}
+ .node:hover rect,.node.on rect{fill:var(--blue);stroke:var(--blue)}
+ .node:hover text,.node.on text{fill:#fff}
+ .node:hover .role,.node.on .role{fill:rgba(255,255,255,.7)}
+ .flow{fill:none;stroke:var(--blue);stroke-width:1.5;stroke-dasharray:5 7;opacity:.55}
+ .loop-read{margin-top:22px;padding-top:20px;border-top:1px solid var(--rule);min-height:76px}
+-.loop-read h4{font-family:var(--display);font-weight:800;font-stretch:106%;text-transform:uppercase;letter-spacing:-.02em;font-size:19px;margin:0 0 6px}
++.loop-read h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;font-size:19px;margin:0 0 6px}
+ .loop-read p{font-size:14.5px;color:var(--ink-70);max-width:62ch}
+ 
+ /* ── live vs roadmap ─────────────────────────────────── */
+@@ -268,7 +269,7 @@ textarea.inp{resize:vertical;min-height:120px}
+ .items{border-top:1px solid var(--rule)}
+ .item{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:22px 0;border-bottom:1px solid var(--rule-soft);align-items:start}
+ @media(max-width:640px){.item{grid-template-columns:1fr;gap:8px}}
+-.item .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding-top:4px}
++.item .tag{font-family:var(--mono);font-size:10px;letter-spacing:.01em;padding-top:4px}
+ .item.live .tag{color:var(--ok)}
+ .item.soon .tag{color:var(--ink-25)}
+ .item h4{margin:0 0 5px;font-size:17px;font-weight:600;letter-spacing:-.015em}
+@@ -276,13 +277,14 @@ textarea.inp{resize:vertical;min-height:120px}
+ .item.hide{display:none}
+ 
+ /* ── model streams ───────────────────────────────────── */
+-.streams{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
++.streams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
++@media(max-width:640px){.streams{grid-template-columns:1fr}}
+ .stream{background:var(--paper-lift);padding:26px 24px;transition:background .3s}
+-.stream:hover{background:var(--blue-wash)}
+-.stream .who{color:var(--blue);margin-bottom:14px}
+-.stream h4{margin:0 0 8px;font-family:var(--display);font-weight:800;font-stretch:106%;text-transform:uppercase;font-size:21px;letter-spacing:-.03em;line-height:.95}
++
++.stream .who{color:var(--ink-45);margin-bottom:12px}
++.stream h4{margin:0 0 8px;font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.03em;line-height:.95}
+ .stream p{font-size:14px;color:var(--ink-70)}
+-.stream .price{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--ink-45);letter-spacing:.06em}
++.stream .price{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--ink-45);letter-spacing:.01em}
+ 
+ 
+ /* ── asymmetric figure block ─────────────────────────────
+@@ -292,9 +294,9 @@ textarea.inp{resize:vertical;min-height:120px}
+ @media(max-width:760px){.figure{grid-template-columns:1fr}}
+ .figure-lead{padding:30px 28px;border-right:1px solid var(--rule);background:var(--paper-lift)}
+ @media(max-width:760px){.figure-lead{border-right:0;border-bottom:1px solid var(--rule)}}
+-.fig-n{font-family:var(--display);font-weight:800;font-stretch:106%;font-size:clamp(46px,6vw,82px);
+-  line-height:.92;letter-spacing:-.045em;margin-bottom:14px}
+-.fig-n em{font-style:normal;color:var(--blue)}
++.fig-n{font-family:var(--display);font-weight:600;font-size:clamp(40px,4.6vw,64px);
++  line-height:1;letter-spacing:-.035em;margin-bottom:14px}
++.fig-n em{font-style:normal;color:inherit}
+ .fig-lb{font-size:16px;line-height:1.45;margin-bottom:14px}
+ .fig-src{color:var(--ink-45);font-size:10px;margin:0}
+ .figure-rows{margin:0;display:flex;flex-direction:column}
+@@ -310,14 +312,14 @@ textarea.inp{resize:vertical;min-height:120px}
+ .value-table{width:100%;border-collapse:collapse;border:1px solid var(--rule);background:var(--paper-lift);font-size:14.5px}
+ .value-table caption{text-align:left;color:var(--ink-45);padding:0 0 14px}
+ .value-table th,.value-table td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+-.value-table thead th{font-family:var(--ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
++.value-table thead th{font-family:var(--ui);font-size:11px;letter-spacing:.01em;
+   color:var(--ink-45);font-weight:600;border-bottom:1px solid var(--rule);white-space:nowrap}
+ .value-table tbody th{font-family:var(--ui);font-weight:600;white-space:nowrap;width:1%}
+ .value-table tbody tr:last-child th,.value-table tbody tr:last-child td{border-bottom:0}
+-.value-table tr.anchor{background:var(--blue-wash)}
+-.value-table tr.anchor th{color:var(--blue)}
++.value-table tr.anchor{background:transparent}
++.value-table tr.anchor th{color:var(--ink)}
+ .value-table .mono{font-size:11px;color:var(--ink-70)}
+-.st-live,.st-soon{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
++.st-live,.st-soon{font-family:var(--mono);font-size:10px;letter-spacing:.1em;white-space:nowrap}
+ .st-live{color:var(--ok)}
+ .st-soon{color:var(--ink-45)}
+ @media(max-width:760px){
+@@ -331,7 +333,7 @@ textarea.inp{resize:vertical;min-height:120px}
+ 
+ /* ── prose (legal / about) ───────────────────────────── */
+ .prose{max-width:68ch}
+-.prose h3{font-family:var(--display);font-weight:800;font-stretch:108%;text-transform:uppercase;letter-spacing:-.03em;
++.prose h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;
+   font-size:clamp(20px,2.2vw,28px);line-height:1;margin:44px 0 14px}
+ .prose h3:first-child{margin-top:0}
+ .prose p,.prose li{font-size:16px;color:var(--ink-70);line-height:1.62}
+@@ -340,26 +342,49 @@ textarea.inp{resize:vertical;min-height:120px}
+ .prose strong{color:var(--ink);font-weight:600}
+ .prose a{border-bottom:1px solid var(--ink-25)}
+ .prose a:hover{color:var(--blue);border-color:var(--blue)}
+-.updated{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-25);
++.updated{font-family:var(--mono);font-size:11px;letter-spacing:.01em;color:var(--ink-25);
+   padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--rule)}
+ 
+ /* ── founder ─────────────────────────────────────────── */
+ .founder{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+ .initials{width:88px;height:88px;flex:none;border:1px solid var(--rule);display:grid;place-items:center;
+-  font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.03em;background:var(--paper-lift)}
++  font-family:var(--display);font-weight:600;font-size:30px;letter-spacing:-.03em;background:var(--paper-lift)}
+ .f-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px}
+ .f-links a{border-bottom:1px solid var(--ink-25);padding-bottom:2px;transition:border-color .2s,color .2s}
+ .f-links a:hover{border-color:var(--blue);color:var(--blue)}
+ 
+ /* ── end cta + footer ────────────────────────────────── */
+ .endcta{border-top:1px solid var(--rule);padding:clamp(56px,9vw,140px) 0 clamp(48px,7vw,100px)}
+-.endcta h2{font-family:var(--display);font-weight:900;font-stretch:118%;text-transform:uppercase;
+-  font-size:clamp(44px,9.5vw,164px);line-height:.82;letter-spacing:-.045em;margin:0 0 30px;max-width:16ch}
++.endcta h2{font-family:var(--display);font-weight:600;
++  font-size:clamp(32px,4.2vw,60px);line-height:1.08;letter-spacing:-.03em;margin:0 0 26px;max-width:18ch}
+ .endcta .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+-footer{border-top:1px solid var(--rule);padding:34px 0 46px;color:var(--ink-45);font-size:13px}
+-.foot-row{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:center}
+-.foot-row nav{display:flex;gap:20px;flex-wrap:wrap}
+-.foot-row a:hover{color:var(--ink)}
++.site-foot{border-top:1px solid var(--rule);background:var(--paper-lift);color:var(--ink-70);font-size:14px;
++  padding:clamp(48px,6vw,80px) 0 0;font-family:var(--ui)}
++.foot-top{display:grid;grid-template-columns:minmax(240px,1.5fr) repeat(4,minmax(0,1fr));gap:clamp(28px,3.5vw,56px)}
++@media(max-width:1080px){.foot-top{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
++@media(max-width:640px){.foot-top{grid-template-columns:1fr 1fr}}
++@media(max-width:420px){.foot-top{grid-template-columns:1fr}}
++.foot-brand p{margin:14px 0 20px;max-width:36ch;line-height:1.55;color:var(--ink-70);font-family:var(--body);font-size:14.5px}
++.foot-h{font-family:var(--ui);font-size:13px;font-weight:600;color:var(--ink);margin:0 0 14px;letter-spacing:0}
++.foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
++.foot-col a{color:var(--ink-70);transition:color .15s}
++.foot-col a:hover{color:var(--blue)}
++.foot-dl{margin:0;display:flex;flex-direction:column;gap:12px}
++.foot-dl dt{font-size:12px;color:var(--ink-45);margin-bottom:2px}
++.foot-dl dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
++.foot-dl dd a{color:var(--ink);border-bottom:1px solid var(--rule)}
++.foot-dl dd a:hover{color:var(--blue);border-color:var(--blue)}
++.foot-base{margin-top:clamp(40px,5vw,64px);padding:20px 0 28px;border-top:1px solid var(--rule-soft);
++  display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:wrap;font-size:13px;color:var(--ink-45)}
++.foot-base nav{display:flex;gap:20px;flex-wrap:wrap}
++.foot-base a:hover{color:var(--ink)}
++
++/* founders */
++.founders{display:grid;gap:0;border-top:1px solid var(--rule)}
++.founders .founder{padding:28px 0;border-bottom:1px solid var(--rule)}
++.founder h3{margin:0 0 2px;font-family:var(--ui);font-size:21px;font-weight:600;letter-spacing:-.02em}
++.founder .role{color:var(--ink-45);font-family:var(--ui);font-size:14px;margin-bottom:12px}
++.founder .lede{font-size:16px}
+ 
+ /* ── skeletons ───────────────────────────────────────────
+    Shown while the reference data parses. Sized to the real
+@@ -402,7 +427,7 @@ body.app{background:var(--paper)}
+   background-position:calc(100% - 15px) 52%,calc(100% - 11px) 52%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+ .langpick:focus{outline:2px solid var(--blue);outline-offset:2px}
+ 
+-.net{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok)}
++.net{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.01em;color:var(--ok)}
+ .net .d{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+ .net.off{color:var(--ink-45)}
+ .net.off .d{background:var(--ink-25)}
+@@ -417,23 +442,23 @@ body.app{background:var(--paper)}
+ /* first-run language gate */
+ .gate{position:fixed;inset:0;z-index:80;background:var(--paper);padding:max(28px,env(safe-area-inset-top)) 22px 28px;
+   display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+-.gate h1{font-family:var(--display);font-weight:900;font-stretch:116%;text-transform:uppercase;
+-  font-size:clamp(38px,11vw,62px);line-height:.85;letter-spacing:-.04em;margin:0 0 10px;max-width:12ch}
+-.gate h1 .em{color:var(--blue)}
++.gate h1{font-family:var(--display);font-weight:600;
++  font-size:clamp(32px,9vw,50px);line-height:1.05;letter-spacing:-.03em;margin:0 0 10px;max-width:12ch}
++.gate h1 .em{color:inherit}
+ .gate p{color:var(--ink-45);font-size:14.5px;margin:0 0 30px;max-width:38ch}
+ .gate .opts{display:flex;flex-direction:column;gap:9px;max-width:460px;width:100%}
+ .gatebtn{display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;
+   padding:17px 20px;border:1px solid var(--rule);background:var(--paper-lift);border-radius:var(--r);cursor:pointer;
+   font-size:17px;font-weight:600;letter-spacing:-.015em;transition:all .2s}
+-.gatebtn:hover,.gatebtn:focus-visible{border-color:var(--blue);background:var(--blue-wash);transform:translateX(3px)}
+-.gatebtn .sm{font-size:12px;font-weight:500;color:var(--ink-45);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase}
++.gatebtn:hover,.gatebtn:focus-visible{border-color:var(--ink)}
++.gatebtn .sm{font-size:12px;font-weight:500;color:var(--ink-45);font-family:var(--mono);letter-spacing:.1em;}
+ 
+ /* views */
+ .view{display:none;padding-top:24px;animation:swap .4s cubic-bezier(.16,1,.3,1)}
+ .view.on{display:block}
+-.view h2{font-family:var(--display);font-weight:900;font-stretch:114%;text-transform:uppercase;
+-  font-size:clamp(34px,10vw,54px);line-height:.85;letter-spacing:-.04em;margin:0 0 10px}
+-.view h2 .em{color:var(--blue)}
++.view h2{font-family:var(--display);font-weight:600;
++  font-size:clamp(28px,8vw,40px);line-height:1.08;letter-spacing:-.025em;margin:0 0 10px}
++.view h2 .em{color:inherit}
+ .view .sub{color:var(--ink-45);font-size:14px;margin-bottom:22px;max-width:44ch}
+ 
+ /* search + quick filters */
+@@ -454,8 +479,8 @@ body.app{background:var(--paper)}
+ 
+ /* detail */
+ .detail{border:1px solid var(--rule);background:var(--paper-lift);border-radius:var(--r);padding:22px}
+-.detail h3{font-family:var(--display);font-weight:800;font-stretch:108%;text-transform:uppercase;
+-  font-size:clamp(26px,7.5vw,34px);line-height:.92;letter-spacing:-.035em;margin:0 0 6px}
++.detail h3{font-family:var(--display);font-weight:600;
++  font-size:clamp(24px,6.5vw,30px);line-height:1.1;letter-spacing:-.025em;margin:0 0 6px}
+ .back{background:none;border:0;cursor:pointer;color:var(--blue);font-size:13px;font-weight:600;padding:6px 0;margin-bottom:14px;display:inline-flex;gap:7px;align-items:center}
+ .back:hover{gap:10px}
+ /* the get-help field is the one that must not be skimmed */
+@@ -472,8 +497,8 @@ body.app{background:var(--paper)}
+ 
+ /* next dose card */
+ .nextdose{border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:var(--r);padding:20px;margin-bottom:22px}
+-.nextdose .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,246,243,.55);margin-bottom:10px}
+-.nextdose .t{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:clamp(30px,9vw,44px);line-height:.9;letter-spacing:-.04em}
++.nextdose .k{font-family:var(--mono);font-size:10px;letter-spacing:.01em;color:rgba(246,246,243,.55);margin-bottom:10px}
++.nextdose .t{font-family:var(--display);font-weight:600;font-size:clamp(30px,9vw,44px);line-height:.9;letter-spacing:-.04em}
+ .nextdose .m{font-size:14.5px;color:rgba(246,246,243,.72);margin-top:8px}
+ .nextdose .act{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+ .nextdose .btn.ghost{color:var(--paper);border-color:rgba(246,246,243,.3)}
+@@ -484,7 +509,7 @@ body.app{background:var(--paper)}
+ .course:last-child{border-bottom:0}
+ .course-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+ .course-h b{font-weight:600;font-size:16px;letter-spacing:-.015em}
+-.course-h .left{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45);white-space:nowrap}
++.course-h .left{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-45);white-space:nowrap}
+ .bar{height:4px;background:var(--rule);border-radius:2px;overflow:hidden;margin-bottom:10px}
+ .bar i{display:block;height:100%;background:var(--blue);border-radius:2px;transition:width .5s cubic-bezier(.16,1,.3,1)}
+ .course-f{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+diff --git a/terms/index.html b/terms/index.html
+index fa25dc3..d023eef 100644
+--- a/terms/index.html
++++ b/terms/index.html
+@@ -31,7 +31,7 @@
+ <section class="phead">
+   <div class="wrap">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Terms of use</span></div>
+-    <h1>Guidance,<br>not a <span class="em">prescription</span></h1>
++    <h1>Guidance, not a <span class="em">prescription</span></h1>
+     <p class="lede">Using this site or the app means accepting these terms. The most important one is the first.</p>
+   </div>
+ </section>
+@@ -40,7 +40,7 @@
+  <div class="wrap"><div class="split">
+   <div class="split-l"><div class="sticky rv">
+     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Terms</span></div>
+-    <h2 class="sec-h">The<br><span class="thin">agreement</span></h2>
++    <h2 class="sec-h">The <span class="thin">agreement</span></h2>
+     
+   </div></div>
+   <div class="split-r"><div class="prose">
+@@ -70,21 +70,72 @@
+ 
+ <section class="endcta">
+   <div class="wrap">
+-    <h2>Understood?<br>Open the app.</h2>
++    <h2>Understood? Open the app.</h2>
+     <div class="row">
+       <a class="btn" href="../app/">Open the app</a>
+-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
++      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+     </div>
+   </div>
+ </section>
+ 
+-<footer>
+-  <div class="wrap foot-row">
+-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+-    <nav aria-label="Footer">
+-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
+-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
+-    </nav>
++<footer class="site-foot">
++  <div class="wrap">
++    <div class="foot-top">
++      <div class="foot-brand">
++        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
++        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
++        <a class="btn sm" href="../app/">Open the app</a>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Product</h2>
++        <ul>
++          <li><a href="../app/">The app</a></li>
++          <li><a href="../#reference">Medicine reference</a></li>
++          <li><a href="../#report">Report a suspect pack</a></li>
++          <li><a href="../#reminders">Dose reminders</a></li>
++          <li><a href="../product/">How it works</a></li>
++          <li><a href="../#status">What&rsquo;s live today</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Company</h2>
++        <ul>
++          <li><a href="../about/">About RxLoop</a></li>
++          <li><a href="../about/#founders">Founders</a></li>
++          <li><a href="../blueprint/">Strategic blueprint</a></li>
++          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
++          <li><a href="../contact/">Contact</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Work with us</h2>
++        <ul>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
++          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
++        </ul>
++      </div>
++      <div class="foot-col">
++        <h2 class="foot-h">Contact</h2>
++        <dl class="foot-dl">
++          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
++          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
++          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
++          <div><dt>Based in</dt><dd>Nigeria</dd></div>
++          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
++        </dl>
++      </div>
++    </div>
++    <div class="foot-base">
++      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
++      <nav aria-label="Legal">
++        <a href="../privacy/">Privacy</a>
++        <a href="../terms/">Terms</a>
++        <a href="../contact/">Contact</a>
++      </nav>
++    </div>
+   </div>
+ </footer>
+ 
+-- 
+2.43.0
+
