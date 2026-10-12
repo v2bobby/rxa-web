@@ -15,6 +15,18 @@ if (nav) addEventListener('scroll', function () {
   nav.classList.toggle('stuck', scrollY > 40);
 }, { passive: true });
 
+/* small-screen menu */
+var menuBtn = document.querySelector('.menu-btn');
+if (nav && menuBtn) {
+  menuBtn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); }
+  });
+}
+
 var io = new IntersectionObserver(function (es) {
   es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });

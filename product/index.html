@@ -19,19 +19,24 @@
 
 <header class="nav" id="nav">
   <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
-  <nav class="nav-links" aria-label="Primary">
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
+    <a href="../gap/">The gap</a>
+    <a href="../reference/">Reference</a>
+    <a href="../report/">Report a pack</a>
+    <a href="../reminders/">Reminders</a>
+    <a href="../loop/">The loop</a>
     <a href="../product/" aria-current="page">Product</a>
-    <a href="../blueprint/">Blueprint</a>
     <a href="../about/">About</a>
     <a href="../contact/">Contact</a>
   </nav>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links"><span class="menu-ic" aria-hidden="true"></span><span class="menu-tx">Menu</span></button>
   <a class="btn" href="../app/">Open the app</a>
 </header>
 
 <section class="phead">
   <div class="wrap">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Product</span></div>
-    <h1>Four things,<br>done <span class="em">honestly</span></h1>
+    <h1>Four things, done <span class="em">honestly</span></h1>
     <p class="lede">RxLoop is a progressive web app. There is no download, no account and no data cost after the first load. Below is exactly what it does, and, just as precisely, what it does not do yet.</p>
   </div>
 </section>
@@ -40,7 +45,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">01 &middot; Reference</span></div>
-    <h2 class="sec-h">Guidance<br>in five<br><span class="thin">languages</span></h2>
+    <h2 class="sec-h">Guidance in five <span class="thin">languages</span></h2>
     <p class="sec-note">English, Nigerian Pidgin, Yorùbá, Hausa and Igbo, the interface and the content both switch, not just the labels.</p>
   </div></div>
   <div class="split-r"><p class="lede">Each medicine answers three questions and stops: what it is for, how to take it, and when to stop and get help. There are deliberately no numeric doses anywhere in the app.</p>
@@ -57,7 +62,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">02 &middot; Offline</span></div>
-    <h2 class="sec-h">Built for<br>zero <span class="thin">bars</span></h2>
+    <h2 class="sec-h">Built for zero <span class="thin">bars</span></h2>
     
   </div></div>
   <div class="split-r"><p class="lede">A service worker precaches the app shell, the stylesheet and the full reference set on first visit. After that, the app opens and works with the network completely off, which matters, because the areas where falsified medicine circulates most are the areas where data is least reliable.</p>
@@ -69,7 +74,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">03 &middot; Reporting</span></div>
-    <h2 class="sec-h">A route<br>for the<br><span class="thin">signal</span></h2>
+    <h2 class="sec-h">A route for the <span class="thin">signal</span></h2>
     <p class="sec-note">Batch code, place of purchase, observed red flags, and optionally a photo.</p>
   </div></div>
   <div class="split-r"><p class="lede">Anyone can see that print is blurred, a seal is broken, or tablets smell of nothing. Those observations are real data that currently has nowhere to go.</p>
@@ -81,7 +86,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">04 &middot; Adherence</span></div>
-    <h2 class="sec-h">Finish<br>the whole<br><span class="thin">course</span></h2>
+    <h2 class="sec-h">Finish the whole <span class="thin">course</span></h2>
     
   </div></div>
   <div class="split-r"><p class="lede">Set dose times that match a real day, add the length of the course, and the app reminds you locally. Nothing is sent anywhere; the reminders live on the phone.</p>
@@ -93,7 +98,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Not yet</span></div>
-    <h2 class="sec-h">What it<br><span class="thin">cannot</span><br>do</h2>
+    <h2 class="sec-h">What it <span class="thin">cannot</span> do</h2>
     
   </div></div>
   <div class="split-r"><div class="prose">
@@ -108,25 +113,98 @@
 </section>
 
 
+<section id="status">
+ <div class="wrap"><div class="split">
+  <div class="split-l"><div class="sticky">
+    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Honest ledger</span></div>
+    <h2 class="sec-h">What's real, <span class="thin">what's</span> next</h2>
+    <p class="sec-note">Health software that overstates itself gets people hurt. Nothing below is described as working unless you can use it today.</p>
+  </div></div>
+  <div class="split-r">
+    <div class="tog" role="group" aria-label="Filter features">
+      <button type="button" data-f="all" aria-pressed="true">Everything</button>
+      <button type="button" data-f="live" aria-pressed="false">Live today</button>
+      <button type="button" data-f="soon" aria-pressed="false">Roadmap</button>
+    </div>
+    <div class="items" id="items"></div>
+  </div>
+ </div></div>
+</section>
+
 <section class="endcta">
   <div class="wrap">
-    <h2>It fits in<br>a browser tab.</h2>
+    <h2>It fits in a browser tab.</h2>
     <div class="row">
       <a class="btn" href="../app/">Open the app</a>
-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
+      <a class="btn ghost" href="../contact/">Talk to the founders</a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot-row">
-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
-    <nav aria-label="Footer">
-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
-    </nav>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
+        <a class="btn sm" href="../app/">Open the app</a>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Product</h2>
+        <ul>
+          <li><a href="../app/">The app</a></li>
+          <li><a href="../reference/">Medicine reference</a></li>
+          <li><a href="../report/">Report a suspect pack</a></li>
+          <li><a href="../reminders/">Dose reminders</a></li>
+          <li><a href="../product/">How it works</a></li>
+          <li><a href="../product/#status">What&rsquo;s live today</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Company</h2>
+        <ul>
+          <li><a href="../about/">About RxLoop</a></li>
+          <li><a href="../gap/">The gap we close</a></li>
+          <li><a href="../loop/">How the loop works</a></li>
+          <li><a href="../about/#founders">Founders</a></li>
+          <li><a href="../blueprint/">Strategic blueprint</a></li>
+          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Work with us</h2>
+        <ul>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Contact</h2>
+        <dl class="foot-dl">
+          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
+          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
+          <div><dt>Based in</dt><dd>Nigeria</dd></div>
+          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+      <nav aria-label="Legal">
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="../script.js"></script>
 </body>

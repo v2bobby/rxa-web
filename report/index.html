@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report a pack. RxLoop</title>
+<meta name="description" content="Flag a medicine pack that looks wrong in fifteen seconds, with no account. Stored on your device.">
+<link rel="canonical" href="https://rxloop.org/report/">
+<meta property="og:title" content="Report a pack. RxLoop">
+<meta property="og:description" content="Flag a medicine pack that looks wrong in fifteen seconds, with no account. Stored on your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rxloop.org/report/">
+<meta name="theme-color" content="#F6F6F4">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
+    <a href="../gap/">The gap</a>
+    <a href="../reference/">Reference</a>
+    <a href="../report/" aria-current="page">Report a pack</a>
+    <a href="../reminders/">Reminders</a>
+    <a href="../loop/">The loop</a>
+    <a href="../product/">Product</a>
+    <a href="../about/">About</a>
+    <a href="../contact/">Contact</a>
+  </nav>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links"><span class="menu-ic" aria-hidden="true"></span><span class="menu-tx">Menu</span></button>
+  <a class="btn" href="../app/">Open the app</a>
+</header>
+
+<section class="phead">
+  <div class="wrap">
+    <div class="sec-idx"><span class="mono">Report a pack</span></div>
+    <h1>Flag a pack that looks wrong</h1>
+    <p class="page-note">A report takes fifteen seconds and no account. Today it is stored on the device that made it. The moment a moderated backend exists, the same form becomes a shared early-warning map, see <a href="../product/#status">live &amp; roadmap</a>.</p>
+  </div>
+</section>
+
+<section class="page-body" id="report">
+  <div class="wrap"><div class="page-col">
+    <p class="lede">You do not need lab equipment to notice that a blister is loose, the print is soft, or the tablets taste of nothing. Those observations are data, they just have nowhere to go.</p>
+    <form class="form" id="reportForm" style="margin-top:34px">
+      <div>
+        <label class="fl mono" for="r-med">Medicine name</label>
+        <input class="inp" id="r-med" name="med" placeholder="e.g. Amoxicillin 500mg" required>
+      </div>
+      <div>
+        <label class="fl mono" for="r-batch">Batch / lot code</label>
+        <input class="inp" id="r-batch" name="batch" placeholder="Printed on the foil or carton">
+      </div>
+      <div>
+        <label class="fl mono" for="r-where">Where you bought it</label>
+        <input class="inp" id="r-where" name="where" placeholder="Pharmacy or market, and area">
+      </div>
+      <div>
+        <label class="fl mono" for="r-state">State</label>
+        <select class="inp" id="r-state" name="state"></select>
+      </div>
+      <div class="f-full">
+        <span class="fl mono">What looks wrong</span>
+        <div class="checks" id="flagChecks"></div>
+      </div>
+      <div class="f-full" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px">
+        <button class="btn" type="submit">Log this report</button>
+        <span class="pill-note"><span class="d" aria-hidden="true"></span>Stored on this device only, nothing is uploaded</span>
+      </div>
+    </form>
+    <div class="ledger">
+      <div class="ledger-h"><span class="mono">Device ledger</span><span class="mono" id="ledgerCount" style="color:var(--ink-45)">0 reports</span></div>
+      <div id="ledgerBody"></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="endcta">
+  <div class="wrap">
+    <p class="next-label">Next</p>
+    <h2><a class="next-link" href="../reminders/">Reminders</a></h2>
+    <div class="row">
+      <a class="btn" href="../app/">Open the app</a>
+      <a class="btn ghost" href="../contact/">Talk to the founders</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
+        <a class="btn sm" href="../app/">Open the app</a>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Product</h2>
+        <ul>
+          <li><a href="../app/">The app</a></li>
+          <li><a href="../reference/">Medicine reference</a></li>
+          <li><a href="../report/">Report a suspect pack</a></li>
+          <li><a href="../reminders/">Dose reminders</a></li>
+          <li><a href="../product/">How it works</a></li>
+          <li><a href="../product/#status">What&rsquo;s live today</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Company</h2>
+        <ul>
+          <li><a href="../about/">About RxLoop</a></li>
+          <li><a href="../gap/">The gap we close</a></li>
+          <li><a href="../loop/">How the loop works</a></li>
+          <li><a href="../about/#founders">Founders</a></li>
+          <li><a href="../blueprint/">Strategic blueprint</a></li>
+          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Work with us</h2>
+        <ul>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Contact</h2>
+        <dl class="foot-dl">
+          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
+          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
+          <div><dt>Based in</dt><dd>Nigeria</dd></div>
+          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+      <nav aria-label="Legal">
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../app/data.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>

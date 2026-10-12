@@ -19,20 +19,25 @@
 
 <header class="nav" id="nav">
   <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
-  <nav class="nav-links" aria-label="Primary">
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
+    <a href="../gap/">The gap</a>
+    <a href="../reference/">Reference</a>
+    <a href="../report/">Report a pack</a>
+    <a href="../reminders/">Reminders</a>
+    <a href="../loop/">The loop</a>
     <a href="../product/">Product</a>
-    <a href="../blueprint/">Blueprint</a>
     <a href="../about/">About</a>
     <a href="../contact/" aria-current="page">Contact</a>
   </nav>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links"><span class="menu-ic" aria-hidden="true"></span><span class="menu-tx">Menu</span></button>
   <a class="btn" href="../app/">Open the app</a>
 </header>
 
 <section class="phead">
   <div class="wrap">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Contact</span></div>
-    <h1>Say what<br>you <span class="em">need</span></h1>
-    <p class="lede">One founder reads every message, so specificity gets a faster answer than pleasantries.</p>
+    <h1>Say what you <span class="em">need</span></h1>
+    <p class="lede">The founders read every message themselves, so specificity gets a faster answer than pleasantries.</p>
   </div>
 </section>
 
@@ -40,7 +45,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Direct</span></div>
-    <h2 class="sec-h">Email is<br><span class="thin">fastest</span></h2>
+    <h2 class="sec-h">Email is <span class="thin">fastest</span></h2>
     <p class="sec-note">No form middleware, no ticket queue, mail lands directly.</p>
   </div></div>
   <div class="split-r"><div class="streams">
@@ -56,7 +61,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Write</span></div>
-    <h2 class="sec-h">Draft it<br><span class="thin">here</span></h2>
+    <h2 class="sec-h">Draft it <span class="thin">here</span></h2>
     <p class="sec-note">This opens your own mail app with the message prefilled. Nothing is sent through this site, and nothing is stored on it.</p>
   </div></div>
   <div class="split-r"><form id="mailForm">
@@ -85,30 +90,85 @@
         location.href = 'mailto:uzomanwosu@rxloop.org?subject=' + encodeURIComponent('RxLoop, ' + t) + '&body=' + encodeURIComponent(b);
       });
       </script>
-      <p class="sec-note" style="max-width:52ch">Founder: Nwosu Uzoma &middot; <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a></p></div>
+      <p class="sec-note" style="max-width:52ch">Founders: Nwosu Uzoma (<a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a>) and Okpaudo Somtochukwu.</p></div>
  </div></div>
 </section>
 
 
 <section class="endcta">
   <div class="wrap">
-    <h2>Or just try<br>the app first.</h2>
+    <h2>Or just try the app first.</h2>
     <div class="row">
       <a class="btn" href="../app/">Open the app</a>
-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
+      <a class="btn ghost" href="../contact/">Talk to the founders</a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot-row">
-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
-    <nav aria-label="Footer">
-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
-    </nav>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
+        <a class="btn sm" href="../app/">Open the app</a>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Product</h2>
+        <ul>
+          <li><a href="../app/">The app</a></li>
+          <li><a href="../reference/">Medicine reference</a></li>
+          <li><a href="../report/">Report a suspect pack</a></li>
+          <li><a href="../reminders/">Dose reminders</a></li>
+          <li><a href="../product/">How it works</a></li>
+          <li><a href="../product/#status">What&rsquo;s live today</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Company</h2>
+        <ul>
+          <li><a href="../about/">About RxLoop</a></li>
+          <li><a href="../gap/">The gap we close</a></li>
+          <li><a href="../loop/">How the loop works</a></li>
+          <li><a href="../about/#founders">Founders</a></li>
+          <li><a href="../blueprint/">Strategic blueprint</a></li>
+          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Work with us</h2>
+        <ul>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Contact</h2>
+        <dl class="foot-dl">
+          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
+          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
+          <div><dt>Based in</dt><dd>Nigeria</dd></div>
+          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+      <nav aria-label="Legal">
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="../script.js"></script>
 </body>

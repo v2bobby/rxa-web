@@ -19,19 +19,24 @@
 
 <header class="nav" id="nav">
   <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
-  <nav class="nav-links" aria-label="Primary">
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
+    <a href="../gap/">The gap</a>
+    <a href="../reference/">Reference</a>
+    <a href="../report/">Report a pack</a>
+    <a href="../reminders/">Reminders</a>
+    <a href="../loop/">The loop</a>
     <a href="../product/">Product</a>
-    <a href="../blueprint/">Blueprint</a>
     <a href="../about/" aria-current="page">About</a>
     <a href="../contact/">Contact</a>
   </nav>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links"><span class="menu-ic" aria-hidden="true"></span><span class="menu-tx">Menu</span></button>
   <a class="btn" href="../app/">Open the app</a>
 </header>
 
 <section class="phead">
   <div class="wrap">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">About</span></div>
-    <h1>Start where<br>the harm <span class="em">lands</span></h1>
+    <h1>Start where the harm <span class="em">lands</span></h1>
     <p class="lede">Most solutions to falsified medicine are built for the institutions that move it. RxLoop starts from the person who swallows it.</p>
   </div>
 </section>
@@ -40,7 +45,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">The premise</span></div>
-    <h2 class="sec-h">One<br>missing<br><span class="thin">fragment</span></h2>
+    <h2 class="sec-h">One missing <span class="thin">fragment</span></h2>
     
   </div></div>
   <div class="split-r"><p class="lede">Serialisation, track-and-trace and authentication technology all exist and all work. They stop at the pharmacy counter. Beyond it sits the one participant who touches every pack, carries all the risk, and has no instrument at all: the patient.</p>
@@ -52,7 +57,7 @@
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
     <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Principles</span></div>
-    <h2 class="sec-h">Rules we<br>build <span class="thin">against</span></h2>
+    <h2 class="sec-h">Rules we build <span class="thin">against</span></h2>
     
   </div></div>
   <div class="split-r"><div class="prose">
@@ -70,48 +75,114 @@
  </div></div>
 </section>
 
-<section>
+<section id="founders">
  <div class="wrap"><div class="split">
   <div class="split-l"><div class="sticky rv">
-    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Who</span></div>
-    <h2 class="sec-h">The<br><span class="thin">founder</span></h2>
+    <div class="sec-idx"><span class="sq" aria-hidden="true"></span><span class="mono">Founders</span></div>
+    <h2 class="sec-h">The people building it</h2>
     
   </div></div>
-  <div class="split-r"><div class="founder">
-        <div class="initials" aria-hidden="true">NU</div>
+  <div class="split-r"><div class="founders">
+      <div class="founder">
         <div style="min-width:0">
-          <h3 style="margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.02em">Nwosu Uzoma</h3>
-          <div class="mono" style="color:var(--ink-45);margin-bottom:14px">Founder</div>
-          <p class="lede" style="font-size:16.5px">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
+          <h3>Nwosu Uzoma</h3>
+          <div class="role">Founder</div>
+          <p class="lede">Building RxLoop from Nigeria, for the pharmacies, patients and regulators who live with this problem daily rather than read about it in a market report.</p>
           <div class="f-links">
             <a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a>
-            <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+            <a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
-      </div></div>
+      </div>
+      <div class="founder">
+        <div style="min-width:0">
+          <h3>Okpaudo Somtochukwu</h3>
+          <div class="role">Co-founder</div>
+          <p class="lede">Co-founder of RxLoop, building it from Nigeria alongside Uzoma with the same aim: put a way to check medicine in the hands of the person taking it.</p>
+          <div class="f-links">
+            <a href="../contact/">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
  </div></div>
 </section>
 
 
 <section class="endcta">
   <div class="wrap">
-    <h2>See what it<br>actually does.</h2>
+    <h2>See what it actually does.</h2>
     <div class="row">
       <a class="btn" href="../app/">Open the app</a>
-      <a class="btn ghost" href="../contact/">Talk to the founder</a>
+      <a class="btn ghost" href="../contact/">Talk to the founders</a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot-row">
-    <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
-    <nav aria-label="Footer">
-      <a href="../app/">App</a><a href="../product/">Product</a><a href="../blueprint/">Blueprint</a>
-      <a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a>
-    </nav>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="../"><span class="dot" aria-hidden="true"></span>RxLoop</a>
+        <p>Offline-first medicine safety for Sub-Saharan Africa. Medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.</p>
+        <a class="btn sm" href="../app/">Open the app</a>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Product</h2>
+        <ul>
+          <li><a href="../app/">The app</a></li>
+          <li><a href="../reference/">Medicine reference</a></li>
+          <li><a href="../report/">Report a suspect pack</a></li>
+          <li><a href="../reminders/">Dose reminders</a></li>
+          <li><a href="../product/">How it works</a></li>
+          <li><a href="../product/#status">What&rsquo;s live today</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Company</h2>
+        <ul>
+          <li><a href="../about/">About RxLoop</a></li>
+          <li><a href="../gap/">The gap we close</a></li>
+          <li><a href="../loop/">How the loop works</a></li>
+          <li><a href="../about/#founders">Founders</a></li>
+          <li><a href="../blueprint/">Strategic blueprint</a></li>
+          <li><a href="../RxLoop_Strategic_Blueprint_2026.pdf">Blueprint (PDF)</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Work with us</h2>
+        <ul>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Pharmacy%20pilot">Pharmacy and distributor pilots</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Manufacturer%20verification%20data">Manufacturer partnerships</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Clinical%20or%20translation%20review">Clinical and translation review</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Investment">Investors</a></li>
+          <li><a href="mailto:uzomanwosu@rxloop.org?subject=RxLoop%3A%20Press">Press</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2 class="foot-h">Contact</h2>
+        <dl class="foot-dl">
+          <div><dt>Email</dt><dd><a href="mailto:uzomanwosu@rxloop.org">uzomanwosu@rxloop.org</a></dd></div>
+          <div><dt>Founders</dt><dd>Nwosu Uzoma<br>Okpaudo Somtochukwu</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/uzoma-nwosu/" target="_blank" rel="noopener">Nwosu Uzoma</a></dd></div>
+          <div><dt>Based in</dt><dd>Nigeria</dd></div>
+          <div><dt>Web</dt><dd><a href="https://rxloop.org/">rxloop.org</a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 RxLoop. Guidance only, not a substitute for a pharmacist or physician.</span>
+      <nav aria-label="Legal">
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="../script.js"></script>
 </body>
