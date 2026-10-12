@@ -13,6 +13,132 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- seo -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RxLoop">
+<meta property="og:url" content="https://rxloop.org/product/">
+<meta property="og:image" content="https://rxloop.org/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RxLoop: one in ten of these is not medicine. A grid of capsules with one in ten marked blue.">
+<meta property="og:locale" content="en_NG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Product. RxLoop">
+<meta name="twitter:description" content="What RxLoop does today, how it works offline, and what is still roadmap.">
+<meta name="twitter:image" content="https://rxloop.org/assets/og-image.png">
+<link rel="alternate" type="text/plain" title="LLM summary" href="https://rxloop.org/llms.txt">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://rxloop.org/#org",
+   "name": "RxLoop",
+   "url": "https://rxloop.org/",
+   "logo": "https://rxloop.org/assets/logo.svg",
+   "email": "uzomanwosu@rxloop.org",
+   "description": "Offline-first pharmaceutical middleware for Sub-Saharan Africa: medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.",
+   "foundingLocation": {
+    "@type": "Place",
+    "name": "Nigeria"
+   },
+   "areaServed": "Sub-Saharan Africa",
+   "founder": [
+    {
+     "@type": "Person",
+     "name": "Nwosu Uzoma",
+     "jobTitle": "Founder",
+     "email": "uzomanwosu@rxloop.org",
+     "sameAs": [
+      "https://www.linkedin.com/in/uzoma-nwosu/"
+     ]
+    },
+    {
+     "@type": "Person",
+     "name": "Okpaudo Somtochukwu",
+     "jobTitle": "Co-founder"
+    }
+   ],
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "general enquiries",
+    "email": "uzomanwosu@rxloop.org",
+    "availableLanguage": [
+     "English"
+    ]
+   },
+   "sameAs": [
+    "https://www.linkedin.com/in/uzoma-nwosu/"
+   ]
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://rxloop.org/product/#page",
+   "url": "https://rxloop.org/product/",
+   "name": "Product. RxLoop",
+   "description": "What RxLoop does today, how it works offline, and what is still roadmap.",
+   "isPartOf": {
+    "@id": "https://rxloop.org/#site"
+   },
+   "about": {
+    "@id": "https://rxloop.org/#org"
+   },
+   "inLanguage": "en",
+   "dateModified": "2026-10-12",
+   "primaryImageOfPage": "https://rxloop.org/assets/og-image.png"
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://rxloop.org/app/#app",
+   "name": "RxLoop",
+   "url": "https://rxloop.org/app/",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Web, Android, iOS (installable web app)",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "inLanguage": [
+    "en",
+    "pcm",
+    "yo",
+    "ha",
+    "ig"
+   ],
+   "publisher": {
+    "@id": "https://rxloop.org/#org"
+   },
+   "featureList": [
+    "Medication guidance in English, Nigerian Pidgin, Yorùbá, Hausa and Igbo",
+    "Works fully offline",
+    "Suspect medicine pack reporting",
+    "Dose reminders"
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://rxloop.org/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Product",
+     "item": "https://rxloop.org/product/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- /seo -->
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -126,7 +252,7 @@
       <button type="button" data-f="live" aria-pressed="false">Live today</button>
       <button type="button" data-f="soon" aria-pressed="false">Roadmap</button>
     </div>
-    <div class="items" id="items"></div>
+    <div class="items" id="items"><!--static--><div class="item live"><div class="tag">Live today</div><div><h4>Medication reference in five languages</h4><p>English, Yorùbá, Hausa, Igbo and Nigerian Pidgin. General safety and adherence guidance, deliberately excluding numeric dosing.</p></div></div><div class="item live"><div class="tag">Live today</div><div><h4>Full offline operation</h4><p>A real service worker caches the app shell and the reference data. Once opened, it keeps working with no connection at all.</p></div></div><div class="item live"><div class="tag">Live today</div><div><h4>Installable as a home-screen app</h4><p>A standard PWA install on Android. On iOS it installs through Safari&#x27;s Add to Home Screen, which is expected browser behaviour rather than a fault.</p></div></div><div class="item live"><div class="tag">Live today</div><div><h4>Counterfeit reporting</h4><p>Batch code, location and observed red flags, captured in seconds and stored on the device that made the report.</p></div></div><div class="item live"><div class="tag">Live today</div><div><h4>Adherence reminders</h4><p>Local dose reminders while the app is installed. No server, no account, no data cost.</p></div></div><div class="item soon"><div class="tag">Roadmap</div><div><h4>Computer-vision pack verification</h4><p>The original Trust Score concept: checking a pack against manufacturer-verified data. This requires real manufacturer and regulatory partnerships and will not be simulated or implied as live until it genuinely exists.</p></div></div><div class="item soon"><div class="tag">Roadmap</div><div><h4>Shared reporting map</h4><p>Cross-device sync so reports aggregate into a live cluster map. Needs a moderated backend with rate limiting to resist spam and bad-faith submissions.</p></div></div><div class="item soon"><div class="tag">Roadmap</div><div><h4>Background push reminders</h4><p>True push notifications that fire whether or not the app is open. Needs a push server.</p></div></div><div class="item soon"><div class="tag">Roadmap</div><div><h4>Clinical and language review</h4><p>Every reference entry checked by a licensed pharmacist, and each translation reviewed by native-speaking health communicators, before any wide public release.</p></div></div><div class="item soon"><div class="tag">Roadmap</div><div><h4>Pharmacy counter tools</h4><p>Batch alerts and dispensing records for the outlet, which is also the first paid tier.</p></div></div><!--/static--></div>
   </div>
  </div></div>
 </section>

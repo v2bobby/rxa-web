@@ -595,3 +595,22 @@ body.app{background:var(--paper)}
   .nav.open .nav-links a{font-size:17px;padding:14px 0;border-bottom:1px solid var(--rule-soft);color:var(--ink)}
   .nav.open .nav-links a[aria-current="page"]{color:var(--blue)}
 }
+
+/* ── full reference (static, readable without JavaScript) ── */
+.ref-all{border-top:1px solid var(--rule);margin-top:28px}
+.ref-med{padding:26px 0;border-bottom:1px solid var(--rule)}
+.ref-med h3{font-family:var(--ui);font-size:21px;font-weight:600;letter-spacing:-.02em;margin:0 0 2px}
+.ref-gen{font-size:14px;color:var(--ink-45);margin:0 0 14px}
+.ref-dl{margin:0;display:grid;gap:12px}
+.ref-dl > div{display:grid;grid-template-columns:minmax(130px,22%) 1fr;gap:6px 22px}
+@media(max-width:640px){.ref-dl > div{grid-template-columns:1fr}}
+.ref-dl dt{font-family:var(--ui);font-size:13px;font-weight:600;color:var(--ink-45);padding-top:2px}
+.ref-dl dd{margin:0;font-size:15.5px;line-height:1.55;max-width:62ch}
+.ref-med details{margin-top:10px;border-top:1px solid var(--rule-soft);padding-top:10px}
+.ref-med details:first-of-type{margin-top:18px}
+.ref-med summary{cursor:pointer;font-family:var(--ui);font-size:14px;font-weight:500;color:var(--ink-70);padding:4px 0}
+.ref-med summary:hover{color:var(--blue)}
+.ref-med details[open] summary{color:var(--ink);margin-bottom:10px}
+.loop-all{border-top:1px solid var(--rule);padding-top:20px}
+.page-note a{border-bottom:1px solid var(--ink-25)}
+.page-note a:hover{color:var(--blue);border-color:var(--blue)}

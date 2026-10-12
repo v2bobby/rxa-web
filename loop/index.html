@@ -8,13 +8,108 @@
 <link rel="canonical" href="https://rxloop.org/loop/">
 <meta property="og:title" content="The loop. RxLoop">
 <meta property="og:description" content="How patient reports travel back up the medicine supply chain to pharmacies, manufacturers and regulators.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rxloop.org/loop/">
 <meta name="theme-color" content="#F6F6F4">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- seo -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RxLoop">
+<meta property="og:url" content="https://rxloop.org/loop/">
+<meta property="og:image" content="https://rxloop.org/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RxLoop: one in ten of these is not medicine. A grid of capsules with one in ten marked blue.">
+<meta property="og:locale" content="en_NG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The loop. RxLoop">
+<meta name="twitter:description" content="How patient reports travel back up the medicine supply chain to pharmacies, manufacturers and regulators.">
+<meta name="twitter:image" content="https://rxloop.org/assets/og-image.png">
+<link rel="alternate" type="text/plain" title="LLM summary" href="https://rxloop.org/llms.txt">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://rxloop.org/#org",
+   "name": "RxLoop",
+   "url": "https://rxloop.org/",
+   "logo": "https://rxloop.org/assets/logo.svg",
+   "email": "uzomanwosu@rxloop.org",
+   "description": "Offline-first pharmaceutical middleware for Sub-Saharan Africa: medication guidance in five Nigerian languages, suspect-pack reporting and dose reminders, free for patients.",
+   "foundingLocation": {
+    "@type": "Place",
+    "name": "Nigeria"
+   },
+   "areaServed": "Sub-Saharan Africa",
+   "founder": [
+    {
+     "@type": "Person",
+     "name": "Nwosu Uzoma",
+     "jobTitle": "Founder",
+     "email": "uzomanwosu@rxloop.org",
+     "sameAs": [
+      "https://www.linkedin.com/in/uzoma-nwosu/"
+     ]
+    },
+    {
+     "@type": "Person",
+     "name": "Okpaudo Somtochukwu",
+     "jobTitle": "Co-founder"
+    }
+   ],
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "general enquiries",
+    "email": "uzomanwosu@rxloop.org",
+    "availableLanguage": [
+     "English"
+    ]
+   },
+   "sameAs": [
+    "https://www.linkedin.com/in/uzoma-nwosu/"
+   ]
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://rxloop.org/loop/#page",
+   "url": "https://rxloop.org/loop/",
+   "name": "The loop. RxLoop",
+   "description": "How patient reports travel back up the medicine supply chain to pharmacies, manufacturers and regulators.",
+   "isPartOf": {
+    "@id": "https://rxloop.org/#site"
+   },
+   "about": {
+    "@id": "https://rxloop.org/#org"
+   },
+   "inLanguage": "en",
+   "dateModified": "2026-10-12",
+   "primaryImageOfPage": "https://rxloop.org/assets/og-image.png"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://rxloop.org/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "The loop",
+     "item": "https://rxloop.org/loop/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- /seo -->
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -77,8 +172,10 @@
           <text x="516" y="240">Regulator</text>
         </g>
       </svg>
-      <div class="loop-read" id="loopRead" aria-live="polite"></div>
+      <div class="loop-read" id="loopRead" aria-live="polite"><h4>Patient</h4><p>The only actor who touches every pack and carries all of the risk. Gets: guidance in their own language, offline, free. Sends: the observation that a pack looks, tastes or works wrong.</p></div>
     </div>
+    <h2 class="sec-h" style="margin-top:56px;max-width:none">What each part sends and gets back</h2>
+    <dl class="ref-dl loop-all"><div><dt>Manufacturer</dt><dd>Knows exactly what it produced and where each batch shipped — then loses sight of it entirely. Gets back: the first geographic signal that packs bearing its name are being imitated.</dd></div><div><dt>Distributor</dt><dd>Moves volume across states with paperwork that rarely survives the last mile. Gets back: batch-level flags on the specific consignments moving through its own network.</dd></div><div><dt>Pharmacy</dt><dd>The last professional to touch the pack, usually with no way to check a supplier&#x27;s claim. Gets back: counter alerts on batches its own customers have flagged, plus a dispensing record.</dd></div><div><dt>Patient</dt><dd>The only actor who touches every pack and carries all of the risk. Gets: guidance in their own language, offline, free. Sends: the observation that a pack looks, tastes or works wrong.</dd></div><div><dt>Regulator</dt><dd>Currently learns about a falsified batch when someone has already been harmed. Gets back: anonymised clusters of suspect reports by state and batch, weeks ahead of formal channels.</dd></div></dl>
   </div></div>
 </section>
 

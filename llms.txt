@@ -1,0 +1,29 @@
+# RxLoop
+
+> Offline-first pharmaceutical middleware for Sub-Saharan Africa. RxLoop gives patients medication safety guidance in five Nigerian languages (English, Nigerian Pidgin, Yorùbá, Hausa, Igbo) with no internet connection, lets anyone flag a suspect medicine pack in seconds, and tracks dose reminders on the device. Free for patients. Revenue comes from pharmacies, manufacturers and regulators.
+
+Important: RxLoop provides general safety and adherence guidance only. It never gives dosing figures, and it is not a substitute for a pharmacist or physician. Computer-vision pack verification is planned but not built; nothing on the site should be read as claiming it works today.
+
+Founders: Nwosu Uzoma (Founder) and Okpaudo Somtochukwu (Co-founder). Based in Nigeria. Contact: uzomanwosu@rxloop.org
+
+## Product
+- [The app](https://rxloop.org/app/): the installable offline web app itself
+- [Medication reference](https://rxloop.org/reference/): Look up common medicines in English, Nigerian Pidgin, Yorùbá, Hausa or Igbo. General safety guidance that works offline.
+- [Reference data (JSON)](https://rxloop.org/data/medicines.json): all 14 medicines with guidance in all five languages
+- [Report a pack](https://rxloop.org/report/): Flag a medicine pack that looks wrong in fifteen seconds, with no account. Stored on your device.
+- [Reminders](https://rxloop.org/reminders/): Set dose times that fit your day and finish the whole course. Local reminders, no server, no data cost.
+- [Product overview](https://rxloop.org/product/): What RxLoop does today, how it works offline, and what is still roadmap.
+
+## Background
+- [The gap](https://rxloop.org/gap/): Why falsified medicine reaches patients in Sub-Saharan Africa, and the one person in the supply chain nobody equips to check it.
+- [The loop](https://rxloop.org/loop/): How patient reports travel back up the medicine supply chain to pharmacies, manufacturers and regulators.
+- [Strategic blueprint](https://rxloop.org/blueprint/): The RxLoop strategic blueprint: problem, product, model, sequencing and what has to be true.
+- [Strategic blueprint (PDF)](https://rxloop.org/RxLoop_Strategic_Blueprint_2026.pdf)
+
+## Company
+- [About](https://rxloop.org/about/): Why RxLoop exists, who is building it, and the principles that constrain what it ships.
+- [Contact](https://rxloop.org/contact/): Reach the RxLoop founder about partnerships, pilots, clinical review or press.
+
+## Optional
+- [Privacy](https://rxloop.org/privacy/): What RxLoop stores, where it stores it, and what leaves your device.
+- [Terms](https://rxloop.org/terms/): Terms of use for the RxLoop site and application.

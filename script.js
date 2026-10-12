@@ -478,7 +478,7 @@ function toast(msg) {
     { s: 'soon', t: 'Pharmacy counter tools', d: 'Batch alerts and dispensing records for the outlet, which is also the first paid tier.' }
   ];
 
-  ITEMS.forEach(function (it) {
+  if (!host.querySelector('.item')) ITEMS.forEach(function (it) {
     var d = document.createElement('div');
     d.className = 'item ' + it.s;
     var tag = document.createElement('div');
