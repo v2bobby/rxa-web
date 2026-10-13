@@ -4,7 +4,7 @@
 
 Important: RxLoop provides general safety and adherence guidance only. It never gives dosing figures, and it is not a substitute for a pharmacist or physician. Computer-vision pack verification is planned but not built; nothing on the site should be read as claiming it works today.
 
-Founders: Nwosu Uzoma (Founder) and Okpaudo Somtochukwu (Co-founder). Based in Nigeria. Contact: uzomanwosu@rxloop.org
+Founders: Nwosu Uzoma (Founder) and Robert Iheala (Co-founder). Based in Nigeria. Contact: uzomanwosu@rxloop.org (Nwosu Uzoma), robert.iheala@rxloop.org (Robert Iheala)
 
 ## Product
 - [The app](https://rxloop.org/app/): the installable offline web app itself
