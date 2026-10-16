@@ -4,7 +4,9 @@
 
 Important: RxLoop provides general safety and adherence guidance only. It never gives dosing figures, and it is not a substitute for a pharmacist or physician. Computer-vision pack verification is planned but not built; nothing on the site should be read as claiming it works today.
 
-Founders: Nwosu Uzoma (Founder) and Robert Iheala (Co-founder). Based in Nigeria. Contact: uzomanwosu@rxloop.org (Nwosu Uzoma), robert.iheala@rxloop.org (Robert Iheala)
+Company: RxLoop Tech Ltd, registered with the Corporate Affairs Commission of Nigeria (CAC no. 234573) on 30 September 2025 under the Companies and Allied Matters Act 2020. Registered office: By Da Arugo Hotel, 21 Tetlow Road, Owerri, Imo State, Nigeria.
+
+Founders: Nwosu Uzoma (Founder) and Robert Iheala (Co-founder). Based in Owerri, Nigeria. Contact: uzomanwosu@rxloop.org (Nwosu Uzoma), robert.iheala@rxloop.org (Robert Iheala)
 
 ## Product
 - [The app](https://rxloop.org/app/): the installable offline web app itself
